@@ -98,13 +98,6 @@
 			remoteGlobalIDString = 8C601BB523683B1C00E87BFB;
 			remoteInfo = TogglAPI;
 		};
-		8CA9509123732E390076BDA4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8CC5FE432355B3A900D33237 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8C113BA42355EE7B00F8CE88;
-			remoteInfo = Model;
-		};
 		8CA950B12374254C0076BDA4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8CC5FE432355B3A900D33237 /* Project object */;
@@ -641,7 +634,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				8CA9509223732E390076BDA4 /* PBXTargetDependency */,
 				8CA9509023732E250076BDA4 /* PBXTargetDependency */,
 			);
 			name = Core;
@@ -964,11 +956,6 @@
 			isa = PBXTargetDependency;
 			target = 8C601BB523683B1C00E87BFB /* TogglAPI */;
 			targetProxy = 8CA9508F23732E250076BDA4 /* PBXContainerItemProxy */;
-		};
-		8CA9509223732E390076BDA4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8C113BA42355EE7B00F8CE88 /* Model */;
-			targetProxy = 8CA9509123732E390076BDA4 /* PBXContainerItemProxy */;
 		};
 		8CA950B22374254C0076BDA4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

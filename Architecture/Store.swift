@@ -8,52 +8,52 @@
 import Combine
 import SwiftUI
 
-public final class Store<Value, Action, Environment>: ObservableObject
+public final class Store<State, Action, Environment>: ObservableObject
 {
-    @Published public private(set) var value: Value
+    @Published public private(set) var state: State
     
-    private let reducer: Reducer<Value, Action, Environment>
+    private let reducer: Reducer<State, Action, Environment>
     private var cancellable: Cancellable?
     private let environment: Environment
     
-    public init(initialValue: Value, reducer: Reducer<Value, Action, Environment>, environment: Environment) {
+    public init(initialState: State, reducer: Reducer<State, Action, Environment>, environment: Environment) {
         self.reducer = reducer
-        self.value = initialValue
+        self.state = initialState
         self.environment = environment
     }
     
     public func send(_ action: Action) {
-        let effect = self.reducer.run(&self.value, action, environment)
+        let effect = self.reducer.run(&self.state, action, environment)
         
         _ = effect.run()
             .sink(receiveValue: send)
     }
     
-    public func view<LocalValue, LocalAction>(
-        value toLocalValue: @escaping (Value) -> LocalValue,
+    public func view<LocalState, LocalAction>(
+        state toLocalState: @escaping (State) -> LocalState,
         action toGlobalAction: @escaping (LocalAction) -> Action
-    ) -> Store<LocalValue, LocalAction, Environment> {
-        let localStore = Store<LocalValue, LocalAction, Environment>(
-            initialValue: toLocalValue(self.value),
-            reducer: Reducer { localValue, localAction, localEnvironment in
+    ) -> Store<LocalState, LocalAction, Environment> {
+        let localStore = Store<LocalState, LocalAction, Environment>(
+            initialState: toLocalState(self.state),
+            reducer: Reducer { localState, localAction, localEnvironment in
                 self.send(toGlobalAction(localAction))
-                localValue = toLocalValue(self.value)
+                localState = toLocalState(self.state)
                 return .empty
             },
             environment: environment
         )
-        localStore.cancellable = self.$value.sink { [weak localStore] newValue in
-            localStore?.value = toLocalValue(newValue)
+        localStore.cancellable = self.$state.sink { [weak localStore] newState in
+            localStore?.state = toLocalState(newState)
         }
         return localStore
     }
 }
 
-public func logging<Value, Action, Environment>(
-    _ reducer: Reducer<Value, Action, Environment>
-) -> Reducer<Value, Action, Environment> {
-    return Reducer { value, action, environment in
-        let effect = reducer.run(&value, action, environment)
+public func logging<State, Action, Environment>(
+    _ reducer: Reducer<State, Action, Environment>
+) -> Reducer<State, Action, Environment> {
+    return Reducer { state, action, environment in
+        let effect = reducer.run(&state, action, environment)
         return Effect {
             print("Action: \(action)")
             return effect.run()

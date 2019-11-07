@@ -28,19 +28,19 @@ var appReducer: Reducer<AppState, AppAction, AppEnvironment> = combine(
     globalReducer,
     pullback(
         timelineReducer,
-        value: \.timeline.timeEntries,
+        state: \.timeline.timeEntries,
         action: \.timelineEntries,
         environment: \AppEnvironment.api
     ),
     pullback(
         projectReducer,
-        value: \.timeline.projects,
+        state: \.timeline.projects,
         action: \.projects,
         environment: \.api
     ),
     pullback(
         workspaceReducer,
-        value: \.timeline.workspaces,
+        state: \.timeline.workspaces,
         action: \.workspaces,
         environment: \.api
     )
@@ -53,7 +53,7 @@ struct ContentView: View
     var body: some View {
         TimelineView(
             store: store.view(
-                value: { $0.timeline },
+                state: { $0.timeline },
                 action: { .timelineEntries($0)}
             )
         )
@@ -67,7 +67,7 @@ struct ContentView: View
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView(store: Store(
-            initialValue: AppState(),
+            initialState: AppState(),
             reducer: appReducer,
             environment: AppEnvironment())
         )

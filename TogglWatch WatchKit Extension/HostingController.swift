@@ -15,7 +15,7 @@ import Core
 class HostingController: WKHostingController<ContentView> {
     override var body: ContentView {
          return ContentView(store: Store(
-            initialValue: AppState(),
+            initialState: AppState(),
             reducer: logging(appReducer),
             environment: AppEnvironment()
             )
