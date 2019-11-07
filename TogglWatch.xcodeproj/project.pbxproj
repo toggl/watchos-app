@@ -1,0 +1,1739 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8C113BA92355EE7B00F8CE88 /* Model.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C113BA72355EE7B00F8CE88 /* Model.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8C113BAC2355EE7B00F8CE88 /* Model.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C113BA52355EE7B00F8CE88 /* Model.framework */; };
+		8C113BAD2355EE7B00F8CE88 /* Model.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C113BA52355EE7B00F8CE88 /* Model.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8C113BB22355EE8900F8CE88 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5FE922355BDB200D33237 /* Client.swift */; };
+		8C113BB32355EE8900F8CE88 /* Workspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5FE8E2355BA7400D33237 /* Workspace.swift */; };
+		8C113BB42355EE8900F8CE88 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5FE8C2355B98C00D33237 /* Project.swift */; };
+		8C113BB52355EE8900F8CE88 /* TimeEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5FE8A2355B8CA00D33237 /* TimeEntry.swift */; };
+		8C113BB62355EE8900F8CE88 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5FE902355BB8E00D33237 /* Tag.swift */; };
+		8C113BC02355EE9F00F8CE88 /* FormatUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C113BBE2355EE9F00F8CE88 /* FormatUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8C113BC32355EE9F00F8CE88 /* FormatUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C113BBC2355EE9F00F8CE88 /* FormatUtils.framework */; };
+		8C113BC42355EE9F00F8CE88 /* FormatUtils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C113BBC2355EE9F00F8CE88 /* FormatUtils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8C113BC82355EEA700F8CE88 /* TimeIntervalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5FE9B2355E2E700D33237 /* TimeIntervalExtensions.swift */; };
+		8C113BD22355EF4B00F8CE88 /* Architecture.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C113BD02355EF4B00F8CE88 /* Architecture.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8C113BD52355EF4B00F8CE88 /* Architecture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C113BCE2355EF4B00F8CE88 /* Architecture.framework */; };
+		8C113BD62355EF4B00F8CE88 /* Architecture.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C113BCE2355EF4B00F8CE88 /* Architecture.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8C113BDB2355EF5300F8CE88 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5FE822355B3EF00D33237 /* Store.swift */; };
+		8C3B2C932361930E008295D8 /* Networking.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3B2C912361930E008295D8 /* Networking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8C3B2C962361930E008295D8 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3B2C8F2361930E008295D8 /* Networking.framework */; };
+		8C3B2C972361930E008295D8 /* Networking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3B2C8F2361930E008295D8 /* Networking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8C601BBA23683B1C00E87BFB /* TogglAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C601BB823683B1C00E87BFB /* TogglAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8C601BBD23683B1C00E87BFB /* TogglAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C601BB623683B1C00E87BFB /* TogglAPI.framework */; };
+		8C601BBE23683B1C00E87BFB /* TogglAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C601BB623683B1C00E87BFB /* TogglAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8C601BC223683B2200E87BFB /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3B2C9B23619321008295D8 /* API.swift */; };
+		8C601BC523683C1700E87BFB /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C601BC323683BEC00E87BFB /* Errors.swift */; };
+		8C76C1E4236861F800AA36E5 /* timeentries.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C76C1E223685A1A00AA36E5 /* timeentries.txt */; };
+		8C76C1ED236868BA00AA36E5 /* workspaces.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C76C1E5236865DC00AA36E5 /* workspaces.txt */; };
+		8C76C1EE236868C000AA36E5 /* projects.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C76C1E72368678B00AA36E5 /* projects.txt */; };
+		8C76C1EF236868C000AA36E5 /* clients.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C76C1E9236867A900AA36E5 /* clients.txt */; };
+		8C76C1F0236868C000AA36E5 /* tags.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C76C1EB236867C400AA36E5 /* tags.txt */; };
+		8C9686C62366E66200D7865E /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9686C22366B84700D7865E /* Endpoint.swift */; };
+		8C9686C72366E66700D7865E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9686C42366E65700D7865E /* Extensions.swift */; };
+		8C9686C82367006600D7865E /* TimeEntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9686C0236307FD00D7865E /* TimeEntryModel.swift */; };
+		8CA950302369E7630076BDA4 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA9502E2369E5B10076BDA4 /* Reducer.swift */; };
+		8CA950312369E76A0076BDA4 /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA9502C2369E59A0076BDA4 /* Effect.swift */; };
+		8CA9507723732D7A0076BDA4 /* Core.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CA9507523732D7A0076BDA4 /* Core.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8CA9507A23732D7B0076BDA4 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA9507323732D7A0076BDA4 /* Core.framework */; };
+		8CA9507B23732D7B0076BDA4 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA9507323732D7A0076BDA4 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8CA9507F23732D870076BDA4 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA95069237329100076BDA4 /* AppEnvironment.swift */; };
+		8CA9508023732D870076BDA4 /* AppAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA9506C237329440076BDA4 /* AppAction.swift */; };
+		8CA9508123732D870076BDA4 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA94FF423698A550076BDA4 /* AppState.swift */; };
+		8CA9509523732E7E0076BDA4 /* TimelineAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA9508323732DA40076BDA4 /* TimelineAction.swift */; };
+		8CA9509623732E7E0076BDA4 /* ProjectAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA9508523732DC10076BDA4 /* ProjectAction.swift */; };
+		8CA9509723732E7E0076BDA4 /* WorkspaceAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA9508723732DDA0076BDA4 /* WorkspaceAction.swift */; };
+		8CA9509A237417DD0076BDA4 /* TimelineReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5FE9E2355E70200D33237 /* TimelineReducer.swift */; };
+		8CA9509B237417E10076BDA4 /* ProjectsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA9500C2369B2730076BDA4 /* ProjectsReducer.swift */; };
+		8CA9509C237417E50076BDA4 /* WorkspacesReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA95055237181140076BDA4 /* WorkspacesReducer.swift */; };
+		8CA9509D237417FD0076BDA4 /* TimeEntryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5FEA32355E74400D33237 /* TimeEntryCellView.swift */; };
+		8CA9509E237418000076BDA4 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5FE962355D77C00D33237 /* Timeline.swift */; };
+		8CC5FE4E2355B3A900D33237 /* TogglWatch WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 8CC5FE4D2355B3A900D33237 /* TogglWatch WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8CC5FE542355B3A900D33237 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CC5FE522355B3A900D33237 /* Interface.storyboard */; };
+		8CC5FE562355B3AB00D33237 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CC5FE552355B3AB00D33237 /* Assets.xcassets */; };
+		8CC5FE5D2355B3AB00D33237 /* TogglWatch WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8CC5FE5C2355B3AB00D33237 /* TogglWatch WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8CC5FE622355B3AB00D33237 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5FE612355B3AB00D33237 /* ContentView.swift */; };
+		8CC5FE642355B3AB00D33237 /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5FE632355B3AB00D33237 /* HostingController.swift */; };
+		8CC5FE662355B3AB00D33237 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5FE652355B3AB00D33237 /* ExtensionDelegate.swift */; };
+		8CC5FE682355B3AB00D33237 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5FE672355B3AB00D33237 /* NotificationController.swift */; };
+		8CC5FE6A2355B3AB00D33237 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5FE692355B3AB00D33237 /* NotificationView.swift */; };
+		8CC5FE6C2355B3AB00D33237 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5FE6B2355B3AB00D33237 /* ComplicationController.swift */; };
+		8CC5FE6E2355B3AC00D33237 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CC5FE6D2355B3AC00D33237 /* Assets.xcassets */; };
+		8CC5FE712355B3AC00D33237 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CC5FE702355B3AC00D33237 /* Preview Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8C113BAA2355EE7B00F8CE88 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CC5FE432355B3A900D33237 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C113BA42355EE7B00F8CE88;
+			remoteInfo = Model;
+		};
+		8C113BC12355EE9F00F8CE88 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CC5FE432355B3A900D33237 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C113BBB2355EE9F00F8CE88;
+			remoteInfo = FormatUtils;
+		};
+		8C113BD32355EF4B00F8CE88 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CC5FE432355B3A900D33237 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C113BCD2355EF4B00F8CE88;
+			remoteInfo = Architecture;
+		};
+		8C3B2C942361930E008295D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CC5FE432355B3A900D33237 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C3B2C8E2361930E008295D8;
+			remoteInfo = Networking;
+		};
+		8C601BBB23683B1C00E87BFB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CC5FE432355B3A900D33237 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C601BB523683B1C00E87BFB;
+			remoteInfo = TogglAPI;
+		};
+		8C76C1F323686B5900AA36E5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CC5FE432355B3A900D33237 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C113BBB2355EE9F00F8CE88;
+			remoteInfo = FormatUtils;
+		};
+		8C76C1F523686B7500AA36E5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CC5FE432355B3A900D33237 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C3B2C8E2361930E008295D8;
+			remoteInfo = Networking;
+		};
+		8C76C1F723686B7700AA36E5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CC5FE432355B3A900D33237 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C113BA42355EE7B00F8CE88;
+			remoteInfo = Model;
+		};
+		8CA9507823732D7A0076BDA4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CC5FE432355B3A900D33237 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CA9507223732D7A0076BDA4;
+			remoteInfo = Core;
+		};
+		8CA9508F23732E250076BDA4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CC5FE432355B3A900D33237 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C601BB523683B1C00E87BFB;
+			remoteInfo = TogglAPI;
+		};
+		8CA9509123732E390076BDA4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CC5FE432355B3A900D33237 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C113BA42355EE7B00F8CE88;
+			remoteInfo = Model;
+		};
+		8CC5FE4F2355B3A900D33237 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CC5FE432355B3A900D33237 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CC5FE4C2355B3A900D33237;
+			remoteInfo = "TogglWatch WatchKit App";
+		};
+		8CC5FE5E2355B3AB00D33237 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CC5FE432355B3A900D33237 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CC5FE5B2355B3AB00D33237;
+			remoteInfo = "TogglWatch WatchKit Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8C113BB12355EE7B00F8CE88 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8C113BD62355EF4B00F8CE88 /* Architecture.framework in Embed Frameworks */,
+				8C113BAD2355EE7B00F8CE88 /* Model.framework in Embed Frameworks */,
+				8C3B2C972361930E008295D8 /* Networking.framework in Embed Frameworks */,
+				8C113BC42355EE9F00F8CE88 /* FormatUtils.framework in Embed Frameworks */,
+				8CA9507B23732D7B0076BDA4 /* Core.framework in Embed Frameworks */,
+				8C601BBE23683B1C00E87BFB /* TogglAPI.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CC5FE792355B3AC00D33237 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				8CC5FE5D2355B3AB00D33237 /* TogglWatch WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CC5FE7D2355B3AC00D33237 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				8CC5FE4E2355B3A900D33237 /* TogglWatch WatchKit App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		8C113BA52355EE7B00F8CE88 /* Model.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Model.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C113BA72355EE7B00F8CE88 /* Model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		8C113BA82355EE7B00F8CE88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C113BBC2355EE9F00F8CE88 /* FormatUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FormatUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C113BBE2355EE9F00F8CE88 /* FormatUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FormatUtils.h; sourceTree = "<group>"; };
+		8C113BBF2355EE9F00F8CE88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C113BCE2355EF4B00F8CE88 /* Architecture.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Architecture.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C113BD02355EF4B00F8CE88 /* Architecture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Architecture.h; sourceTree = "<group>"; };
+		8C113BD12355EF4B00F8CE88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C3B2C8F2361930E008295D8 /* Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C3B2C912361930E008295D8 /* Networking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Networking.h; sourceTree = "<group>"; };
+		8C3B2C922361930E008295D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C3B2C9B23619321008295D8 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		8C601BB623683B1C00E87BFB /* TogglAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TogglAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C601BB823683B1C00E87BFB /* TogglAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TogglAPI.h; sourceTree = "<group>"; };
+		8C601BB923683B1C00E87BFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C601BC323683BEC00E87BFB /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		8C76C1E223685A1A00AA36E5 /* timeentries.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = timeentries.txt; sourceTree = "<group>"; };
+		8C76C1E5236865DC00AA36E5 /* workspaces.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = workspaces.txt; sourceTree = "<group>"; };
+		8C76C1E72368678B00AA36E5 /* projects.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = projects.txt; sourceTree = "<group>"; };
+		8C76C1E9236867A900AA36E5 /* clients.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = clients.txt; sourceTree = "<group>"; };
+		8C76C1EB236867C400AA36E5 /* tags.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = tags.txt; sourceTree = "<group>"; };
+		8C9686C0236307FD00D7865E /* TimeEntryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntryModel.swift; sourceTree = "<group>"; };
+		8C9686C22366B84700D7865E /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		8C9686C42366E65700D7865E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		8CA94FF423698A550076BDA4 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		8CA9500C2369B2730076BDA4 /* ProjectsReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsReducer.swift; sourceTree = "<group>"; };
+		8CA9502C2369E59A0076BDA4 /* Effect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effect.swift; sourceTree = "<group>"; };
+		8CA9502E2369E5B10076BDA4 /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
+		8CA95055237181140076BDA4 /* WorkspacesReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspacesReducer.swift; sourceTree = "<group>"; };
+		8CA95069237329100076BDA4 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
+		8CA9506C237329440076BDA4 /* AppAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAction.swift; sourceTree = "<group>"; };
+		8CA9507323732D7A0076BDA4 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CA9507523732D7A0076BDA4 /* Core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Core.h; sourceTree = "<group>"; };
+		8CA9507623732D7A0076BDA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8CA9508323732DA40076BDA4 /* TimelineAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineAction.swift; sourceTree = "<group>"; };
+		8CA9508523732DC10076BDA4 /* ProjectAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectAction.swift; sourceTree = "<group>"; };
+		8CA9508723732DDA0076BDA4 /* WorkspaceAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceAction.swift; sourceTree = "<group>"; };
+		8CC5FE492355B3A900D33237 /* TogglWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TogglWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CC5FE4D2355B3A900D33237 /* TogglWatch WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TogglWatch WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CC5FE532355B3A900D33237 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		8CC5FE552355B3AB00D33237 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8CC5FE572355B3AB00D33237 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8CC5FE5C2355B3AB00D33237 /* TogglWatch WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "TogglWatch WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CC5FE612355B3AB00D33237 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8CC5FE632355B3AB00D33237 /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
+		8CC5FE652355B3AB00D33237 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		8CC5FE672355B3AB00D33237 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		8CC5FE692355B3AB00D33237 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		8CC5FE6B2355B3AB00D33237 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		8CC5FE6D2355B3AC00D33237 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8CC5FE702355B3AC00D33237 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8CC5FE722355B3AC00D33237 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8CC5FE732355B3AC00D33237 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		8CC5FE822355B3EF00D33237 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		8CC5FE8A2355B8CA00D33237 /* TimeEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntry.swift; sourceTree = "<group>"; };
+		8CC5FE8C2355B98C00D33237 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		8CC5FE8E2355BA7400D33237 /* Workspace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workspace.swift; sourceTree = "<group>"; };
+		8CC5FE902355BB8E00D33237 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		8CC5FE922355BDB200D33237 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		8CC5FE962355D77C00D33237 /* Timeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timeline.swift; sourceTree = "<group>"; };
+		8CC5FE9B2355E2E700D33237 /* TimeIntervalExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalExtensions.swift; sourceTree = "<group>"; };
+		8CC5FE9E2355E70200D33237 /* TimelineReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineReducer.swift; sourceTree = "<group>"; };
+		8CC5FEA32355E74400D33237 /* TimeEntryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntryCellView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8C113BA22355EE7B00F8CE88 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C113BB92355EE9F00F8CE88 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C113BCB2355EF4B00F8CE88 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C3B2C8C2361930E008295D8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C601BB323683B1C00E87BFB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CA9507023732D7A0076BDA4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CC5FE592355B3AB00D33237 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C113BD52355EF4B00F8CE88 /* Architecture.framework in Frameworks */,
+				8C113BAC2355EE7B00F8CE88 /* Model.framework in Frameworks */,
+				8C3B2C962361930E008295D8 /* Networking.framework in Frameworks */,
+				8C113BC32355EE9F00F8CE88 /* FormatUtils.framework in Frameworks */,
+				8CA9507A23732D7B0076BDA4 /* Core.framework in Frameworks */,
+				8C601BBD23683B1C00E87BFB /* TogglAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8C113BA62355EE7B00F8CE88 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8CC5FE8A2355B8CA00D33237 /* TimeEntry.swift */,
+				8CC5FE8C2355B98C00D33237 /* Project.swift */,
+				8CC5FE8E2355BA7400D33237 /* Workspace.swift */,
+				8CC5FE902355BB8E00D33237 /* Tag.swift */,
+				8CC5FE922355BDB200D33237 /* Client.swift */,
+				8C113BA72355EE7B00F8CE88 /* Model.h */,
+				8C113BA82355EE7B00F8CE88 /* Info.plist */,
+				8C9686C0236307FD00D7865E /* TimeEntryModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8C113BBD2355EE9F00F8CE88 /* FormatUtils */ = {
+			isa = PBXGroup;
+			children = (
+				8CC5FE9B2355E2E700D33237 /* TimeIntervalExtensions.swift */,
+				8C113BBE2355EE9F00F8CE88 /* FormatUtils.h */,
+				8C113BBF2355EE9F00F8CE88 /* Info.plist */,
+			);
+			path = FormatUtils;
+			sourceTree = "<group>";
+		};
+		8C113BCF2355EF4B00F8CE88 /* Architecture */ = {
+			isa = PBXGroup;
+			children = (
+				8CC5FE822355B3EF00D33237 /* Store.swift */,
+				8C113BD02355EF4B00F8CE88 /* Architecture.h */,
+				8C113BD12355EF4B00F8CE88 /* Info.plist */,
+				8CA9502C2369E59A0076BDA4 /* Effect.swift */,
+				8CA9502E2369E5B10076BDA4 /* Reducer.swift */,
+			);
+			path = Architecture;
+			sourceTree = "<group>";
+		};
+		8C3B2C902361930E008295D8 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				8C76C1E1236859FD00AA36E5 /* resources */,
+				8C3B2C912361930E008295D8 /* Networking.h */,
+				8C3B2C922361930E008295D8 /* Info.plist */,
+				8C9686C22366B84700D7865E /* Endpoint.swift */,
+				8C9686C42366E65700D7865E /* Extensions.swift */,
+				8C601BC323683BEC00E87BFB /* Errors.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		8C601BB723683B1C00E87BFB /* TogglAPI */ = {
+			isa = PBXGroup;
+			children = (
+				8C3B2C9B23619321008295D8 /* API.swift */,
+				8C601BB823683B1C00E87BFB /* TogglAPI.h */,
+				8C601BB923683B1C00E87BFB /* Info.plist */,
+			);
+			path = TogglAPI;
+			sourceTree = "<group>";
+		};
+		8C76C1E1236859FD00AA36E5 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				8C76C1E223685A1A00AA36E5 /* timeentries.txt */,
+				8C76C1E5236865DC00AA36E5 /* workspaces.txt */,
+				8C76C1E72368678B00AA36E5 /* projects.txt */,
+				8C76C1E9236867A900AA36E5 /* clients.txt */,
+				8C76C1EB236867C400AA36E5 /* tags.txt */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
+		8CA950162369B43C0076BDA4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8CC5FEA32355E74400D33237 /* TimeEntryCellView.swift */,
+				8CC5FE962355D77C00D33237 /* Timeline.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8CA9507423732D7A0076BDA4 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				8CA95099237417D20076BDA4 /* Reducers */,
+				8CA95098237417310076BDA4 /* State */,
+				8CA9508223732D900076BDA4 /* Actions */,
+				8CA95069237329100076BDA4 /* AppEnvironment.swift */,
+				8CA9507523732D7A0076BDA4 /* Core.h */,
+				8CA9507623732D7A0076BDA4 /* Info.plist */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		8CA9508223732D900076BDA4 /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				8CA9506C237329440076BDA4 /* AppAction.swift */,
+				8CA9508323732DA40076BDA4 /* TimelineAction.swift */,
+				8CA9508523732DC10076BDA4 /* ProjectAction.swift */,
+				8CA9508723732DDA0076BDA4 /* WorkspaceAction.swift */,
+			);
+			path = Actions;
+			sourceTree = "<group>";
+		};
+		8CA95098237417310076BDA4 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				8CA94FF423698A550076BDA4 /* AppState.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		8CA95099237417D20076BDA4 /* Reducers */ = {
+			isa = PBXGroup;
+			children = (
+				8CA95055237181140076BDA4 /* WorkspacesReducer.swift */,
+				8CA9500C2369B2730076BDA4 /* ProjectsReducer.swift */,
+				8CC5FE9E2355E70200D33237 /* TimelineReducer.swift */,
+			);
+			path = Reducers;
+			sourceTree = "<group>";
+		};
+		8CC5FE422355B3A900D33237 = {
+			isa = PBXGroup;
+			children = (
+				8CC5FE512355B3A900D33237 /* TogglWatch WatchKit App */,
+				8CC5FE602355B3AB00D33237 /* TogglWatch WatchKit Extension */,
+				8CC5FE4A2355B3A900D33237 /* Products */,
+				8CC5FEC52355E8B000D33237 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8CC5FE4A2355B3A900D33237 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8CC5FE492355B3A900D33237 /* TogglWatch.app */,
+				8CC5FE4D2355B3A900D33237 /* TogglWatch WatchKit App.app */,
+				8CC5FE5C2355B3AB00D33237 /* TogglWatch WatchKit Extension.appex */,
+				8C113BA52355EE7B00F8CE88 /* Model.framework */,
+				8C113BBC2355EE9F00F8CE88 /* FormatUtils.framework */,
+				8C113BCE2355EF4B00F8CE88 /* Architecture.framework */,
+				8C3B2C8F2361930E008295D8 /* Networking.framework */,
+				8C601BB623683B1C00E87BFB /* TogglAPI.framework */,
+				8CA9507323732D7A0076BDA4 /* Core.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8CC5FE512355B3A900D33237 /* TogglWatch WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				8CC5FE522355B3A900D33237 /* Interface.storyboard */,
+				8CC5FE552355B3AB00D33237 /* Assets.xcassets */,
+				8CC5FE572355B3AB00D33237 /* Info.plist */,
+			);
+			path = "TogglWatch WatchKit App";
+			sourceTree = "<group>";
+		};
+		8CC5FE602355B3AB00D33237 /* TogglWatch WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8CA950162369B43C0076BDA4 /* Views */,
+				8CC5FE612355B3AB00D33237 /* ContentView.swift */,
+				8CC5FE632355B3AB00D33237 /* HostingController.swift */,
+				8CC5FE652355B3AB00D33237 /* ExtensionDelegate.swift */,
+				8CC5FE672355B3AB00D33237 /* NotificationController.swift */,
+				8CC5FE692355B3AB00D33237 /* NotificationView.swift */,
+				8CC5FE6B2355B3AB00D33237 /* ComplicationController.swift */,
+				8CC5FE6D2355B3AC00D33237 /* Assets.xcassets */,
+				8CC5FE722355B3AC00D33237 /* Info.plist */,
+				8CC5FE732355B3AC00D33237 /* PushNotificationPayload.apns */,
+				8CC5FE6F2355B3AC00D33237 /* Preview Content */,
+			);
+			path = "TogglWatch WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		8CC5FE6F2355B3AC00D33237 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				8CC5FE702355B3AC00D33237 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8CC5FEC52355E8B000D33237 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8C3B2C902361930E008295D8 /* Networking */,
+				8C113BCF2355EF4B00F8CE88 /* Architecture */,
+				8C113BBD2355EE9F00F8CE88 /* FormatUtils */,
+				8C113BA62355EE7B00F8CE88 /* Model */,
+				8C601BB723683B1C00E87BFB /* TogglAPI */,
+				8CA9507423732D7A0076BDA4 /* Core */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		8C113BA02355EE7B00F8CE88 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C113BA92355EE7B00F8CE88 /* Model.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C113BB72355EE9F00F8CE88 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C113BC02355EE9F00F8CE88 /* FormatUtils.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C113BC92355EF4B00F8CE88 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C113BD22355EF4B00F8CE88 /* Architecture.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C3B2C8A2361930E008295D8 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C3B2C932361930E008295D8 /* Networking.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C601BB123683B1C00E87BFB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C601BBA23683B1C00E87BFB /* TogglAPI.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CA9506E23732D7A0076BDA4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CA9507723732D7A0076BDA4 /* Core.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		8C113BA42355EE7B00F8CE88 /* Model */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C113BAE2355EE7B00F8CE88 /* Build configuration list for PBXNativeTarget "Model" */;
+			buildPhases = (
+				8C113BA02355EE7B00F8CE88 /* Headers */,
+				8C113BA12355EE7B00F8CE88 /* Sources */,
+				8C113BA22355EE7B00F8CE88 /* Frameworks */,
+				8C113BA32355EE7B00F8CE88 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8C76C1F423686B5900AA36E5 /* PBXTargetDependency */,
+			);
+			name = Model;
+			productName = Model;
+			productReference = 8C113BA52355EE7B00F8CE88 /* Model.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		8C113BBB2355EE9F00F8CE88 /* FormatUtils */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C113BC52355EE9F00F8CE88 /* Build configuration list for PBXNativeTarget "FormatUtils" */;
+			buildPhases = (
+				8C113BB72355EE9F00F8CE88 /* Headers */,
+				8C113BB82355EE9F00F8CE88 /* Sources */,
+				8C113BB92355EE9F00F8CE88 /* Frameworks */,
+				8C113BBA2355EE9F00F8CE88 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FormatUtils;
+			productName = FormatUtils;
+			productReference = 8C113BBC2355EE9F00F8CE88 /* FormatUtils.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		8C113BCD2355EF4B00F8CE88 /* Architecture */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C113BD72355EF4B00F8CE88 /* Build configuration list for PBXNativeTarget "Architecture" */;
+			buildPhases = (
+				8C113BC92355EF4B00F8CE88 /* Headers */,
+				8C113BCA2355EF4B00F8CE88 /* Sources */,
+				8C113BCB2355EF4B00F8CE88 /* Frameworks */,
+				8C113BCC2355EF4B00F8CE88 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Architecture;
+			productName = Architecture;
+			productReference = 8C113BCE2355EF4B00F8CE88 /* Architecture.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		8C3B2C8E2361930E008295D8 /* Networking */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C3B2C982361930E008295D8 /* Build configuration list for PBXNativeTarget "Networking" */;
+			buildPhases = (
+				8C3B2C8A2361930E008295D8 /* Headers */,
+				8C3B2C8B2361930E008295D8 /* Sources */,
+				8C3B2C8C2361930E008295D8 /* Frameworks */,
+				8C3B2C8D2361930E008295D8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Networking;
+			productName = Networking;
+			productReference = 8C3B2C8F2361930E008295D8 /* Networking.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		8C601BB523683B1C00E87BFB /* TogglAPI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C601BBF23683B1C00E87BFB /* Build configuration list for PBXNativeTarget "TogglAPI" */;
+			buildPhases = (
+				8C601BB123683B1C00E87BFB /* Headers */,
+				8C601BB223683B1C00E87BFB /* Sources */,
+				8C601BB323683B1C00E87BFB /* Frameworks */,
+				8C601BB423683B1C00E87BFB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8C76C1F823686B7700AA36E5 /* PBXTargetDependency */,
+				8C76C1F623686B7500AA36E5 /* PBXTargetDependency */,
+			);
+			name = TogglAPI;
+			productName = TogglAPI;
+			productReference = 8C601BB623683B1C00E87BFB /* TogglAPI.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		8CA9507223732D7A0076BDA4 /* Core */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8CA9507C23732D7B0076BDA4 /* Build configuration list for PBXNativeTarget "Core" */;
+			buildPhases = (
+				8CA9506E23732D7A0076BDA4 /* Headers */,
+				8CA9506F23732D7A0076BDA4 /* Sources */,
+				8CA9507023732D7A0076BDA4 /* Frameworks */,
+				8CA9507123732D7A0076BDA4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8CA9509223732E390076BDA4 /* PBXTargetDependency */,
+				8CA9509023732E250076BDA4 /* PBXTargetDependency */,
+			);
+			name = Core;
+			productName = Core;
+			productReference = 8CA9507323732D7A0076BDA4 /* Core.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		8CC5FE482355B3A900D33237 /* TogglWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8CC5FE7E2355B3AC00D33237 /* Build configuration list for PBXNativeTarget "TogglWatch" */;
+			buildPhases = (
+				8CC5FE472355B3A900D33237 /* Resources */,
+				8CC5FE7D2355B3AC00D33237 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8CC5FE502355B3A900D33237 /* PBXTargetDependency */,
+			);
+			name = TogglWatch;
+			productName = TogglWatch;
+			productReference = 8CC5FE492355B3A900D33237 /* TogglWatch.app */;
+			productType = "com.apple.product-type.application.watchapp2-container";
+		};
+		8CC5FE4C2355B3A900D33237 /* TogglWatch WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8CC5FE7A2355B3AC00D33237 /* Build configuration list for PBXNativeTarget "TogglWatch WatchKit App" */;
+			buildPhases = (
+				8CC5FE4B2355B3A900D33237 /* Resources */,
+				8CC5FE792355B3AC00D33237 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8CC5FE5F2355B3AB00D33237 /* PBXTargetDependency */,
+			);
+			name = "TogglWatch WatchKit App";
+			productName = "TogglWatch WatchKit App";
+			productReference = 8CC5FE4D2355B3A900D33237 /* TogglWatch WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		8CC5FE5B2355B3AB00D33237 /* TogglWatch WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8CC5FE762355B3AC00D33237 /* Build configuration list for PBXNativeTarget "TogglWatch WatchKit Extension" */;
+			buildPhases = (
+				8CC5FE582355B3AB00D33237 /* Sources */,
+				8CC5FE592355B3AB00D33237 /* Frameworks */,
+				8CC5FE5A2355B3AB00D33237 /* Resources */,
+				8C113BB12355EE7B00F8CE88 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8C113BAB2355EE7B00F8CE88 /* PBXTargetDependency */,
+				8C113BC22355EE9F00F8CE88 /* PBXTargetDependency */,
+				8C113BD42355EF4B00F8CE88 /* PBXTargetDependency */,
+				8C3B2C952361930E008295D8 /* PBXTargetDependency */,
+				8C601BBC23683B1C00E87BFB /* PBXTargetDependency */,
+				8CA9507923732D7A0076BDA4 /* PBXTargetDependency */,
+			);
+			name = "TogglWatch WatchKit Extension";
+			productName = "TogglWatch WatchKit Extension";
+			productReference = 8CC5FE5C2355B3AB00D33237 /* TogglWatch WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8CC5FE432355B3A900D33237 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1110;
+				LastUpgradeCheck = 1110;
+				ORGANIZATIONNAME = Toggl;
+				TargetAttributes = {
+					8C113BA42355EE7B00F8CE88 = {
+						CreatedOnToolsVersion = 11.1;
+					};
+					8C113BBB2355EE9F00F8CE88 = {
+						CreatedOnToolsVersion = 11.1;
+					};
+					8C113BCD2355EF4B00F8CE88 = {
+						CreatedOnToolsVersion = 11.1;
+					};
+					8C3B2C8E2361930E008295D8 = {
+						CreatedOnToolsVersion = 11.1;
+					};
+					8C601BB523683B1C00E87BFB = {
+						CreatedOnToolsVersion = 11.1;
+					};
+					8CA9507223732D7A0076BDA4 = {
+						CreatedOnToolsVersion = 11.1;
+					};
+					8CC5FE482355B3A900D33237 = {
+						CreatedOnToolsVersion = 11.1;
+					};
+					8CC5FE4C2355B3A900D33237 = {
+						CreatedOnToolsVersion = 11.1;
+					};
+					8CC5FE5B2355B3AB00D33237 = {
+						CreatedOnToolsVersion = 11.1;
+					};
+				};
+			};
+			buildConfigurationList = 8CC5FE462355B3A900D33237 /* Build configuration list for PBXProject "TogglWatch" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8CC5FE422355B3A900D33237;
+			productRefGroup = 8CC5FE4A2355B3A900D33237 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8CC5FE482355B3A900D33237 /* TogglWatch */,
+				8CC5FE4C2355B3A900D33237 /* TogglWatch WatchKit App */,
+				8CC5FE5B2355B3AB00D33237 /* TogglWatch WatchKit Extension */,
+				8C113BA42355EE7B00F8CE88 /* Model */,
+				8C113BBB2355EE9F00F8CE88 /* FormatUtils */,
+				8C113BCD2355EF4B00F8CE88 /* Architecture */,
+				8C3B2C8E2361930E008295D8 /* Networking */,
+				8C601BB523683B1C00E87BFB /* TogglAPI */,
+				8CA9507223732D7A0076BDA4 /* Core */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8C113BA32355EE7B00F8CE88 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C113BBA2355EE9F00F8CE88 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C113BCC2355EF4B00F8CE88 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C3B2C8D2361930E008295D8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C76C1ED236868BA00AA36E5 /* workspaces.txt in Resources */,
+				8C76C1E4236861F800AA36E5 /* timeentries.txt in Resources */,
+				8C76C1EE236868C000AA36E5 /* projects.txt in Resources */,
+				8C76C1EF236868C000AA36E5 /* clients.txt in Resources */,
+				8C76C1F0236868C000AA36E5 /* tags.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C601BB423683B1C00E87BFB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CA9507123732D7A0076BDA4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CC5FE472355B3A900D33237 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CC5FE4B2355B3A900D33237 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CC5FE562355B3AB00D33237 /* Assets.xcassets in Resources */,
+				8CC5FE542355B3A900D33237 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CC5FE5A2355B3AB00D33237 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CC5FE712355B3AC00D33237 /* Preview Assets.xcassets in Resources */,
+				8CC5FE6E2355B3AC00D33237 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8C113BA12355EE7B00F8CE88 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C9686C82367006600D7865E /* TimeEntryModel.swift in Sources */,
+				8C113BB22355EE8900F8CE88 /* Client.swift in Sources */,
+				8C113BB32355EE8900F8CE88 /* Workspace.swift in Sources */,
+				8C113BB62355EE8900F8CE88 /* Tag.swift in Sources */,
+				8C113BB42355EE8900F8CE88 /* Project.swift in Sources */,
+				8C113BB52355EE8900F8CE88 /* TimeEntry.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C113BB82355EE9F00F8CE88 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C113BC82355EEA700F8CE88 /* TimeIntervalExtensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C113BCA2355EF4B00F8CE88 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CA950312369E76A0076BDA4 /* Effect.swift in Sources */,
+				8CA950302369E7630076BDA4 /* Reducer.swift in Sources */,
+				8C113BDB2355EF5300F8CE88 /* Store.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C3B2C8B2361930E008295D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C9686C62366E66200D7865E /* Endpoint.swift in Sources */,
+				8C601BC523683C1700E87BFB /* Errors.swift in Sources */,
+				8C9686C72366E66700D7865E /* Extensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C601BB223683B1C00E87BFB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C601BC223683B2200E87BFB /* API.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CA9506F23732D7A0076BDA4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CA9509623732E7E0076BDA4 /* ProjectAction.swift in Sources */,
+				8CA9509A237417DD0076BDA4 /* TimelineReducer.swift in Sources */,
+				8CA9509523732E7E0076BDA4 /* TimelineAction.swift in Sources */,
+				8CA9508123732D870076BDA4 /* AppState.swift in Sources */,
+				8CA9509B237417E10076BDA4 /* ProjectsReducer.swift in Sources */,
+				8CA9509723732E7E0076BDA4 /* WorkspaceAction.swift in Sources */,
+				8CA9509C237417E50076BDA4 /* WorkspacesReducer.swift in Sources */,
+				8CA9507F23732D870076BDA4 /* AppEnvironment.swift in Sources */,
+				8CA9508023732D870076BDA4 /* AppAction.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CC5FE582355B3AB00D33237 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CA9509E237418000076BDA4 /* Timeline.swift in Sources */,
+				8CC5FE642355B3AB00D33237 /* HostingController.swift in Sources */,
+				8CC5FE622355B3AB00D33237 /* ContentView.swift in Sources */,
+				8CC5FE682355B3AB00D33237 /* NotificationController.swift in Sources */,
+				8CC5FE662355B3AB00D33237 /* ExtensionDelegate.swift in Sources */,
+				8CC5FE6A2355B3AB00D33237 /* NotificationView.swift in Sources */,
+				8CA9509D237417FD0076BDA4 /* TimeEntryCellView.swift in Sources */,
+				8CC5FE6C2355B3AB00D33237 /* ComplicationController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8C113BAB2355EE7B00F8CE88 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C113BA42355EE7B00F8CE88 /* Model */;
+			targetProxy = 8C113BAA2355EE7B00F8CE88 /* PBXContainerItemProxy */;
+		};
+		8C113BC22355EE9F00F8CE88 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C113BBB2355EE9F00F8CE88 /* FormatUtils */;
+			targetProxy = 8C113BC12355EE9F00F8CE88 /* PBXContainerItemProxy */;
+		};
+		8C113BD42355EF4B00F8CE88 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C113BCD2355EF4B00F8CE88 /* Architecture */;
+			targetProxy = 8C113BD32355EF4B00F8CE88 /* PBXContainerItemProxy */;
+		};
+		8C3B2C952361930E008295D8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C3B2C8E2361930E008295D8 /* Networking */;
+			targetProxy = 8C3B2C942361930E008295D8 /* PBXContainerItemProxy */;
+		};
+		8C601BBC23683B1C00E87BFB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C601BB523683B1C00E87BFB /* TogglAPI */;
+			targetProxy = 8C601BBB23683B1C00E87BFB /* PBXContainerItemProxy */;
+		};
+		8C76C1F423686B5900AA36E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C113BBB2355EE9F00F8CE88 /* FormatUtils */;
+			targetProxy = 8C76C1F323686B5900AA36E5 /* PBXContainerItemProxy */;
+		};
+		8C76C1F623686B7500AA36E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C3B2C8E2361930E008295D8 /* Networking */;
+			targetProxy = 8C76C1F523686B7500AA36E5 /* PBXContainerItemProxy */;
+		};
+		8C76C1F823686B7700AA36E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C113BA42355EE7B00F8CE88 /* Model */;
+			targetProxy = 8C76C1F723686B7700AA36E5 /* PBXContainerItemProxy */;
+		};
+		8CA9507923732D7A0076BDA4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CA9507223732D7A0076BDA4 /* Core */;
+			targetProxy = 8CA9507823732D7A0076BDA4 /* PBXContainerItemProxy */;
+		};
+		8CA9509023732E250076BDA4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C601BB523683B1C00E87BFB /* TogglAPI */;
+			targetProxy = 8CA9508F23732E250076BDA4 /* PBXContainerItemProxy */;
+		};
+		8CA9509223732E390076BDA4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C113BA42355EE7B00F8CE88 /* Model */;
+			targetProxy = 8CA9509123732E390076BDA4 /* PBXContainerItemProxy */;
+		};
+		8CC5FE502355B3A900D33237 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CC5FE4C2355B3A900D33237 /* TogglWatch WatchKit App */;
+			targetProxy = 8CC5FE4F2355B3A900D33237 /* PBXContainerItemProxy */;
+		};
+		8CC5FE5F2355B3AB00D33237 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CC5FE5B2355B3AB00D33237 /* TogglWatch WatchKit Extension */;
+			targetProxy = 8CC5FE5E2355B3AB00D33237 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8CC5FE522355B3A900D33237 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8CC5FE532355B3A900D33237 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8C113BAF2355EE7B00F8CE88 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = B227VTMZ94;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Model/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.toggl.Model;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Debug;
+		};
+		8C113BB02355EE7B00F8CE88 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = B227VTMZ94;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Model/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.toggl.Model;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Release;
+		};
+		8C113BC62355EE9F00F8CE88 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = B227VTMZ94;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = FormatUtils/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.toggl.FormatUtils;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Debug;
+		};
+		8C113BC72355EE9F00F8CE88 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = B227VTMZ94;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = FormatUtils/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.toggl.FormatUtils;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Release;
+		};
+		8C113BD82355EF4B00F8CE88 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = B227VTMZ94;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Architecture/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.toggl.Architecture;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Debug;
+		};
+		8C113BD92355EF4B00F8CE88 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = B227VTMZ94;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Architecture/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.toggl.Architecture;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Release;
+		};
+		8C3B2C992361930E008295D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = B227VTMZ94;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Networking/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.toggl.Networking;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Debug;
+		};
+		8C3B2C9A2361930E008295D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = B227VTMZ94;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Networking/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.toggl.Networking;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Release;
+		};
+		8C601BC023683B1C00E87BFB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = B227VTMZ94;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = TogglAPI/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.toggl.TogglAPI;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Debug;
+		};
+		8C601BC123683B1C00E87BFB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = B227VTMZ94;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = TogglAPI/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.toggl.TogglAPI;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Release;
+		};
+		8CA9507D23732D7B0076BDA4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = B227VTMZ94;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Core/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.toggl.Core;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Debug;
+		};
+		8CA9507E23732D7B0076BDA4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = B227VTMZ94;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Core/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.toggl.Core;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Release;
+		};
+		8CC5FE742355B3AC00D33237 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8CC5FE752355B3AC00D33237 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8CC5FE772355B3AC00D33237 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"TogglWatch WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = B227VTMZ94;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "TogglWatch WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.toggl.TogglWatch.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Debug;
+		};
+		8CC5FE782355B3AC00D33237 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"TogglWatch WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = B227VTMZ94;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "TogglWatch WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.toggl.TogglWatch.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Release;
+		};
+		8CC5FE7B2355B3AC00D33237 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B227VTMZ94;
+				IBSC_MODULE = TogglWatch_WatchKit_Extension;
+				INFOPLIST_FILE = "TogglWatch WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.toggl.TogglWatch.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Debug;
+		};
+		8CC5FE7C2355B3AC00D33237 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B227VTMZ94;
+				IBSC_MODULE = TogglWatch_WatchKit_Extension;
+				INFOPLIST_FILE = "TogglWatch WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.toggl.TogglWatch.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Release;
+		};
+		8CC5FE7F2355B3AC00D33237 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B227VTMZ94;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.toggl.TogglWatch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		8CC5FE802355B3AC00D33237 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B227VTMZ94;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.toggl.TogglWatch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8C113BAE2355EE7B00F8CE88 /* Build configuration list for PBXNativeTarget "Model" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C113BAF2355EE7B00F8CE88 /* Debug */,
+				8C113BB02355EE7B00F8CE88 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C113BC52355EE9F00F8CE88 /* Build configuration list for PBXNativeTarget "FormatUtils" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C113BC62355EE9F00F8CE88 /* Debug */,
+				8C113BC72355EE9F00F8CE88 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C113BD72355EF4B00F8CE88 /* Build configuration list for PBXNativeTarget "Architecture" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C113BD82355EF4B00F8CE88 /* Debug */,
+				8C113BD92355EF4B00F8CE88 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C3B2C982361930E008295D8 /* Build configuration list for PBXNativeTarget "Networking" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C3B2C992361930E008295D8 /* Debug */,
+				8C3B2C9A2361930E008295D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C601BBF23683B1C00E87BFB /* Build configuration list for PBXNativeTarget "TogglAPI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C601BC023683B1C00E87BFB /* Debug */,
+				8C601BC123683B1C00E87BFB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8CA9507C23732D7B0076BDA4 /* Build configuration list for PBXNativeTarget "Core" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8CA9507D23732D7B0076BDA4 /* Debug */,
+				8CA9507E23732D7B0076BDA4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8CC5FE462355B3A900D33237 /* Build configuration list for PBXProject "TogglWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8CC5FE742355B3AC00D33237 /* Debug */,
+				8CC5FE752355B3AC00D33237 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8CC5FE762355B3AC00D33237 /* Build configuration list for PBXNativeTarget "TogglWatch WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8CC5FE772355B3AC00D33237 /* Debug */,
+				8CC5FE782355B3AC00D33237 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8CC5FE7A2355B3AC00D33237 /* Build configuration list for PBXNativeTarget "TogglWatch WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8CC5FE7B2355B3AC00D33237 /* Debug */,
+				8CC5FE7C2355B3AC00D33237 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8CC5FE7E2355B3AC00D33237 /* Build configuration list for PBXNativeTarget "TogglWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8CC5FE7F2355B3AC00D33237 /* Debug */,
+				8CC5FE802355B3AC00D33237 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8CC5FE432355B3A900D33237 /* Project object */;
+}
