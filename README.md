@@ -1,1 +1,1 @@
-# watchos-app
+# Toggl WatchOS App
