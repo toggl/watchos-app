@@ -48,15 +48,3 @@ public final class Store<State, Action, Environment>: ObservableObject
         return localStore
     }
 }
-
-public func logging<State, Action, Environment>(
-    _ reducer: Reducer<State, Action, Environment>
-) -> Reducer<State, Action, Environment> {
-    return Reducer { state, action, environment in
-        let effect = reducer.run(&state, action, environment)
-        return Effect {
-            print("Action: \(action)")
-            return effect.run()
-        }
-    }
-}

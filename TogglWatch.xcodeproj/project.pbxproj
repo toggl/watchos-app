@@ -55,6 +55,7 @@
 		8CA950AB237425030076BDA4 /* Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA950A4237425030076BDA4 /* Utils.framework */; };
 		8CA950AC237425030076BDA4 /* Utils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA950A4237425030076BDA4 /* Utils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8CA950B02374250C0076BDA4 /* TimeIntervalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5FE9B2355E2E700D33237 /* TimeIntervalExtensions.swift */; };
+		8CA950B723746C480076BDA4 /* HighOrderReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA950B523746C400076BDA4 /* HighOrderReducers.swift */; };
 		8CC5FE4E2355B3A900D33237 /* TogglWatch WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 8CC5FE4D2355B3A900D33237 /* TogglWatch WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8CC5FE542355B3A900D33237 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CC5FE522355B3A900D33237 /* Interface.storyboard */; };
 		8CC5FE562355B3AB00D33237 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CC5FE552355B3AB00D33237 /* Assets.xcassets */; };
@@ -208,6 +209,7 @@
 		8CA950A4237425030076BDA4 /* Utils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Utils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CA950A6237425030076BDA4 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		8CA950A7237425030076BDA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8CA950B523746C400076BDA4 /* HighOrderReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighOrderReducers.swift; sourceTree = "<group>"; };
 		8CC5FE492355B3A900D33237 /* TogglWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TogglWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CC5FE4D2355B3A900D33237 /* TogglWatch WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TogglWatch WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CC5FE532355B3A900D33237 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -404,6 +406,7 @@
 				8CA95055237181140076BDA4 /* WorkspacesReducer.swift */,
 				8CA9500C2369B2730076BDA4 /* ProjectsReducer.swift */,
 				8CC5FE9E2355E70200D33237 /* TimelineReducer.swift */,
+				8CA950B523746C400076BDA4 /* HighOrderReducers.swift */,
 			);
 			path = Reducers;
 			sourceTree = "<group>";
@@ -904,6 +907,7 @@
 				8CA9509523732E7E0076BDA4 /* TimelineAction.swift in Sources */,
 				8CA9508123732D870076BDA4 /* AppState.swift in Sources */,
 				8CA9509B237417E10076BDA4 /* ProjectsReducer.swift in Sources */,
+				8CA950B723746C480076BDA4 /* HighOrderReducers.swift in Sources */,
 				8CA9509723732E7E0076BDA4 /* WorkspaceAction.swift in Sources */,
 				8CA9509C237417E50076BDA4 /* WorkspacesReducer.swift in Sources */,
 				8CA9507F23732D870076BDA4 /* AppEnvironment.swift in Sources */,
