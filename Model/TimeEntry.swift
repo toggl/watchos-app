@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import FormatUtils
 
 public struct TimeEntry: Codable, Equatable
 {
