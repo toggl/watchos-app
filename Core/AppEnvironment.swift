@@ -15,6 +15,6 @@ public struct AppEnvironment
         
     public init()
     {
-        api = API()
+        api = API(useLocalData: true)
     }
 }

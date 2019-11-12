@@ -16,9 +16,11 @@ public class API
     private let urlSession: URLSessionProtocol
     private var cancellable: Cancellable?
     
-    public init(urlSession: URLSessionProtocol = MockURLSession())
+    public init(useLocalData: Bool = false)
     {
-        self.urlSession = urlSession        
+        self.urlSession = useLocalData
+            ? FakeURLSession()
+            : URLSession.init(configuration: URLSessionConfiguration.default)
     }
     
     public func loadEntries() -> AnyPublisher<[TimeEntry], Error>

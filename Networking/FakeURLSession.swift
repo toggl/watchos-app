@@ -1,41 +1,15 @@
 //
-//  Extensions.swift
-//  TogglWatch WatchKit Extension
+//  FakeURLSession.swift
+//  TogglWatch Tests
 //
-//  Created by Ricardo Sánchez Sotres on 28/10/2019.
+//  Created by Ricardo Sánchez Sotres on 11/11/2019.
 //  Copyright © 2019 Toggl. All rights reserved.
 //
 
 import Foundation
 import Combine
 
-public protocol URLSessionProtocol
-{
-    func load<A>(_ endpoint: Endpoint<A>) -> AnyPublisher<A, Error>
-}
-
-extension URLSession: URLSessionProtocol
-{
-    public func load<A>(_ endpoint: Endpoint<A>) -> AnyPublisher<A, Error>
-    {
-        return dataTaskPublisher(for: endpoint.request)
-            .tryMap { data, response in
-                guard let response = response as? HTTPURLResponse else {
-                    throw UnknownError()
-                }
-                
-                guard endpoint.expectedStatusCode(response.statusCode) else {
-                    throw WrongStatusCodeError(statusCode: response.statusCode, response: response)
-                }
-                
-                return try endpoint.parse(data)
-            }
-            .eraseToAnyPublisher()
-    }
-}
-
-#if DEBUG
-public class MockURLSession: URLSessionProtocol
+public class FakeURLSession: URLSessionProtocol
 {
     var requests : [String:String]  = [
         "time_entries" : "timeentries",
@@ -68,4 +42,3 @@ public class MockURLSession: URLSessionProtocol
         }
     }
 }
-#endif
