@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import Model
+import TogglTrack
 
 public struct TimeEntryCellView: View
 {

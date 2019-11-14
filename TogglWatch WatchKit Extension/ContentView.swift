@@ -8,8 +8,7 @@
 
 import SwiftUI
 import Combine
-import Architecture
-import Core
+import TogglTrack
 
 var globalReducer: Reducer<AppState, AppAction, AppEnvironment> = Reducer { state, action, environment in
     switch action {

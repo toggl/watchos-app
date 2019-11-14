@@ -9,8 +9,7 @@
 import WatchKit
 import Foundation
 import SwiftUI
-import Architecture
-import Core
+import TogglTrack
 
 class HostingController: WKHostingController<ContentView> {
     override var body: ContentView {
