@@ -28,6 +28,7 @@ public struct AppState
 {
     public var timeline: TimelineState = TimelineState()
     public var somethingElse: Int = 0
+    public var user: User?
     
     public init()
     {

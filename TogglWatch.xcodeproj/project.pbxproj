@@ -89,6 +89,8 @@
 		8CC5FE6C2355B3AB00D33237 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5FE6B2355B3AB00D33237 /* ComplicationController.swift */; };
 		8CC5FE6E2355B3AC00D33237 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CC5FE6D2355B3AC00D33237 /* Assets.xcassets */; };
 		8CC5FE712355B3AC00D33237 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CC5FE702355B3AC00D33237 /* Preview Assets.xcassets */; };
+		AC19DC9B237D79420009106D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DC99237D772E0009106D /* User.swift */; };
+		AC19DC9C237D79420009106D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DC99237D772E0009106D /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -219,6 +221,7 @@
 		8CC5FE9B2355E2E700D33237 /* TimeIntervalExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalExtensions.swift; sourceTree = "<group>"; };
 		8CC5FE9E2355E70200D33237 /* TimelineReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineReducer.swift; sourceTree = "<group>"; };
 		8CC5FEA32355E74400D33237 /* TimeEntryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntryCellView.swift; sourceTree = "<group>"; };
+		AC19DC99237D772E0009106D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,6 +307,7 @@
 				8CC5FE902355BB8E00D33237 /* Tag.swift */,
 				8CC5FE922355BDB200D33237 /* Client.swift */,
 				8C9686C0236307FD00D7865E /* TimeEntryModel.swift */,
+				AC19DC99237D772E0009106D /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -743,6 +747,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC19DC9C237D79420009106D /* User.swift in Sources */,
 				8C039414237D667900AB1C95 /* Tag.swift in Sources */,
 				8C039416237D667900AB1C95 /* TimeEntryModel.swift in Sources */,
 				8C0393FE237D667100AB1C95 /* Endpoint.swift in Sources */,
@@ -775,6 +780,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC19DC9B237D79420009106D /* User.swift in Sources */,
 				8C03941A237D667900AB1C95 /* Tag.swift in Sources */,
 				8C03941C237D667900AB1C95 /* TimeEntryModel.swift in Sources */,
 				8C039407237D667100AB1C95 /* Endpoint.swift in Sources */,
