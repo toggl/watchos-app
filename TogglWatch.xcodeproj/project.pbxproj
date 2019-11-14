@@ -73,6 +73,8 @@
 		8C039433237D693E00AB1C95 /* URLProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5645C72379B07B002E83B3 /* URLProtocolMock.swift */; };
 		8C039434237D693E00AB1C95 /* URLSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5645BF2379B037002E83B3 /* URLSessionTests.swift */; };
 		8C039435237D693E00AB1C95 /* EndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5645C12379B049002E83B3 /* EndpointTests.swift */; };
+		8C039436237D775A00AB1C95 /* TogglTrack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0393D3237D661700AB1C95 /* TogglTrack.framework */; };
+		8C039437237D775A00AB1C95 /* TogglTrack.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0393D3237D661700AB1C95 /* TogglTrack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8CA9509D237417FD0076BDA4 /* TimeEntryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5FEA32355E74400D33237 /* TimeEntryCellView.swift */; };
 		8CA9509E237418000076BDA4 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5FE962355D77C00D33237 /* Timeline.swift */; };
 		8CC5FE4E2355B3A900D33237 /* TogglWatch WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 8CC5FE4D2355B3A900D33237 /* TogglWatch WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -97,6 +99,13 @@
 			remoteGlobalIDString = 8C0393DF237D664400AB1C95;
 			remoteInfo = "Toggl Track iOS";
 		};
+		8C039438237D775A00AB1C95 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CC5FE432355B3A900D33237 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C0393D2237D661700AB1C95;
+			remoteInfo = "Toggl Track WatchOS";
+		};
 		8CC5FE4F2355B3A900D33237 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8CC5FE432355B3A900D33237 /* Project object */;
@@ -120,6 +129,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				8C039437237D775A00AB1C95 /* TogglTrack.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -238,6 +248,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C039436237D775A00AB1C95 /* TogglTrack.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,6 +619,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				8C039439237D775A00AB1C95 /* PBXTargetDependency */,
 			);
 			name = "TogglWatch WatchKit Extension";
 			productName = "TogglWatch WatchKit Extension";
@@ -823,6 +835,11 @@
 			isa = PBXTargetDependency;
 			target = 8C0393DF237D664400AB1C95 /* Toggl Track iOS */;
 			targetProxy = 8C0393EA237D664400AB1C95 /* PBXContainerItemProxy */;
+		};
+		8C039439237D775A00AB1C95 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C0393D2237D661700AB1C95 /* Toggl Track WatchOS */;
+			targetProxy = 8C039438237D775A00AB1C95 /* PBXContainerItemProxy */;
 		};
 		8CC5FE502355B3A900D33237 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
