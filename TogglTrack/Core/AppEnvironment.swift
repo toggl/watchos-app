@@ -12,8 +12,8 @@ public struct AppEnvironment
 {
     public let api: API
         
-    public init()
+    public init(api: API)
     {
-        api = API(useLocalData: true)
+        self.api = api
     }
 }

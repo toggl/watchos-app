@@ -13,10 +13,15 @@ import TogglTrack
 
 class HostingController: WKHostingController<ContentView> {
     override var body: ContentView {
-         return ContentView(store: Store(
+        
+        let environment = AppEnvironment(
+            api: API(urlSession: URLSession(configuration: URLSessionConfiguration.default))
+        )
+        
+        return ContentView(store: Store(
             initialState: AppState(),
             reducer: logging(appReducer),
-            environment: AppEnvironment()
+            environment: environment
             )
         )
     }

@@ -61,15 +61,3 @@ struct ContentView: View
         }
     }
 }
-
-#if DEBUG
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView(store: Store(
-            initialState: AppState(),
-            reducer: appReducer,
-            environment: AppEnvironment())
-        )
-    }
-}
-#endif

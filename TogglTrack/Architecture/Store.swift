@@ -13,7 +13,7 @@ public final class Store<State, Action, Environment>: ObservableObject
     @Published public private(set) var state: State
     
     private let reducer: Reducer<State, Action, Environment>
-    private var cancellable: Cancellable?
+    private var cancellables = Set<AnyCancellable>()
     private let environment: Environment
     
     public init(initialState: State, reducer: Reducer<State, Action, Environment>, environment: Environment) {
@@ -25,8 +25,9 @@ public final class Store<State, Action, Environment>: ObservableObject
     public func send(_ action: Action) {
         let effect = self.reducer.run(&self.state, action, environment)
         
-        _ = effect.run()
+        effect.run()
             .sink(receiveValue: send)
+            .store(in: &cancellables)
     }
     
     public func view<LocalState, LocalAction>(
@@ -42,9 +43,13 @@ public final class Store<State, Action, Environment>: ObservableObject
             },
             environment: environment
         )
-        localStore.cancellable = self.$state.sink { [weak localStore] newState in
-            localStore?.state = toLocalState(newState)
-        }
+        
+        self.$state
+            .sink { [weak localStore] newState in
+                localStore?.state = toLocalState(newState)
+            }
+            .store(in: &localStore.cancellables)
+        
         return localStore
     }
 }

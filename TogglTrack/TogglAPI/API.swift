@@ -11,135 +11,90 @@ import Combine
 
 public class API
 {
+    #if DEBUG
+    private let baseURL: String = "https://mobile.toggl.space/api/v9/"
+    #else
+    private let baseURL: String = "https://mobile.toggl.com/api/v9/"
+    #endif
+    
+    private let userAgent: String = "AppleWatchApp"
+    private var appVersion: String = ""
+    private var authHeader: String?
+    
     private let urlSession: URLSessionProtocol
     private var cancellable: Cancellable?
+    private var jsonDecoder: JSONDecoder
     
-    public init(useLocalData: Bool = false)
+    public init(urlSession: URLSessionProtocol)
     {
-        self.urlSession = useLocalData
-            ? FakeURLSession()
-            : URLSession.init(configuration: URLSessionConfiguration.default)
+        self.urlSession = urlSession
+        
+        jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .iso8601
+        
+        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            appVersion = version
+        }
+    }
+    
+    public func setAuth(email: String, password: String)
+    {
+        let loginData = "\(email):\(password)".data(using: String.Encoding.utf8)!
+        let base64LoginString = loginData.base64EncodedString()
+        authHeader = "Basic \(base64LoginString)"
+    }
+    
+    public func setAuth(token: String)
+    {
+        let loginData = "\(token):api_token".data(using: String.Encoding.utf8)!
+        let base64LoginString = loginData.base64EncodedString()
+        authHeader = "Basic \(base64LoginString)"
     }
     
     public func loadEntries() -> AnyPublisher<[TimeEntry], Error>
     {
-        return urlSession.load(TimeEntry.allEntries)
+        let endpoint: Endpoint<[TimeEntry]> = createEntitiesEndpoint(path: "me/time_entries")
+        return urlSession.load(endpoint)
     }
     
     public func loadWorkspaces() -> AnyPublisher<[Workspace], Error>
     {
-        return urlSession.load(Workspace.allWorkspaces)
+        let endpoint: Endpoint<[Workspace]> = createEntitiesEndpoint(path: "me/workspaces")
+        return urlSession.load(endpoint)
     }
     
-    public func loadClients(completion: @escaping (Result<[Client], Error>) -> Void)
+    public func loadClients() -> AnyPublisher<[Client], Error>
     {
-        loadEntities(endpoint: Client.allClients, completion: completion)
+        let endpoint: Endpoint<[Client]> = createEntitiesEndpoint(path: "me/clients")
+        return urlSession.load(endpoint)
     }
     
     public func loadProjects() -> AnyPublisher<[Project], Error>
     {
-        return urlSession.load(Project.allProjects)
+        let endpoint: Endpoint<[Project]> = createEntitiesEndpoint(path: "me/projects")
+        return urlSession.load(endpoint)
     }
     
-    public func loadTags(completion: @escaping (Result<[Tag], Error>) -> Void)
+    public func loadTags() -> AnyPublisher<[Tag], Error>
     {
-        loadEntities(endpoint: Tag.allTags, completion: completion)
+        let endpoint: Endpoint<[Tag]> = createEntitiesEndpoint(path: "me/tags")
+        return urlSession.load(endpoint)
     }
     
-    private func loadEntities<A>(endpoint: Endpoint<A>, completion: @escaping (Result<A, Error>) -> Void)
+    private func createEntitiesEndpoint<T>(path: String) -> Endpoint<[T]> where T: Decodable
     {
-        cancellable = urlSession.load(endpoint)
-            .sink(
-                receiveCompletion: { completed in
-                    if case let .failure(error) = completed {
-                        completion(.failure(error))
-                    }
-            },
-                receiveValue: { entries in completion(.success(entries))
-            })
-    }
-}
-
-public extension TimeEntry
-{
-    static var allEntries: Endpoint<[TimeEntry]> {
+        var headers = [
+            "User-Agent": userAgent + appVersion
+        ]
         
-        let jsonDecoder = JSONDecoder()
-        jsonDecoder.dateDecodingStrategy = .iso8601
+        if let authHeader = authHeader {
+            headers["Authorization"] = authHeader
+        }
         
-        return Endpoint<[TimeEntry]>(
+        return Endpoint<[T]>(
             json: .get,
-            url: URL(string: "https://mobile.toggl.space/api/v9/me/time_entries")!,
-            headers: ["Authorization": "key=ODE3MjM4YjUyNjZkYTM0NjczZjc1ODk5N2M1MTQxY2U6YXBpX3Rva2Vu"],
-            query: [:],
-            decoder: jsonDecoder
-        )
-    }
-}
-
-public extension Workspace
-{
-    static var allWorkspaces: Endpoint<[Workspace]> {
-        
-        let jsonDecoder = JSONDecoder()
-        jsonDecoder.dateDecodingStrategy = .iso8601
-        
-        return Endpoint<[Workspace]>(
-            json: .get,
-            url: URL(string: "https://mobile.toggl.space/api/v9/me/workspaces")!,
-            headers: ["Authorization": "key=ODE3MjM4YjUyNjZkYTM0NjczZjc1ODk5N2M1MTQxY2U6YXBpX3Rva2Vu"],
-            query: [:],
-            decoder: jsonDecoder
-        )
-    }
-}
-
-public extension Client
-{
-    static var allClients: Endpoint<[Client]> {
-        
-        let jsonDecoder = JSONDecoder()
-        jsonDecoder.dateDecodingStrategy = .iso8601
-        
-        return Endpoint<[Client]>(
-            json: .get,
-            url: URL(string: "https://mobile.toggl.space/api/v9/me/clients")!,
-            headers: ["Authorization": "key=ODE3MjM4YjUyNjZkYTM0NjczZjc1ODk5N2M1MTQxY2U6YXBpX3Rva2Vu"],
-            query: [:],
-            decoder: jsonDecoder
-        )
-    }
-}
-
-public extension Project
-{
-    static var allProjects: Endpoint<[Project]> {
-        
-        let jsonDecoder = JSONDecoder()
-        jsonDecoder.dateDecodingStrategy = .iso8601
-        
-        return Endpoint<[Project]>(
-            json: .get,
-            url: URL(string: "https://mobile.toggl.space/api/v9/me/projects")!,
-            headers: ["Authorization": "key=ODE3MjM4YjUyNjZkYTM0NjczZjc1ODk5N2M1MTQxY2U6YXBpX3Rva2Vu"],
-            query: [:],
-            decoder: jsonDecoder
-        )
-    }
-}
-
-public extension Tag
-{
-    static var allTags: Endpoint<[Tag]> {
-        
-        let jsonDecoder = JSONDecoder()
-        jsonDecoder.dateDecodingStrategy = .iso8601
-        
-        return Endpoint<[Tag]>(
-            json: .get,
-            url: URL(string: "https://mobile.toggl.space/api/v9/me/tags")!,
-            headers: ["Authorization": "key=ODE3MjM4YjUyNjZkYTM0NjczZjc1ODk5N2M1MTQxY2U6YXBpX3Rva2Vu"],
-            query: [:],
+            url: URL(string: baseURL + path)!,
+            headers: headers,
             decoder: jsonDecoder
         )
     }

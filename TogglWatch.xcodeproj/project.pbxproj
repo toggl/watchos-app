@@ -75,6 +75,8 @@
 		8C039435237D693E00AB1C95 /* EndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5645C12379B049002E83B3 /* EndpointTests.swift */; };
 		8C039436237D775A00AB1C95 /* TogglTrack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0393D3237D661700AB1C95 /* TogglTrack.framework */; };
 		8C039437237D775A00AB1C95 /* TogglTrack.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0393D3237D661700AB1C95 /* TogglTrack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8CA16E7A237D7F2400AD5A96 /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA16E79237D7F2400AD5A96 /* APITests.swift */; };
+		8CA16E7D237D7F6300AD5A96 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA16E7C237D7F6300AD5A96 /* MockURLSession.swift */; };
 		8CA9509D237417FD0076BDA4 /* TimeEntryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5FEA32355E74400D33237 /* TimeEntryCellView.swift */; };
 		8CA9509E237418000076BDA4 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5FE962355D77C00D33237 /* Timeline.swift */; };
 		8CC5FE4E2355B3A900D33237 /* TogglWatch WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 8CC5FE4D2355B3A900D33237 /* TogglWatch WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -184,6 +186,8 @@
 		8C9686C0236307FD00D7865E /* TimeEntryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntryModel.swift; sourceTree = "<group>"; };
 		8C9686C22366B84700D7865E /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		8C9686C42366E65700D7865E /* URLSessionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionExtension.swift; sourceTree = "<group>"; };
+		8CA16E79237D7F2400AD5A96 /* APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITests.swift; sourceTree = "<group>"; };
+		8CA16E7C237D7F6300AD5A96 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 		8CA94FF423698A550076BDA4 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		8CA9500C2369B2730076BDA4 /* ProjectsReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsReducer.swift; sourceTree = "<group>"; };
 		8CA9502C2369E59A0076BDA4 /* Effect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effect.swift; sourceTree = "<group>"; };
@@ -292,6 +296,7 @@
 		8C0393EC237D664400AB1C95 /* Toggl Track iOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				8CA16E78237D7F1400AD5A96 /* API */,
 				8C5645BE2379B017002E83B3 /* Networking */,
 				8C0393EF237D664400AB1C95 /* Info.plist */,
 			);
@@ -370,6 +375,23 @@
 				8C76C1EB236867C400AA36E5 /* tags.txt */,
 			);
 			path = resources;
+			sourceTree = "<group>";
+		};
+		8CA16E78237D7F1400AD5A96 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				8CA16E7B237D7F5400AD5A96 /* Mocks */,
+				8CA16E79237D7F2400AD5A96 /* APITests.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		8CA16E7B237D7F5400AD5A96 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				8CA16E7C237D7F6300AD5A96 /* MockURLSession.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		8CA950162369B43C0076BDA4 /* Views */ = {
@@ -815,6 +837,8 @@
 			files = (
 				8C039433237D693E00AB1C95 /* URLProtocolMock.swift in Sources */,
 				8C039435237D693E00AB1C95 /* EndpointTests.swift in Sources */,
+				8CA16E7A237D7F2400AD5A96 /* APITests.swift in Sources */,
+				8CA16E7D237D7F6300AD5A96 /* MockURLSession.swift in Sources */,
 				8C039434237D693E00AB1C95 /* URLSessionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
