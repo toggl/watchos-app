@@ -19,7 +19,7 @@ public class API
     
     private let userAgent: String = "AppleWatchApp"
     private var appVersion: String = ""
-    private var authHeader: String?
+    private var headers: [String : String]
     
     private let urlSession: URLSessionProtocol
     private var cancellable: Cancellable?
@@ -35,20 +35,20 @@ public class API
         if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
             appVersion = version
         }
+        
+        headers = ["User-Agent": userAgent + appVersion]
     }
     
     public func setAuth(email: String, password: String)
     {
         let loginData = "\(email):\(password)".data(using: String.Encoding.utf8)!
-        let base64LoginString = loginData.base64EncodedString()
-        authHeader = "Basic \(base64LoginString)"
+        updateAuthHeaders(with: loginData)
     }
     
     public func setAuth(token: String)
     {
         let loginData = "\(token):api_token".data(using: String.Encoding.utf8)!
-        let base64LoginString = loginData.base64EncodedString()
-        authHeader = "Basic \(base64LoginString)"
+        updateAuthHeaders(with: loginData)
     }
     
     public func loadEntries() -> AnyPublisher<[TimeEntry], Error>
@@ -81,17 +81,32 @@ public class API
         return urlSession.load(endpoint)
     }
     
+    public func loadUser() -> AnyPublisher<User, Error>
+    {
+        let endpoint: Endpoint<User> = createEntityEndpoint(path: "me")
+        return urlSession.load(endpoint)
+    }
+    
+    private func updateAuthHeaders(with loginData: Data)
+    {
+        let base64LoginString = loginData.base64EncodedString()
+        let authHeader = "Basic \(base64LoginString)"
+        headers["Authorization"] = authHeader
+    }
+    
     private func createEntitiesEndpoint<T>(path: String) -> Endpoint<[T]> where T: Decodable
     {
-        var headers = [
-            "User-Agent": userAgent + appVersion
-        ]
-        
-        if let authHeader = authHeader {
-            headers["Authorization"] = authHeader
-        }
-        
         return Endpoint<[T]>(
+            json: .get,
+            url: URL(string: baseURL + path)!,
+            headers: headers,
+            decoder: jsonDecoder
+        )
+    }
+    
+    private func createEntityEndpoint<T>(path: String) -> Endpoint<T> where T: Decodable
+    {
+        return Endpoint<T>(
             json: .get,
             url: URL(string: baseURL + path)!,
             headers: headers,

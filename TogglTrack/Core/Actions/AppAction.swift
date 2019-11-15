@@ -13,6 +13,7 @@ public enum AppAction
     case timelineEntries(TimelineAction)
     case projects(ProjectAction)
     case workspaces(WorkspaceAction)
+    case user(UserAction)
     case loadAll
     
     public var timelineEntries: TimelineAction? {
@@ -45,6 +46,17 @@ public enum AppAction
         set {
             guard case .workspaces = self, let newValue = newValue else { return }
             self = .workspaces(newValue)
+        }
+    }
+    
+    public var user: UserAction? {
+        get {
+            guard case let .user(value) = self else { return nil }
+            return value
+        }
+        set {
+            guard case .user = self, let newValue = newValue else { return }
+            self = .user(newValue)
         }
     }
 }

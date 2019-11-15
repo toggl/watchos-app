@@ -18,6 +18,8 @@ var globalReducer: Reducer<AppState, AppAction, AppEnvironment> = Reducer { stat
         return .empty
     case .workspaces(_):
         return .empty
+    case .user(_):
+        return .empty
     case .loadAll:
         return .fromActions(actions: .workspaces(.loadWorkspaces), .projects(.loadProjects), .timelineEntries(.loadEntries))
     }
@@ -41,6 +43,12 @@ var appReducer: Reducer<AppState, AppAction, AppEnvironment> = combine(
         workspaceReducer,
         state: \.timeline.workspaces,
         action: \.workspaces,
+        environment: \.api
+    ),
+    pullback(
+        userReducer,
+        state: \.user,
+        action: \.user,
         environment: \.api
     )
 )

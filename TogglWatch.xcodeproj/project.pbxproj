@@ -93,6 +93,10 @@
 		8CC5FE712355B3AC00D33237 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CC5FE702355B3AC00D33237 /* Preview Assets.xcassets */; };
 		AC19DC9B237D79420009106D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DC99237D772E0009106D /* User.swift */; };
 		AC19DC9C237D79420009106D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DC99237D772E0009106D /* User.swift */; };
+		AC19DCA0237EAB130009106D /* UserAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DC9F237EAB130009106D /* UserAction.swift */; };
+		AC19DCA1237EAB130009106D /* UserAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DC9F237EAB130009106D /* UserAction.swift */; };
+		AC19DCA3237EAC8B0009106D /* UserReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DCA2237EAC8B0009106D /* UserReducer.swift */; };
+		AC19DCA4237EAC8B0009106D /* UserReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DCA2237EAC8B0009106D /* UserReducer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -226,6 +230,8 @@
 		8CC5FE9E2355E70200D33237 /* TimelineReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineReducer.swift; sourceTree = "<group>"; };
 		8CC5FEA32355E74400D33237 /* TimeEntryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntryCellView.swift; sourceTree = "<group>"; };
 		AC19DC99237D772E0009106D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		AC19DC9F237EAB130009106D /* UserAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAction.swift; sourceTree = "<group>"; };
+		AC19DCA2237EAC8B0009106D /* UserReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReducer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -421,6 +427,7 @@
 				8CA9508323732DA40076BDA4 /* TimelineAction.swift */,
 				8CA9508523732DC10076BDA4 /* ProjectAction.swift */,
 				8CA9508723732DDA0076BDA4 /* WorkspaceAction.swift */,
+				AC19DC9F237EAB130009106D /* UserAction.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -440,6 +447,7 @@
 				8CA9500C2369B2730076BDA4 /* ProjectsReducer.swift */,
 				8CC5FE9E2355E70200D33237 /* TimelineReducer.swift */,
 				8CA950B523746C400076BDA4 /* HighOrderReducers.swift */,
+				AC19DCA2237EAC8B0009106D /* UserReducer.swift */,
 			);
 			path = Reducers;
 			sourceTree = "<group>";
@@ -770,6 +778,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC19DC9C237D79420009106D /* User.swift in Sources */,
+				AC19DCA3237EAC8B0009106D /* UserReducer.swift in Sources */,
 				8C039414237D667900AB1C95 /* Tag.swift in Sources */,
 				8C039416237D667900AB1C95 /* TimeEntryModel.swift in Sources */,
 				8C0393FE237D667100AB1C95 /* Endpoint.swift in Sources */,
@@ -794,6 +803,7 @@
 				8C039413237D667900AB1C95 /* Workspace.swift in Sources */,
 				8C03942C237D668B00AB1C95 /* WorkspaceAction.swift in Sources */,
 				8C03941F237D668000AB1C95 /* WorkspacesReducer.swift in Sources */,
+				AC19DCA0237EAB130009106D /* UserAction.swift in Sources */,
 				8C0393FF237D667100AB1C95 /* URLSessionExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -803,6 +813,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC19DC9B237D79420009106D /* User.swift in Sources */,
+				AC19DCA4237EAC8B0009106D /* UserReducer.swift in Sources */,
 				8C03941A237D667900AB1C95 /* Tag.swift in Sources */,
 				8C03941C237D667900AB1C95 /* TimeEntryModel.swift in Sources */,
 				8C039407237D667100AB1C95 /* Endpoint.swift in Sources */,
@@ -827,6 +838,7 @@
 				8C039419237D667900AB1C95 /* Workspace.swift in Sources */,
 				8C039431237D668B00AB1C95 /* WorkspaceAction.swift in Sources */,
 				8C039423237D668100AB1C95 /* WorkspacesReducer.swift in Sources */,
+				AC19DCA1237EAB130009106D /* UserAction.swift in Sources */,
 				8C039408237D667100AB1C95 /* URLSessionExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,4 +12,11 @@ public struct User: Codable
 {
     var id: Int
     var apiToken: String
+    
+    enum CodingKeys: String, CodingKey
+    {
+        case id
+    
+        case apiToken = "api_token"
+    }
 }
