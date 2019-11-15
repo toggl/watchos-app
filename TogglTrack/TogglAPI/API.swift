@@ -39,12 +39,6 @@ public class API
         headers = ["User-Agent": userAgent + appVersion]
     }
     
-    public func setAuth(email: String, password: String)
-    {
-        let loginData = "\(email):\(password)".data(using: String.Encoding.utf8)!
-        updateAuthHeaders(with: loginData)
-    }
-    
     public func setAuth(token: String)
     {
         let loginData = "\(token):api_token".data(using: String.Encoding.utf8)!
@@ -81,10 +75,19 @@ public class API
         return urlSession.load(endpoint)
     }
     
-    public func loadUser() -> AnyPublisher<User, Error>
+    public func loginUser(email: String, password: String) -> AnyPublisher<User, Error>
     {
+        let loginData = "\(email):\(password)".data(using: String.Encoding.utf8)!
+        updateAuthHeaders(with: loginData)
+
         let endpoint: Endpoint<User> = createEntityEndpoint(path: "me")
         return urlSession.load(endpoint)
+            .handleEvents(
+                receiveOutput: { user in
+                    self.setAuth(token: user.apiToken)
+                }
+            )
+            .eraseToAnyPublisher()
     }
     
     private func updateAuthHeaders(with loginData: Data)

@@ -21,14 +21,18 @@ public struct TimelineState
     public var clients: [Int: Client] = [:]
     public var projects: [Int: Project] = [:]
     public var tags: [Int: Tag] = [:]
+}
 
+public struct UserState
+{
+    public var user: User?
+    public var error: Error?
 }
 
 public struct AppState
 {
     public var timeline: TimelineState = TimelineState()
-    public var somethingElse: Int = 0
-    public var user: User?
+    public var userState: UserState = UserState()
     
     public init()
     {

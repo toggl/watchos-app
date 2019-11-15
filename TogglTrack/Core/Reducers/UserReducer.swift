@@ -9,22 +9,25 @@
 import Foundation
 import Combine
 
-public var userReducer: Reducer<User?, UserAction, API> = Reducer { state, action, api in
+public var userReducer: Reducer<UserState, UserAction, API> = Reducer { state, action, api in
     switch action {
-        case .loadUser:
-            return loadUserEffect(api)
-        case let .setUser(user):
-            state = user
-            return .empty
+    case let .login(email, password):
+        return loginEffect(api, email, password)
+    case let .setUser(user):
+        state.user = user
+        return .empty
+    case let .setError(error):
+        state.error = error
+        return .empty
     }
 }
 
-private func loadUserEffect(_ api: API) -> Effect<UserAction>
+private func loginEffect(_ api: API, _ email: String, _ password: String) -> Effect<UserAction>
 {
     return Effect {
-        api.loadUser()
+        api.loginUser(email: email, password: password)
             .map { user in .setUser(user) }
-            .catch { _ in Just(.setUser(nil)) }
+            .catch { error in Just(.setError(error)) }
             .eraseToAnyPublisher()
     }
 }

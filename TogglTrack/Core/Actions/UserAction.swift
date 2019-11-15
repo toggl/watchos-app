@@ -10,6 +10,7 @@ import Foundation
 
 public enum UserAction
 {
-    case loadUser
+    case login(String, String)
     case setUser(User?)
+    case setError(Error?)
 }

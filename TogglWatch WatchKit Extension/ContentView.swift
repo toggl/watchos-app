@@ -47,7 +47,7 @@ var appReducer: Reducer<AppState, AppAction, AppEnvironment> = combine(
     ),
     pullback(
         userReducer,
-        state: \.user,
+        state: \.userState,
         action: \.user,
         environment: \.api
     )
@@ -58,14 +58,25 @@ struct ContentView: View
     @ObservedObject var store: Store<AppState, AppAction, AppEnvironment>
     
     var body: some View {
-        TimelineView(
-            store: store.view(
-                state: { $0.timeline },
-                action: { .timelineEntries($0)}
-            )
-        )
-        .onAppear {
-            self.store.send(.loadAll)
+        Group {
+            if (store.state.userState.user != nil) {
+                TimelineView(store:
+                    store.view(
+                        state: { $0.timeline },
+                        action: { .timelineEntries($0)}
+                    )
+                )
+                .onAppear {
+                    self.store.send(.loadAll)
+                }
+            } else {
+                LoginView(store:
+                    store.view(
+                        state: { $0.userState },
+                        action: { .user($0)}
+                    )
+                )
+            }
         }
     }
 }

@@ -77,6 +77,7 @@
 		8C039437237D775A00AB1C95 /* TogglTrack.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0393D3237D661700AB1C95 /* TogglTrack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8CA16E7A237D7F2400AD5A96 /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA16E79237D7F2400AD5A96 /* APITests.swift */; };
 		8CA16E7D237D7F6300AD5A96 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA16E7C237D7F6300AD5A96 /* MockURLSession.swift */; };
+		8CA16E80237D9A9500AD5A96 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA16E7F237D9A9500AD5A96 /* LoginView.swift */; };
 		8CA9509D237417FD0076BDA4 /* TimeEntryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5FEA32355E74400D33237 /* TimeEntryCellView.swift */; };
 		8CA9509E237418000076BDA4 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5FE962355D77C00D33237 /* Timeline.swift */; };
 		8CC5FE4E2355B3A900D33237 /* TogglWatch WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 8CC5FE4D2355B3A900D33237 /* TogglWatch WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -192,6 +193,8 @@
 		8C9686C42366E65700D7865E /* URLSessionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionExtension.swift; sourceTree = "<group>"; };
 		8CA16E79237D7F2400AD5A96 /* APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITests.swift; sourceTree = "<group>"; };
 		8CA16E7C237D7F6300AD5A96 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
+		8CA16E7F237D9A9500AD5A96 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		8CA16E81237DA37B00AD5A96 /* UserAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAction.swift; sourceTree = "<group>"; };
 		8CA94FF423698A550076BDA4 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		8CA9500C2369B2730076BDA4 /* ProjectsReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsReducer.swift; sourceTree = "<group>"; };
 		8CA9502C2369E59A0076BDA4 /* Effect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effect.swift; sourceTree = "<group>"; };
@@ -309,6 +312,14 @@
 			path = "Toggl Track iOSTests";
 			sourceTree = "<group>";
 		};
+		8C04AB9A237EC4840015B1A6 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				8CA16E81237DA37B00AD5A96 /* UserAction.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		8C113BA62355EE7B00F8CE88 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -400,9 +411,18 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
+		8CA16E7E237D9A8800AD5A96 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				8CA16E7F237D9A9500AD5A96 /* LoginView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		8CA950162369B43C0076BDA4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8CA16E7E237D9A8800AD5A96 /* Login */,
 				8CC5FEA32355E74400D33237 /* TimeEntryCellView.swift */,
 				8CC5FE962355D77C00D33237 /* Timeline.swift */,
 			);
@@ -472,6 +492,7 @@
 				8C0393EC237D664400AB1C95 /* Toggl Track iOSTests */,
 				8CC5FE4A2355B3A900D33237 /* Products */,
 				8CC5FEC52355E8B000D33237 /* Frameworks */,
+				8C04AB9A237EC4840015B1A6 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -862,6 +883,7 @@
 				8CA9509E237418000076BDA4 /* Timeline.swift in Sources */,
 				8CC5FE642355B3AB00D33237 /* HostingController.swift in Sources */,
 				8CC5FE622355B3AB00D33237 /* ContentView.swift in Sources */,
+				8CA16E80237D9A9500AD5A96 /* LoginView.swift in Sources */,
 				8CC5FE682355B3AB00D33237 /* NotificationController.swift in Sources */,
 				8CC5FE662355B3AB00D33237 /* ExtensionDelegate.swift in Sources */,
 				8CC5FE6A2355B3AB00D33237 /* NotificationView.swift in Sources */,

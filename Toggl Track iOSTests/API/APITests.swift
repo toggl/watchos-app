@@ -7,30 +7,12 @@
 //
 
 import XCTest
+import Combine
+
 @testable import TogglTrack
 
 class APITests: XCTestCase
 {
-    func testSetsCorrectAuthWithEmailAndPassword()
-    {
-        let email = "email@dummy.com"
-        let password = "dummyPassword"
-        
-        let urlSession = MockURLSession()
-        urlSession.returningValue = [Tag(id: 0, name: "myTag", workspaceId: 0)]
-        
-        let api = API(urlSession: urlSession)
-        
-        api.setAuth(email: email, password: password)
-        _ = api.loadTags().last()
-                        
-        let encoded = String(urlSession.authHeader!.dropFirst(6))
-        let data = Data(base64Encoded: encoded)
-        let string = String(data: data!, encoding: .utf8)!
-        
-        XCTAssertEqual(string, "\(email):\(password)")
-    }
-    
     func testSetsCorrectAuthWithToken()
     {
         let token = "abcd"
@@ -41,8 +23,52 @@ class APITests: XCTestCase
         let api = API(urlSession: urlSession)
         
         api.setAuth(token: token)
-        _ = api.loadTags().last()
+        _ = api.loadTags()
                         
+        let encoded = String(urlSession.authHeader!.dropFirst(6))
+        let data = Data(base64Encoded: encoded)
+        let string = String(data: data!, encoding: .utf8)!
+        
+        XCTAssertEqual(string, "\(token):api_token")
+    }
+    
+    func testSetsCorrectAuthWhenLoggingIn()
+    {
+        let email = "email@dummy.com"
+        let password = "dummyPassword"
+        
+        let urlSession = MockURLSession()
+        urlSession.returningValue = User(id: 0, apiToken: "abcd")
+        
+        let api = API(urlSession: urlSession)
+                
+        _ = api.loginUser(email: email, password: password)
+            
+        let encoded = String(urlSession.authHeader!.dropFirst(6))
+        let data = Data(base64Encoded: encoded)
+        let string = String(data: data!, encoding: .utf8)!
+        
+        XCTAssertEqual(string, "\(email):\(password)")
+    }
+    
+    func testSetsCorrectAuthWhenLoggingInIsSuccessful()
+    {
+        let email = "email@dummy.com"
+        let password = "dummyPassword"
+        let token = "abcd"
+        
+        let urlSession = MockURLSession()
+        urlSession.returningValue = User(id: 0, apiToken: token)
+        
+        let api = API(urlSession: urlSession)
+                
+        // First request to set the auth headers
+        _ = api.loginUser(email: email, password: password)
+            .sink(receiveCompletion: { _ in }, receiveValue: { user in print(user) })
+        
+        // Second request to check the auth headers
+        _ = api.loadTags()
+            
         let encoded = String(urlSession.authHeader!.dropFirst(6))
         let data = Data(base64Encoded: encoded)
         let string = String(data: data!, encoding: .utf8)!
