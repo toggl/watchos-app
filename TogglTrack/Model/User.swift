@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct User: Codable
+public struct User: Codable, Equatable
 {
     var id: Int
     var apiToken: String

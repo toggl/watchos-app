@@ -9,37 +9,39 @@
 import Foundation
 import Combine
 
-public typealias UserEnvironment = (api: API, keychainService: KeychainService)
+public typealias UserEnvironment = (api: APIProtocol, keychain: KeychainProtocol)
 
 public var userReducer: Reducer<UserState, UserAction, UserEnvironment> = Reducer { state, action, userEnv in
+
     switch action {
+        
     case let .login(email, password):
         return loginEffect(userEnv.api, email, password)
+    
     case let .setUser(user):
-        guard let token = user?.apiToken else {
-            state.error = NoTokenError()
-            return .empty
-        }
         state.user = user
-        userEnv.keychainService.setApiToken(token: token)
-        userEnv.api.setAuth(token: token)
+        userEnv.keychain.setApiToken(token: user.apiToken)
+        userEnv.api.setAuth(token: user.apiToken)
         return .empty
+    
     case let .setError(error):
         state.error = error
         return .empty
+        
     case .loadAPITokenAndUser:
-        guard let token = userEnv.keychainService.getApiToken() else { return .empty }
+        guard let token = userEnv.keychain.getApiToken() else { return .empty }
         userEnv.api.setAuth(token: token)
         return loadUserEffect(userEnv.api)
+    
     case .logout:
         state.user = nil
-        userEnv.keychainService.deleteApiToken()
-        userEnv.api.setAuth(token: "")
+        userEnv.keychain.deleteApiToken()
+        userEnv.api.setAuth(token: nil)
         return .empty
     }
 }
 
-private func loginEffect(_ api: API, _ email: String, _ password: String) -> Effect<UserAction>
+private func loginEffect(_ api: APIProtocol, _ email: String, _ password: String) -> Effect<UserAction>
 {
     return Effect {
         api.loginUser(email: email, password: password)
@@ -49,7 +51,7 @@ private func loginEffect(_ api: API, _ email: String, _ password: String) -> Eff
     }
 }
 
-private func loadUserEffect(_ api: API) -> Effect<UserAction>
+private func loadUserEffect(_ api: APIProtocol) -> Effect<UserAction>
 {
     return Effect {
         api.loadUser()

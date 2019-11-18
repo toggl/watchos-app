@@ -9,7 +9,14 @@
 import Security
 import Foundation
 
-public class KeychainService
+public protocol KeychainProtocol
+{
+    func setApiToken(token: String)
+    func getApiToken() -> String?
+    func deleteApiToken()
+}
+
+public class Keychain
 {
     open var lastResultCode: OSStatus = noErr
     
@@ -137,21 +144,21 @@ public class KeychainService
     }
 }
 
-extension KeychainService
+extension Keychain: KeychainProtocol
 {
-    func setApiToken(token: String)
+    public func setApiToken(token: String)
     {
         set(token, forKey: "apiToken")
     }
     
-    func getApiToken() -> String?
+    public func getApiToken() -> String?
     {
         guard let token = get("apiToken") else { return nil }
         
         return token
     }
     
-    func deleteApiToken()
+    public func deleteApiToken()
     {
         delete("apiToken")
     }

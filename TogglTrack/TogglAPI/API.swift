@@ -9,7 +9,20 @@
 import Foundation
 import Combine
 
-public class API
+public protocol APIProtocol
+{
+    func setAuth(token: String?)
+    func loginUser(email: String, password:String) -> AnyPublisher<User, Error>
+    func loadUser() -> AnyPublisher<User, Error>
+
+    func loadEntries() -> AnyPublisher<[TimeEntry], Error>
+    func loadWorkspaces() -> AnyPublisher<[Workspace], Error>
+    func loadClients() -> AnyPublisher<[Client], Error>
+    func loadProjects() -> AnyPublisher<[Project], Error>
+    func loadTags() -> AnyPublisher<[Tag], Error>
+}
+
+public class API : APIProtocol
 {
     #if DEBUG
     private let baseURL: String = "https://mobile.toggl.space/api/v9/"
@@ -39,12 +52,31 @@ public class API
         headers = ["User-Agent": userAgent + appVersion]
     }
     
-    public func setAuth(token: String)
+    public func setAuth(token: String?)
     {
+        guard let token = token else {
+            updateAuthHeaders(with: nil)
+            return
+        }
         let loginData = "\(token):api_token".data(using: String.Encoding.utf8)!
         updateAuthHeaders(with: loginData)
     }
     
+    public func loginUser(email: String, password: String) -> AnyPublisher<User, Error>
+    {
+        let loginData = "\(email):\(password)".data(using: String.Encoding.utf8)!
+        updateAuthHeaders(with: loginData)
+
+        let endpoint: Endpoint<User> = createEntityEndpoint(path: "me")
+        return urlSession.load(endpoint)
+    }
+    
+    public func loadUser() -> AnyPublisher<User, Error>
+    {
+        let endpoint: Endpoint<User> = createEntityEndpoint(path: "me")
+        return urlSession.load(endpoint)
+    }
+        
     public func loadEntries() -> AnyPublisher<[TimeEntry], Error>
     {
         let endpoint: Endpoint<[TimeEntry]> = createEntitiesEndpoint(path: "me/time_entries")
@@ -75,23 +107,13 @@ public class API
         return urlSession.load(endpoint)
     }
     
-    public func loadUser() -> AnyPublisher<User, Error>
+    private func updateAuthHeaders(with loginData: Data?)
     {
-        let endpoint: Endpoint<User> = createEntityEndpoint(path: "me")
-        return urlSession.load(endpoint)
-    }
-    
-    public func loginUser(email: String, password: String) -> AnyPublisher<User, Error>
-    {
-        let loginData = "\(email):\(password)".data(using: String.Encoding.utf8)!
-        updateAuthHeaders(with: loginData)
-
-        let endpoint: Endpoint<User> = createEntityEndpoint(path: "me")
-        return urlSession.load(endpoint)
-    }
-    
-    private func updateAuthHeaders(with loginData: Data)
-    {
+        guard let loginData = loginData else {
+            headers["Authorization"] = nil
+            return
+        }
+        
         let base64LoginString = loginData.base64EncodedString()
         let authHeader = "Basic \(base64LoginString)"
         headers["Authorization"] = authHeader
