@@ -25,6 +25,15 @@ public struct Effect<Action>
         return Effect { Publishers.Sequence(sequence: actions).eraseToAnyPublisher() }
     }
     
+    public func receive(on queue: DispatchQueue) -> Self
+    {
+        return Effect {
+            self.run()
+                .receive(on: queue)
+                .eraseToAnyPublisher()
+        }
+    }
+    
     public func map<B>(_ f: @escaping (Action) -> B) -> Effect<B>
     {
         return Effect<B> {
