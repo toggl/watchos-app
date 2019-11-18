@@ -100,6 +100,8 @@
 		AC19DCA1237EAB130009106D /* UserAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DC9F237EAB130009106D /* UserAction.swift */; };
 		AC19DCA3237EAC8B0009106D /* UserReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DCA2237EAC8B0009106D /* UserReducer.swift */; };
 		AC19DCA4237EAC8B0009106D /* UserReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DCA2237EAC8B0009106D /* UserReducer.swift */; };
+		AC19DCA6237ED1960009106D /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DCA5237ED1960009106D /* KeychainService.swift */; };
+		AC19DCA7237ED1960009106D /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DCA5237ED1960009106D /* KeychainService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -238,6 +240,7 @@
 		AC19DC99237D772E0009106D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AC19DC9F237EAB130009106D /* UserAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAction.swift; sourceTree = "<group>"; };
 		AC19DCA2237EAC8B0009106D /* UserReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReducer.swift; sourceTree = "<group>"; };
+		AC19DCA5237ED1960009106D /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -488,6 +491,7 @@
 			isa = PBXGroup;
 			children = (
 				8CC5FE9B2355E2E700D33237 /* TimeIntervalExtensions.swift */,
+				AC19DCA5237ED1960009106D /* KeychainService.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -818,6 +822,7 @@
 				8C03940C237D667500AB1C95 /* Effect.swift in Sources */,
 				8C03941D237D667C00AB1C95 /* API.swift in Sources */,
 				8C03940D237D667500AB1C95 /* Reducer.swift in Sources */,
+				AC19DCA6237ED1960009106D /* KeychainService.swift in Sources */,
 				8C039412237D667900AB1C95 /* Project.swift in Sources */,
 				8C039429237D668B00AB1C95 /* AppAction.swift in Sources */,
 				8C039401237D667100AB1C95 /* Errors.swift in Sources */,
@@ -854,6 +859,7 @@
 				8C03940F237D667500AB1C95 /* Effect.swift in Sources */,
 				8C03941E237D667C00AB1C95 /* API.swift in Sources */,
 				8C039410237D667500AB1C95 /* Reducer.swift in Sources */,
+				AC19DCA7237ED1960009106D /* KeychainService.swift in Sources */,
 				8C039418237D667900AB1C95 /* Project.swift in Sources */,
 				8C03942E237D668B00AB1C95 /* AppAction.swift in Sources */,
 				8C03940A237D667100AB1C95 /* Errors.swift in Sources */,

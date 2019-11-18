@@ -51,31 +51,6 @@ class APITests: XCTestCase
         XCTAssertEqual(string, "\(email):\(password)")
     }
     
-    func testSetsCorrectAuthWhenLoggingInIsSuccessful()
-    {
-        let email = "email@dummy.com"
-        let password = "dummyPassword"
-        let token = "abcd"
-        
-        let urlSession = MockURLSession()
-        urlSession.returningValue = User(id: 0, apiToken: token)
-        
-        let api = API(urlSession: urlSession)
-                
-        // First request to set the auth headers
-        _ = api.loginUser(email: email, password: password)
-            .sink(receiveCompletion: { _ in }, receiveValue: { user in print(user) })
-        
-        // Second request to check the auth headers
-        _ = api.loadTags()
-            
-        let encoded = String(urlSession.authHeader!.dropFirst(6))
-        let data = Data(base64Encoded: encoded)
-        let string = String(data: data!, encoding: .utf8)!
-        
-        XCTAssertEqual(string, "\(token):api_token")
-    }
-    
     func testSetsCorrectUserAgent()
     {        
         let urlSession = MockURLSession()

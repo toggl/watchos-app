@@ -49,7 +49,7 @@ var appReducer: Reducer<AppState, AppAction, AppEnvironment> = combine(
         userReducer,
         state: \.userState,
         action: \.user,
-        environment: \.api
+        environment: \.userEnvironment
     )
 )
 
@@ -67,6 +67,7 @@ struct ContentView: View
                     )
                 )
                 .onAppear {
+                    self.store.send(.user(.loadAPITokenAndUser))
                     self.store.send(.loadAll)
                 }
             } else {

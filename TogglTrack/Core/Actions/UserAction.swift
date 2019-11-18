@@ -13,4 +13,6 @@ public enum UserAction
     case login(String, String)
     case setUser(User?)
     case setError(Error?)
+    case loadAPITokenAndUser
+    case logout
 }

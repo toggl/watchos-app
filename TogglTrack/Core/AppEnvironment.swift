@@ -11,6 +11,9 @@ import Foundation
 public struct AppEnvironment
 {
     public let api: API
+    public let keychainService = KeychainService();
+    
+    public var userEnvironment: UserEnvironment { (api, keychainService) }
         
     public init(api: API)
     {

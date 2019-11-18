@@ -8,6 +8,10 @@
 
 import Foundation
 
+public struct NoTokenError: Error {
+    public init() { }
+}
+
 public enum NetworkingError: Error
 {
     case noData
