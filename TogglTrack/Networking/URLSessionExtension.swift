@@ -21,11 +21,11 @@ extension URLSession: URLSessionProtocol
         return dataTaskPublisher(for: endpoint.request)
             .tryMap { data, response in
                 guard let response = response as? HTTPURLResponse else {
-                    throw UnknownError()
+                    throw NetworkingError.noData
                 }
                 
                 guard endpoint.expectedStatusCode(response.statusCode) else {
-                    throw WrongStatusCodeError(statusCode: response.statusCode, response: response)
+                    throw NetworkingError.wrongStatus(response.statusCode, response)
                 }
                 
                 return try endpoint.parse(data)

@@ -26,7 +26,7 @@ public class FakeURLSession: URLSessionProtocol
         let bundle = Bundle(for: type(of: self))
         guard let resource = requests[endpoint.request.url!.lastPathComponent],
             let path = bundle.path(forResource: resource, ofType: "txt") else {
-                return Fail(error: UnknownError())
+                return Fail(error: NetworkingError.unknown)
                     .eraseToAnyPublisher()
         }
         

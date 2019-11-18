@@ -37,7 +37,7 @@ struct LoginView: View {
         }
         .navigationBarTitle("Toggl Login")
         .alert(isPresented: hasError) {
-            Alert(title: Text("Error"))
+            Alert(title: Text(store.state.error!.description))
         }
     }
 }

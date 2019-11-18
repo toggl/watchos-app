@@ -66,7 +66,7 @@ extension Endpoint where A: Decodable
     public init(json method: Method, url: URL, headers: [String: String] = [:], query: [String: String] = [:], decoder: JSONDecoder = JSONDecoder())
     {
         self.init(method, url: url, body: nil, headers: headers, query: query) { data in
-            guard let dat = data else { throw NoDataError() }
+            guard let dat = data else { throw NetworkingError.unknown }
             return try decoder.decode(A.self, from: dat)
         }
     }
@@ -75,7 +75,7 @@ extension Endpoint where A: Decodable
     {
         let b = body.map { try! JSONEncoder().encode($0) }
         self.init(method, url: url, body: b, headers: headers, query: query) { data in
-            guard let dat = data else { throw NoDataError() }
+            guard let dat = data else { throw NetworkingError.unknown }
             return try decoder.decode(A.self, from: dat)
         }
     }

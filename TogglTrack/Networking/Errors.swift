@@ -8,19 +8,9 @@
 
 import Foundation
 
-public struct NoDataError: Error {
-    public init() { }
-}
-
-public struct UnknownError: Error {
-    public init() { }
-}
-
-public struct WrongStatusCodeError: Error {
-    public let statusCode: Int
-    public let response: HTTPURLResponse?
-    public init(statusCode: Int, response: HTTPURLResponse?) {
-        self.statusCode = statusCode
-        self.response = response
-    }
+public enum NetworkingError: Error
+{
+    case noData
+    case wrongStatus(Int, HTTPURLResponse?)
+    case unknown
 }
