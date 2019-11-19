@@ -24,7 +24,7 @@ public func combine<State, Action, Environment>(
 ) -> Reducer<State, Action, Environment> {
     return Reducer { state, action, environment in
         let effects = reducers.map{ $0.run(&state, action, environment)}
-        return Effect<Action>.mergeMany(effects)
+        return Publishers.MergeMany(effects).eraseToEffect()
     }
 }
 
@@ -44,5 +44,6 @@ public func pullback<LocalState, GlobalState, LocalAction, GlobalAction, GlobalE
                 globalAction[keyPath: action] = localAction
                 return globalAction
             }
+            .eraseToEffect()
     }
 }

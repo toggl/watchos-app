@@ -9,63 +9,29 @@
 import Foundation
 import Combine
 
-public struct Effect<Action>
+public struct Effect<Action>: Publisher
 {
-    public let run: () -> AnyPublisher<Action, Never>
+    public typealias Output = Action
+    public typealias Failure = Never
     
-    public init(_ run: @escaping () -> AnyPublisher<Action, Never>)
-    {
-        self.run = run
-    }
-        
-    public static var empty: Self { Effect({ return Empty<Action, Never>().eraseToAnyPublisher() }) }
+    let publisher: AnyPublisher<Output, Failure>
     
-    public static func fromActions(actions: Action...) -> Self
+    fileprivate init(publisher: AnyPublisher<Output, Failure>)
     {
-        return Effect { Publishers.Sequence(sequence: actions).eraseToAnyPublisher() }
+        self.publisher = publisher
     }
     
-    public func receive(on queue: DispatchQueue) -> Self
-    {
-        return Effect {
-            self.run()
-                .receive(on: queue)
-                .eraseToAnyPublisher()
-        }
-    }
+    public static var empty: Effect<Action> { Empty<Action, Never>().eraseToEffect() }
     
-    public func map<B>(_ f: @escaping (Action) -> B) -> Effect<B>
-    {
-        return Effect<B> {
-            return self.run()
-                .map(f)
-                .eraseToAnyPublisher()
-        }
+    public func receive<S>(subscriber: S) where S : Subscriber, Failure == S.Failure, Output == S.Input {
+        self.publisher.receive(subscriber: subscriber)
     }
-    
-    public func flatMap<B>(_ f: @escaping (Action) -> Effect<B>) -> Effect<B>
-    {
-        return Effect<B> {
-            return self.run()
-                .flatMap{ action in f(action).run() }
-                .eraseToAnyPublisher()
-        }
-    }
-    
-    public static func mergeMany<A>(_ effects: [Effect<A>]) -> Effect<A>
-    {
-        return Effect<A> {
-            Publishers.MergeMany(effects.map({ $0.run() }))
-                .eraseToAnyPublisher()
-        }
-    }
+}
 
-    public static func zip<A, B>(_ a: Effect<A>, _ b: Effect<B>) -> Effect<(A, B)>
+extension Publisher where Failure == Never
+{
+    public func eraseToEffect() -> Effect<Output>
     {
-        return Effect<(A, B)> {
-            return a.run()
-                .zip(b.run())
-                .eraseToAnyPublisher()
-        }
+        return Effect(publisher: self.eraseToAnyPublisher())
     }
 }

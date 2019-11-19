@@ -29,7 +29,6 @@ public final class Store<State, Action, Environment>: ObservableObject
         
         effect
             .receive(on: DispatchQueue.main)
-            .run()
             .sink(receiveValue: send)
             .store(in: &cancellables)
     }

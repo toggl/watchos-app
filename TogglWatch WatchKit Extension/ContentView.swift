@@ -21,7 +21,11 @@ var globalReducer: Reducer<AppState, AppAction, AppEnvironment> = Reducer { stat
     case .user(_):
         return .empty
     case .loadAll:
-        return .fromActions(actions: .workspaces(.loadWorkspaces), .projects(.loadProjects), .timelineEntries(.loadEntries))
+        
+        // This ugly code will disappear in my next PR
+        return Publishers
+            .Sequence<[AppAction], Never>(sequence: [.workspaces(.loadWorkspaces), .projects(.loadProjects), .timelineEntries(.loadEntries)])
+            .eraseToEffect()
     }
 }
 
