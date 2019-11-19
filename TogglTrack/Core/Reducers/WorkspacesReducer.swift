@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-public var workspaceReducer: Reducer<[Int: Workspace], WorkspaceAction, API> = Reducer { state, action, api in
+public var workspaceReducer: Reducer<[Int: Workspace], WorkspaceAction, APIProtocol> = Reducer { state, action, api in
     switch action {
         case .loadWorkspaces:
             return loadWorkspacesEffect(api)
@@ -23,7 +23,7 @@ public var workspaceReducer: Reducer<[Int: Workspace], WorkspaceAction, API> = R
     }
 }
 
-private func loadWorkspacesEffect(_ api: API) -> Effect<WorkspaceAction>
+private func loadWorkspacesEffect(_ api: APIProtocol) -> Effect<WorkspaceAction>
 {
     return Effect {
         api.loadWorkspaces()

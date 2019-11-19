@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-public var projectReducer: Reducer<[Int: Project], ProjectAction, API> = Reducer { state, action, api in
+public var projectReducer: Reducer<[Int: Project], ProjectAction, APIProtocol> = Reducer { state, action, api in
     switch action {
         case .loadProjects:
             return loadProjectsEffect(api)
@@ -23,7 +23,7 @@ public var projectReducer: Reducer<[Int: Project], ProjectAction, API> = Reducer
     }
 }
 
-private func loadProjectsEffect(_ api: API) -> Effect<ProjectAction>
+private func loadProjectsEffect(_ api: APIProtocol) -> Effect<ProjectAction>
 {
     return Effect {
         api.loadProjects()

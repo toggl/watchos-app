@@ -76,6 +76,7 @@
 		8C039436237D775A00AB1C95 /* TogglTrack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0393D3237D661700AB1C95 /* TogglTrack.framework */; };
 		8C039437237D775A00AB1C95 /* TogglTrack.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0393D3237D661700AB1C95 /* TogglTrack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8C3134032383019F0095E309 /* MockKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3134022383019F0095E309 /* MockKeychain.swift */; };
+		8C3134042383D47C0095E309 /* ErrorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA6EC5D2382B9F000F7C9B5 /* ErrorExtensions.swift */; };
 		8CA16E7A237D7F2400AD5A96 /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA16E79237D7F2400AD5A96 /* APITests.swift */; };
 		8CA16E7D237D7F6300AD5A96 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA16E7C237D7F6300AD5A96 /* MockURLSession.swift */; };
 		8CA16E80237D9A9500AD5A96 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA16E7F237D9A9500AD5A96 /* LoginView.swift */; };
@@ -852,6 +853,7 @@
 				8C039401237D667100AB1C95 /* Errors.swift in Sources */,
 				8C039415237D667900AB1C95 /* Client.swift in Sources */,
 				8C039400237D667100AB1C95 /* FakeURLSession.swift in Sources */,
+				8C3134042383D47C0095E309 /* ErrorExtensions.swift in Sources */,
 				8C03942B237D668B00AB1C95 /* ProjectAction.swift in Sources */,
 				8C039411237D667900AB1C95 /* TimeEntry.swift in Sources */,
 				8C039427237D668500AB1C95 /* AppState.swift in Sources */,

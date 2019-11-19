@@ -15,7 +15,8 @@ class HostingController: WKHostingController<ContentView> {
     override var body: ContentView {
         
         let environment = AppEnvironment(
-            api: API(urlSession: URLSession(configuration: URLSessionConfiguration.default))
+            api: API(urlSession: URLSession(configuration: URLSessionConfiguration.default)),
+            keychain: Keychain()
         )
         
         return ContentView(store: Store(

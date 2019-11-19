@@ -31,7 +31,7 @@ var appReducer: Reducer<AppState, AppAction, AppEnvironment> = combine(
         timelineReducer,
         state: \.timeline.timeEntries,
         action: \.timelineEntries,
-        environment: \AppEnvironment.api
+        environment: \.api
     ),
     pullback(
         projectReducer,
