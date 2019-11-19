@@ -77,6 +77,8 @@
 		8C039437237D775A00AB1C95 /* TogglTrack.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0393D3237D661700AB1C95 /* TogglTrack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8C3134032383019F0095E309 /* MockKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3134022383019F0095E309 /* MockKeychain.swift */; };
 		8C3134042383D47C0095E309 /* ErrorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA6EC5D2382B9F000F7C9B5 /* ErrorExtensions.swift */; };
+		8C88AF4123840F1B00F67EC3 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3134052383D7C40095E309 /* Task.swift */; };
+		8C88AF4223840F1B00F67EC3 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3134052383D7C40095E309 /* Task.swift */; };
 		8CA16E7A237D7F2400AD5A96 /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA16E79237D7F2400AD5A96 /* APITests.swift */; };
 		8CA16E7D237D7F6300AD5A96 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA16E7C237D7F6300AD5A96 /* MockURLSession.swift */; };
 		8CA16E80237D9A9500AD5A96 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA16E7F237D9A9500AD5A96 /* LoginView.swift */; };
@@ -184,6 +186,7 @@
 		8C0393E8237D664400AB1C95 /* Toggl Track iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Toggl Track iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C0393EF237D664400AB1C95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C3134022383019F0095E309 /* MockKeychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockKeychain.swift; sourceTree = "<group>"; };
+		8C3134052383D7C40095E309 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		8C3B2C9B23619321008295D8 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		8C5645BF2379B037002E83B3 /* URLSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionTests.swift; sourceTree = "<group>"; };
 		8C5645C12379B049002E83B3 /* EndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointTests.swift; sourceTree = "<group>"; };
@@ -344,6 +347,7 @@
 				8CC5FE922355BDB200D33237 /* Client.swift */,
 				8C9686C0236307FD00D7865E /* TimeEntryModel.swift */,
 				AC19DC99237D772E0009106D /* User.swift */,
+				8C3134052383D7C40095E309 /* Task.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -861,6 +865,7 @@
 				8C03940B237D667500AB1C95 /* Store.swift in Sources */,
 				8C039421237D668000AB1C95 /* TimelineReducer.swift in Sources */,
 				8C03942A237D668B00AB1C95 /* TimelineAction.swift in Sources */,
+				8C88AF4123840F1B00F67EC3 /* Task.swift in Sources */,
 				8C0393F7237D666C00AB1C95 /* TimeIntervalExtensions.swift in Sources */,
 				8C039422237D668000AB1C95 /* HighOrderReducers.swift in Sources */,
 				8C03942D237D668B00AB1C95 /* AppEnvironment.swift in Sources */,
@@ -898,6 +903,7 @@
 				8C039425237D668100AB1C95 /* TimelineReducer.swift in Sources */,
 				8C03942F237D668B00AB1C95 /* TimelineAction.swift in Sources */,
 				8C0393F8237D666C00AB1C95 /* TimeIntervalExtensions.swift in Sources */,
+				8C88AF4223840F1B00F67EC3 /* Task.swift in Sources */,
 				8C039426237D668100AB1C95 /* HighOrderReducers.swift in Sources */,
 				8CA6EC602382BF3900F7C9B5 /* ErrorExtensions.swift in Sources */,
 				8C039432237D668B00AB1C95 /* AppEnvironment.swift in Sources */,

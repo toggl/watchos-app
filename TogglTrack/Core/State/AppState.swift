@@ -21,6 +21,7 @@ public struct TimelineState
     public var clients: [Int: Client] = [:]
     public var projects: [Int: Project] = [:]
     public var tags: [Int: Tag] = [:]
+    public var tasks: [Int: Task] = [:]
 }
 
 public struct UserState

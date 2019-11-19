@@ -18,6 +18,7 @@ public struct TimeEntry: Codable, Equatable
         
     public var workspaceId: Int
     public var projectId: Int?
+    public var taskId: Int?
     public var tagIds: [Int]?
     
     enum CodingKeys: String, CodingKey
@@ -30,10 +31,11 @@ public struct TimeEntry: Codable, Equatable
    
         case workspaceId = "workspace_id"
         case projectId = "project_id"
+        case taskId = "task_id"
         case tagIds = "tag_ids"
     }
     
-    public static func createNew(withDescription description: String, workspaceId: Int, billable: Bool = false, projectId: Int? = nil, tagIds: [Int] = []) -> TimeEntry
+    public static func createNew(withDescription description: String, workspaceId: Int, billable: Bool = false, projectId: Int? = nil, taskId: Int? = nil, tagIds: [Int] = []) -> TimeEntry
     {
         return TimeEntry(
             id: Int.random(in: 0..<100000),
@@ -43,6 +45,7 @@ public struct TimeEntry: Codable, Equatable
             billable: billable,
             workspaceId: workspaceId,
             projectId: projectId,
+            taskId: taskId,
             tagIds: tagIds
         )
     }
@@ -57,6 +60,7 @@ public struct TimeEntry: Codable, Equatable
             billable: self.billable,
             workspaceId: self.workspaceId,
             projectId: self.projectId,
+            taskId: self.taskId,
             tagIds: self.tagIds
         )
     }
@@ -68,8 +72,8 @@ public extension TimeEntry
     static var dummyEntries: [TimeEntry]
     {
         return [
-            TimeEntry(id: 0, description: "One time entry", start: Date(), duration: 1000, billable: false, workspaceId: 0, projectId: nil, tagIds: []),
-            TimeEntry(id: 1, description: "Another time entry", start: Date(), duration: 1000, billable: false, workspaceId: 0, projectId: nil, tagIds: [])
+            TimeEntry(id: 0, description: "One time entry", start: Date(), duration: 1000, billable: false, workspaceId: 0, projectId: nil, taskId: nil, tagIds: []),
+            TimeEntry(id: 1, description: "Another time entry", start: Date(), duration: 1000, billable: false, workspaceId: 0, projectId: nil, taskId: nil, tagIds: [])
         ]
     }
 }
