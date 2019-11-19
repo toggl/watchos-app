@@ -85,4 +85,10 @@ class MockAPI: APIProtocol
         return Empty()
             .eraseToAnyPublisher()
     }
+    
+    func loadTasks() -> AnyPublisher<[Task], Error>
+    {
+        return Empty()
+            .eraseToAnyPublisher()
+    }
 }

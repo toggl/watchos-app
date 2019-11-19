@@ -20,6 +20,7 @@ public protocol APIProtocol
     func loadClients() -> AnyPublisher<[Client], Error>
     func loadProjects() -> AnyPublisher<[Project], Error>
     func loadTags() -> AnyPublisher<[Tag], Error>
+    func loadTasks() -> AnyPublisher<[Task], Error>
 }
 
 public class API : APIProtocol
@@ -104,6 +105,12 @@ public class API : APIProtocol
     public func loadTags() -> AnyPublisher<[Tag], Error>
     {
         let endpoint: Endpoint<[Tag]> = createEntitiesEndpoint(path: "me/tags")
+        return urlSession.load(endpoint)
+    }
+    
+    public func loadTasks() -> AnyPublisher<[Task], Error>
+    {
+        let endpoint: Endpoint<[Task]> = createEntitiesEndpoint(path: "me/tasks")
         return urlSession.load(endpoint)
     }
     
