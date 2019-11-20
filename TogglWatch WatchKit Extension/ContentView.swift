@@ -74,6 +74,16 @@ struct ContentView: View
                     self.store.send(.user(.loadAPITokenAndUser))
                     self.store.send(.loadAll)
                 }
+                .contextMenu(menuItems: {
+                    Button(
+                        action: { self.store.send(.user(.logout)) },
+                        label: {
+                            VStack {
+                                Image(systemName: "logout")
+                                Text("Log out")
+                            }
+                    })
+                })
             } else {
                 LoginView(store:
                     store.view(
