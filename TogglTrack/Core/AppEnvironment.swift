@@ -13,12 +13,16 @@ public struct AppEnvironment
 
     public let api: APIProtocol
     public let keychain: KeychainProtocol
-    
-    public var userEnvironment: UserEnvironment { (api, keychain) }
         
     public init(api: APIProtocol, keychain: KeychainProtocol)
     {
         self.api = api
         self.keychain = keychain
     }
+}
+
+// Sub-environments
+extension AppEnvironment
+{
+    public var loginEnvironment: LoginEnvironment { (api, keychain) }
 }

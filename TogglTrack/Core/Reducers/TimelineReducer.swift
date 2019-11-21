@@ -49,6 +49,11 @@ public var timelineReducer: Reducer<TimeEntriesState, TimeEntryAction, APIProtoc
         }
         return .empty
         
+    case .clear:
+        state.byId = [:]
+        state.sorted = []
+        return .empty
+        
     case let .setError(error):
         state.error = error
         return .empty

@@ -99,10 +99,10 @@
 		8CC5FE712355B3AC00D33237 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CC5FE702355B3AC00D33237 /* Preview Assets.xcassets */; };
 		AC19DC9B237D79420009106D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DC99237D772E0009106D /* User.swift */; };
 		AC19DC9C237D79420009106D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DC99237D772E0009106D /* User.swift */; };
-		AC19DCA0237EAB130009106D /* UserAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DC9F237EAB130009106D /* UserAction.swift */; };
-		AC19DCA1237EAB130009106D /* UserAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DC9F237EAB130009106D /* UserAction.swift */; };
-		AC19DCA3237EAC8B0009106D /* UserReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DCA2237EAC8B0009106D /* UserReducer.swift */; };
-		AC19DCA4237EAC8B0009106D /* UserReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DCA2237EAC8B0009106D /* UserReducer.swift */; };
+		AC19DCA0237EAB130009106D /* LoginAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DC9F237EAB130009106D /* LoginAction.swift */; };
+		AC19DCA1237EAB130009106D /* LoginAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DC9F237EAB130009106D /* LoginAction.swift */; };
+		AC19DCA3237EAC8B0009106D /* LoginReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DCA2237EAC8B0009106D /* LoginReducer.swift */; };
+		AC19DCA4237EAC8B0009106D /* LoginReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DCA2237EAC8B0009106D /* LoginReducer.swift */; };
 		AC19DCA6237ED1960009106D /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DCA5237ED1960009106D /* KeychainService.swift */; };
 		AC19DCA7237ED1960009106D /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DCA5237ED1960009106D /* KeychainService.swift */; };
 		ACEAE4B4238694FE009C7A26 /* ReducerErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEAE4B3238694FE009C7A26 /* ReducerErrors.swift */; };
@@ -246,8 +246,8 @@
 		8CC5FE9E2355E70200D33237 /* TimelineReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineReducer.swift; sourceTree = "<group>"; };
 		8CC5FEA32355E74400D33237 /* TimeEntryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntryCellView.swift; sourceTree = "<group>"; };
 		AC19DC99237D772E0009106D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		AC19DC9F237EAB130009106D /* UserAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAction.swift; sourceTree = "<group>"; };
-		AC19DCA2237EAC8B0009106D /* UserReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReducer.swift; sourceTree = "<group>"; };
+		AC19DC9F237EAB130009106D /* LoginAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAction.swift; sourceTree = "<group>"; };
+		AC19DCA2237EAC8B0009106D /* LoginReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginReducer.swift; sourceTree = "<group>"; };
 		AC19DCA5237ED1960009106D /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		ACEAE4B3238694FE009C7A26 /* ReducerErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReducerErrors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -490,7 +490,7 @@
 				8CA9506C237329440076BDA4 /* AppAction.swift */,
 				8CA9508323732DA40076BDA4 /* TimeEntryAction.swift */,
 				8CA9508523732DC10076BDA4 /* EntityAction.swift */,
-				AC19DC9F237EAB130009106D /* UserAction.swift */,
+				AC19DC9F237EAB130009106D /* LoginAction.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -508,7 +508,7 @@
 			children = (
 				8CC5FE9E2355E70200D33237 /* TimelineReducer.swift */,
 				8CA950B523746C400076BDA4 /* HighOrderReducers.swift */,
-				AC19DCA2237EAC8B0009106D /* UserReducer.swift */,
+				AC19DCA2237EAC8B0009106D /* LoginReducer.swift */,
 				ACEAE4B3238694FE009C7A26 /* ReducerErrors.swift */,
 				8C00AF692384120C001FB22F /* AppReducer.swift */,
 				8C2449702385568700F087E9 /* EntityReducer.swift */,
@@ -844,7 +844,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC19DC9C237D79420009106D /* User.swift in Sources */,
-				AC19DCA3237EAC8B0009106D /* UserReducer.swift in Sources */,
+				AC19DCA3237EAC8B0009106D /* LoginReducer.swift in Sources */,
 				8C039414237D667900AB1C95 /* Tag.swift in Sources */,
 				8C039416237D667900AB1C95 /* TimeEntryModel.swift in Sources */,
 				ACEAE4B4238694FE009C7A26 /* ReducerErrors.swift in Sources */,
@@ -872,7 +872,7 @@
 				8CBC9CFA2385598D00A133CF /* EntityReducer.swift in Sources */,
 				8C03942D237D668B00AB1C95 /* AppEnvironment.swift in Sources */,
 				8C039413237D667900AB1C95 /* Workspace.swift in Sources */,
-				AC19DCA0237EAB130009106D /* UserAction.swift in Sources */,
+				AC19DCA0237EAB130009106D /* LoginAction.swift in Sources */,
 				8C0393FF237D667100AB1C95 /* URLSessionExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -882,7 +882,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC19DC9B237D79420009106D /* User.swift in Sources */,
-				AC19DCA4237EAC8B0009106D /* UserReducer.swift in Sources */,
+				AC19DCA4237EAC8B0009106D /* LoginReducer.swift in Sources */,
 				8C03941A237D667900AB1C95 /* Tag.swift in Sources */,
 				8C03941C237D667900AB1C95 /* TimeEntryModel.swift in Sources */,
 				ACEAE4B5238694FE009C7A26 /* ReducerErrors.swift in Sources */,
@@ -910,7 +910,7 @@
 				8CA6EC602382BF3900F7C9B5 /* ErrorExtensions.swift in Sources */,
 				8C039432237D668B00AB1C95 /* AppEnvironment.swift in Sources */,
 				8C039419237D667900AB1C95 /* Workspace.swift in Sources */,
-				AC19DCA1237EAB130009106D /* UserAction.swift in Sources */,
+				AC19DCA1237EAB130009106D /* LoginAction.swift in Sources */,
 				8C039408237D667100AB1C95 /* URLSessionExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

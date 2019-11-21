@@ -26,6 +26,12 @@ public struct Effect<Action>: Publisher
     public func receive<S>(subscriber: S) where S : Subscriber, Failure == S.Failure, Output == S.Input {
         self.publisher.receive(subscriber: subscriber)
     }
+    
+    public static func fromActions(_ actions: Action...) -> Effect<Action>
+    {
+        return Publishers.Sequence(sequence: actions)
+            .eraseToEffect()
+    }
 }
 
 extension Publisher where Failure == Never

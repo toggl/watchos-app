@@ -36,47 +36,48 @@ var combinedReducer: Reducer<AppState, AppAction, AppEnvironment> = combine(
              state: \.timeline.tags,
              action: \.tags,
              environment: \.api),
-    pullback(userReducer,
-             state: \.userState,
+    pullback(loginReducer,
+             state: \.loginState,
              action: \.user,
-             environment: \.userEnvironment
+             environment: \.loginEnvironment
     )
 )
 
 struct ContentView: View
 {
     @ObservedObject var store: Store<AppState, AppAction, AppEnvironment>
+        
+    init(store: Store<AppState, AppAction, AppEnvironment>)
+    {
+        self.store = store
+        self.store.send(.user(.loadAPITokenAndUser))
+    }
     
     var body: some View {
         Group {
-            if (store.state.userState.user != nil) {
+            if(self.store.state.user == nil) {
+                LoginView(store:
+                    self.store.view(
+                        state: { $0.loginState },
+                        action: { .user($0) }
+                ))
+            } else {
                 TimelineView(store:
                     store.view(
                         state: { $0.timeline },
                         action: { .timeEntries($0)}
                     )
                 )
-                .onAppear {
-                    self.store.send(.user(.loadAPITokenAndUser))
-                    self.store.send(.loadAll)
-                }
                 .contextMenu(menuItems: {
                     Button(
                         action: { self.store.send(.user(.logout)) },
                         label: {
                             VStack {
-                                Image(systemName: "logout")
+                                //Image(systemName: "logout")
                                 Text("Log out")
                             }
                     })
                 })
-            } else {
-                LoginView(store:
-                    store.view(
-                        state: { $0.userState },
-                        action: { .user($0)}
-                    )
-                )
             }
         }
     }

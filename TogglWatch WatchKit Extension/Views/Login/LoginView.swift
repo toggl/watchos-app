@@ -14,7 +14,7 @@ struct LoginView: View {
     @State var email: String = ""
     @State var password: String = ""
     
-    @ObservedObject var store: Store<UserState, UserAction, AppEnvironment>
+    @ObservedObject var store: Store<LoginState, LoginAction, AppEnvironment>
     
     var hasError: Binding<Bool> {
         Binding(

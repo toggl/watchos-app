@@ -12,14 +12,14 @@ import Combine
 
 class UserReducerTests: XCTestCase
 {
-    var reducer = userReducer
+    var reducer = loginReducer
     var api = MockAPI()
     var keychain = MockKeychain()
     lazy var userEnvironment = { (api: api, keychain: keychain) }()
     
     override func setUp()
     {
-        reducer = userReducer
+        reducer = loginReducer
     }
 
     func testLoginSendsCredentialsToAPI()
@@ -27,8 +27,8 @@ class UserReducerTests: XCTestCase
         let email = "test@test.com"
         let password = "password"
         
-        var userState = UserState(user: nil, error: nil)
-        let action = UserAction.login(email, password)
+        var userState = LoginState(user: nil, error: nil)
+        let action = LoginAction.login(email, password)
         
         _ = reducer.run(&userState, action, userEnvironment)
         
@@ -44,14 +44,14 @@ class UserReducerTests: XCTestCase
         let password = "password"
         let mockUser = User(id: 0, apiToken: "token")
         
-        var userState = UserState(user: nil, error: nil)
-        let action = UserAction.login(email, password)
+        var userState = LoginState(user: nil, error: nil)
+        let action = LoginAction.login(email, password)
         api.returnedUser = mockUser
         
         let effect = reducer.run(&userState, action, userEnvironment)
         _ = effect
             .sink { userAction in
-                guard case let UserAction.setUser(user) = userAction else { return }
+                guard case let LoginAction.setUser(user) = userAction else { return }
                 XCTAssertEqual(mockUser, user, "User should be set after login")
                 didSendAction.fulfill()
             }
@@ -66,14 +66,14 @@ class UserReducerTests: XCTestCase
         let email = "test@test.com"
         let password = "password"
         
-        var userState = UserState(user: nil, error: nil)
-        let action = UserAction.login(email, password)
+        var userState = LoginState(user: nil, error: nil)
+        let action = LoginAction.login(email, password)
         api.returnedUser = nil
         
         let effect = reducer.run(&userState, action, userEnvironment)
         _ = effect
             .sink { userAction in
-                guard case let UserAction.setError(error) = userAction else { return }
+                guard case let LoginAction.setError(error) = userAction else { return }
                 XCTAssertNotNil(error, "When login fails an error should be set")
                 didSendAction.fulfill()
             }
@@ -84,8 +84,8 @@ class UserReducerTests: XCTestCase
     func testSetUserSendsCredentialsToAPI()
     {
         let user = User(id: 0, apiToken: "token")
-        var userState = UserState(user: nil, error: nil)
-        let action = UserAction.setUser(user)
+        var userState = LoginState(user: nil, error: nil)
+        let action = LoginAction.setUser(user)
         
         _ = reducer.run(&userState, action, userEnvironment)
         
@@ -95,8 +95,8 @@ class UserReducerTests: XCTestCase
     func testSetUserSavesAPITokenInKeychain()
     {
         let user = User(id: 0, apiToken: "token")
-        var userState = UserState(user: nil, error: nil)
-        let action = UserAction.setUser(user)
+        var userState = LoginState(user: nil, error: nil)
+        let action = LoginAction.setUser(user)
         
         _ = reducer.run(&userState, action, userEnvironment)
         
@@ -106,8 +106,8 @@ class UserReducerTests: XCTestCase
     
     func testLoadUserDoesNothingIfTheresNoTokenInKeychain()
     {
-        var userState = UserState(user: nil, error: nil)
-        let action = UserAction.loadAPITokenAndUser
+        var userState = LoginState(user: nil, error: nil)
+        let action = LoginAction.loadAPITokenAndUser
         keychain.apiToken = nil
         
         _ = reducer.run(&userState, action, userEnvironment)
@@ -119,8 +119,8 @@ class UserReducerTests: XCTestCase
     func testLoadUserSetsAPIToken()
     {
         let token = "token"
-        var userState = UserState(user: nil, error: nil)
-        let action = UserAction.loadAPITokenAndUser
+        var userState = LoginState(user: nil, error: nil)
+        let action = LoginAction.loadAPITokenAndUser
         keychain.apiToken = token
         
         _ = reducer.run(&userState, action, userEnvironment)
@@ -135,15 +135,15 @@ class UserReducerTests: XCTestCase
         let token = "token"
         let mockUser = User(id: 0, apiToken: token)
         
-        var userState = UserState(user: nil, error: nil)
-        let action = UserAction.loadAPITokenAndUser
+        var userState = LoginState(user: nil, error: nil)
+        let action = LoginAction.loadAPITokenAndUser
         keychain.apiToken = token
         api.returnedUser = mockUser
         
         let effect = reducer.run(&userState, action, userEnvironment)
         _ = effect
             .sink { userAction in
-                guard case let UserAction.setUser(user) = userAction else { return }
+                guard case let LoginAction.setUser(user) = userAction else { return }
                 XCTAssertEqual(mockUser, user, "User should be set after load user")
                 didSendAction.fulfill()
             }
@@ -157,15 +157,15 @@ class UserReducerTests: XCTestCase
         
         let token = "token"
         
-        var userState = UserState(user: nil, error: nil)
-        let action = UserAction.loadAPITokenAndUser
+        var userState = LoginState(user: nil, error: nil)
+        let action = LoginAction.loadAPITokenAndUser
         keychain.apiToken = token
         api.returnedUser = nil
         
         let effect = reducer.run(&userState, action, userEnvironment)
         _ = effect
             .sink { userAction in
-                guard case let UserAction.setError(error) = userAction else { return }
+                guard case let LoginAction.setError(error) = userAction else { return }
                 XCTAssertNotNil(error, "When load user fails an error should be set")
                 didSendAction.fulfill()
             }
@@ -176,9 +176,9 @@ class UserReducerTests: XCTestCase
     func testLogoutSetsTheUserToNil()
     {
         let user = User(id: 0, apiToken: "token")
-        var userState = UserState(user: user, error: nil)
+        var userState = LoginState(user: user, error: nil)
         
-        let action = UserAction.logout
+        let action = LoginAction.logout
         
         _ = reducer.run(&userState, action, userEnvironment)
         
@@ -189,12 +189,12 @@ class UserReducerTests: XCTestCase
     {
         let token = "token"
         let user = User(id: 0, apiToken: token)
-        var userState = UserState(user: user, error: nil)
+        var userState = LoginState(user: user, error: nil)
         
         api.token = token
         keychain.apiToken = token
         
-        let action = UserAction.logout
+        let action = LoginAction.logout
         _ = reducer.run(&userState, action, userEnvironment)
         
         XCTAssertNil(api.token, "API token should be nil after logout")

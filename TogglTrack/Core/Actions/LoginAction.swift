@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum UserAction
+public enum LoginAction
 {
     case login(String, String)
     case setUser(User)

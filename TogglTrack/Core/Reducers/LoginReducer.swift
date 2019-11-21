@@ -1,5 +1,5 @@
 //
-//  UserReducer.swift
+//  LoginReducer.swift
 //  TogglWatch
 //
 //  Created by Juxhin Bakalli on 15/11/19.
@@ -9,9 +9,10 @@
 import Foundation
 import Combine
 
-public typealias UserEnvironment = (api: APIProtocol, keychain: KeychainProtocol)
+public typealias LoginState = (user: User?, error: Error?)
+public typealias LoginEnvironment = (api: APIProtocol, keychain: KeychainProtocol)
 
-public var userReducer: Reducer<UserState, UserAction, UserEnvironment> = Reducer { state, action, userEnv in
+public var loginReducer: Reducer<LoginState, LoginAction, LoginEnvironment> = Reducer { state, action, userEnv in
     
     switch action {
         
@@ -41,7 +42,7 @@ public var userReducer: Reducer<UserState, UserAction, UserEnvironment> = Reduce
     }
 }
 
-private func loginEffect(_ api: APIProtocol, _ email: String, _ password: String) -> Effect<UserAction>
+private func loginEffect(_ api: APIProtocol, _ email: String, _ password: String) -> Effect<LoginAction>
 {
     api.loginUser(email: email, password: password)
         .map { user in .setUser(user) }
@@ -49,7 +50,7 @@ private func loginEffect(_ api: APIProtocol, _ email: String, _ password: String
         .eraseToEffect()
 }
 
-private func loadUserEffect(_ api: APIProtocol) -> Effect<UserAction>
+private func loadUserEffect(_ api: APIProtocol) -> Effect<LoginAction>
 {
     api.loadUser()
         .map { user in .setUser(user) }

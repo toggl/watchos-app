@@ -14,9 +14,9 @@ public func logging<State, Action, Environment>(
 ) -> Reducer<State, Action, Environment> {
     return Reducer { state, action, environment in
         reducer.run(&state, action, environment)
-            .handleEvents { action in
+            .handleEvents(receiveOutput: { action in
                 print("Action: \(action)")
-            }
+            })
             .eraseToEffect()
     }
 }

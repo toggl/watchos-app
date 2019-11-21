@@ -17,7 +17,7 @@ public enum AppAction
     case tags(EntityAction<Tag>)
     case timeEntries(TimeEntryAction)
 
-    case user(UserAction)
+    case user(LoginAction)
     case loadAll
     case setError(Error)
     
@@ -87,7 +87,7 @@ public enum AppAction
         }
     }
     
-    public var user: UserAction? {
+    public var user: LoginAction? {
         get {
             guard case let .user(value) = self else { return nil }
             return value

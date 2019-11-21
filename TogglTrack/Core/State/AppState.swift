@@ -25,22 +25,30 @@ public struct TimelineState
     public var tasks: [Int: Task] = [:]
 }
 
-public struct UserState
-{
-    public var user: User?
-    public var error: Error?
-}
-
 public struct AppState
 {
     public var timeline: TimelineState = TimelineState()
-    public var userState: UserState = UserState()
-    
+    public var user: User?
+    public var error: Error?
+
     public init()
     {
     }
 }
 
+// Substates
+extension AppState
+{
+    public var loginState: (user: User?, error: Error?) {
+        get { (user, error) }
+        set {
+            self.user = newValue.user
+            self.error = newValue.error
+        }
+    }
+}
+
+// Selectors
 extension TimelineState
 {
     public var timeEntryModels: [TimeEntryModel] {

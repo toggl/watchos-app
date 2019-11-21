@@ -11,17 +11,27 @@ import Combine
 
 public var appReducer: Reducer<AppState, AppAction, AppEnvironment> = Reducer { state, action, environment in
     switch action {
-    case .timeEntries(_),
-         .projects(_),
-         .workspaces(_),
-         .user(_),
-         .clients(_),
-         .tasks(_),
-         .tags(_):
-        return .empty
+    case let .user(loginAction):
+        switch loginAction {
+        case .setUser(_):
+            return Just(AppAction.loadAll).eraseToEffect()
+        case .logout:
+            return Effect.fromActions(
+                .workspaces(.clear),
+                .clients(.clear),
+                .projects(.clear),
+                .tasks(.clear),
+                .tags(.clear),
+                .timeEntries(.clear)
+            )
+        default:
+            return .empty
+        }
     case .loadAll:
         return loadAllEffect(environment.api)
     case .setError(_):
+        return .empty
+    default:
         return .empty
     }
 }

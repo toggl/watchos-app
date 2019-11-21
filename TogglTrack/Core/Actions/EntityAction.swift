@@ -11,4 +11,18 @@ import Foundation
 public enum EntityAction<Entity>
 {
     case setEntities([Entity])
+    case clear
+}
+
+extension EntityAction: CustomStringConvertible
+{
+    public var description: String
+    {
+        switch self {
+        case .setEntities(_):
+            return "Set"
+        case .clear:
+            return "Clear"
+        }
+    }
 }
