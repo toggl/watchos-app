@@ -12,6 +12,7 @@ public struct TimeEntriesState
 {
     public var byId: [Int: TimeEntry] = [:]
     public var sorted: [Int] = []
+    public var error: Error?
 }
 
 public struct TimelineState

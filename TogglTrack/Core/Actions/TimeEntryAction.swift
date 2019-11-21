@@ -15,4 +15,5 @@ public enum TimeEntryAction
     case deleteEntry(id: Int)
     case setEntries([TimeEntry])
     case loadEntries
+    case setError(Error?)
 }

@@ -105,6 +105,8 @@
 		AC19DCA4237EAC8B0009106D /* UserReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DCA2237EAC8B0009106D /* UserReducer.swift */; };
 		AC19DCA6237ED1960009106D /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DCA5237ED1960009106D /* KeychainService.swift */; };
 		AC19DCA7237ED1960009106D /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DCA5237ED1960009106D /* KeychainService.swift */; };
+		ACEAE4B4238694FE009C7A26 /* ReducerErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEAE4B3238694FE009C7A26 /* ReducerErrors.swift */; };
+		ACEAE4B5238694FE009C7A26 /* ReducerErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEAE4B3238694FE009C7A26 /* ReducerErrors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -247,6 +249,7 @@
 		AC19DC9F237EAB130009106D /* UserAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAction.swift; sourceTree = "<group>"; };
 		AC19DCA2237EAC8B0009106D /* UserReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReducer.swift; sourceTree = "<group>"; };
 		AC19DCA5237ED1960009106D /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		ACEAE4B3238694FE009C7A26 /* ReducerErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReducerErrors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -506,6 +509,7 @@
 				8CC5FE9E2355E70200D33237 /* TimelineReducer.swift */,
 				8CA950B523746C400076BDA4 /* HighOrderReducers.swift */,
 				AC19DCA2237EAC8B0009106D /* UserReducer.swift */,
+				ACEAE4B3238694FE009C7A26 /* ReducerErrors.swift */,
 				8C00AF692384120C001FB22F /* AppReducer.swift */,
 				8C2449702385568700F087E9 /* EntityReducer.swift */,
 			);
@@ -843,6 +847,7 @@
 				AC19DCA3237EAC8B0009106D /* UserReducer.swift in Sources */,
 				8C039414237D667900AB1C95 /* Tag.swift in Sources */,
 				8C039416237D667900AB1C95 /* TimeEntryModel.swift in Sources */,
+				ACEAE4B4238694FE009C7A26 /* ReducerErrors.swift in Sources */,
 				8C0393FE237D667100AB1C95 /* Endpoint.swift in Sources */,
 				8C03940C237D667500AB1C95 /* Effect.swift in Sources */,
 				8C03941D237D667C00AB1C95 /* API.swift in Sources */,
@@ -880,6 +885,7 @@
 				AC19DCA4237EAC8B0009106D /* UserReducer.swift in Sources */,
 				8C03941A237D667900AB1C95 /* Tag.swift in Sources */,
 				8C03941C237D667900AB1C95 /* TimeEntryModel.swift in Sources */,
+				ACEAE4B5238694FE009C7A26 /* ReducerErrors.swift in Sources */,
 				8C039407237D667100AB1C95 /* Endpoint.swift in Sources */,
 				8C03940F237D667500AB1C95 /* Effect.swift in Sources */,
 				8C03941E237D667C00AB1C95 /* API.swift in Sources */,

@@ -19,13 +19,19 @@ public var timelineReducer: Reducer<TimeEntriesState, TimeEntryAction, APIProtoc
         return .empty
         
     case .stopRunningEntry:
-        guard let id = state.sorted.first else { return .empty /* TODO return error */ }
+        guard let id = state.sorted.first else {
+            return Just(.setError(TimelineError.CantFindRunningTimeEntryId))
+                .eraseToEffect()
+        }
         let stopped = state.byId[id]?.stopped()
         state.byId[id] = stopped
         return .empty
         
     case .deleteEntry(let id):
-        guard let index = state.sorted.firstIndex(where: { $0 == id }) else { return .empty /* TODO return error */ }
+        guard let index = state.sorted.firstIndex(where: { $0 == id }) else {
+            return Just(.setError(TimelineError.CantFindIndexOfTimeentryToDelete))
+            .eraseToEffect()
+        }
         state.byId[id] = nil
         state.sorted.remove(at: index)
         return .empty
@@ -42,6 +48,10 @@ public var timelineReducer: Reducer<TimeEntriesState, TimeEntryAction, APIProtoc
             state.byId[te.id] = te
         }
         return .empty
+        
+    case let .setError(error):
+        state.error = error
+        return .empty
     }
 }
 
@@ -49,6 +59,6 @@ private func loadEntriesEffect(_ api: APIProtocol) -> Effect<TimeEntryAction>
 {
     api.loadEntries()
         .map { entries in .setEntries(entries) }
-        .catch { _ in Just(.setEntries([])) }
+        .catch { error in Just(.setError(error)) }
         .eraseToEffect()
 }

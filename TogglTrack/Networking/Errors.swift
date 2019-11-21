@@ -8,7 +8,8 @@
 
 import Foundation
 
-public struct NoTokenError: Error {
+public struct NoTokenError: Error
+{
     public init() { }
 }
 
