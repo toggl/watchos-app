@@ -8,16 +8,15 @@
 
 import Foundation
 
-public struct TimeEntriesState
+public struct TimeEntries
 {
     public var byId: [Int: TimeEntry] = [:]
     public var sorted: [Int] = []
-    public var error: Error?
 }
 
 public struct TimelineState
 {
-    public var timeEntries: TimeEntriesState = TimeEntriesState()
+    public var timeEntries: TimeEntries = TimeEntries()
     public var workspaces: [Int: Workspace] = [:]
     public var clients: [Int: Client] = [:]
     public var projects: [Int: Project] = [:]
@@ -39,10 +38,18 @@ public struct AppState
 // Substates
 extension AppState
 {
-    public var loginState: (user: User?, error: Error?) {
+    public var loginState: LoginState {
         get { (user, error) }
         set {
             self.user = newValue.user
+            self.error = newValue.error
+        }
+    }
+    
+    public var timeEntriesState: TimeEntriesState {
+        get { (timeline.timeEntries, error) }
+        set {
+            self.timeline.timeEntries = newValue.timeEntries
             self.error = newValue.error
         }
     }

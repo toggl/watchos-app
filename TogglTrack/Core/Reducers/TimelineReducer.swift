@@ -9,31 +9,33 @@
 import Foundation
 import Combine
 
+public typealias TimeEntriesState = (timeEntries: TimeEntries, error: Error?)
+
 public var timelineReducer: Reducer<TimeEntriesState, TimeEntryAction, APIProtocol> = Reducer { state, action, api in
     switch action {
         
     case .startEntry(let description, let workspace):
         let te  = TimeEntry.createNew(withDescription: description, workspaceId: workspace.id)
-        state.byId[te.id] = te
-        state.sorted.insert(te.id, at: 0)
+        state.timeEntries.byId[te.id] = te
+        state.timeEntries.sorted.insert(te.id, at: 0)
         return .empty
         
     case .stopRunningEntry:
-        guard let id = state.sorted.first else {
+        guard let id = state.timeEntries.sorted.first else {
             return Just(.setError(TimelineError.CantFindRunningTimeEntryId))
                 .eraseToEffect()
         }
-        let stopped = state.byId[id]?.stopped()
-        state.byId[id] = stopped
+        let stopped = state.timeEntries.byId[id]?.stopped()
+        state.timeEntries.byId[id] = stopped
         return .empty
         
     case .deleteEntry(let id):
-        guard let index = state.sorted.firstIndex(where: { $0 == id }) else {
+        guard let index = state.timeEntries.sorted.firstIndex(where: { $0 == id }) else {
             return Just(.setError(TimelineError.CantFindIndexOfTimeentryToDelete))
             .eraseToEffect()
         }
-        state.byId[id] = nil
-        state.sorted.remove(at: index)
+        state.timeEntries.byId[id] = nil
+        state.timeEntries.sorted.remove(at: index)
         return .empty
         
     case .loadEntries:
@@ -41,17 +43,17 @@ public var timelineReducer: Reducer<TimeEntriesState, TimeEntryAction, APIProtoc
         
     case let .setEntries(entries):
         let sorted = entries.sorted(by: { $0.start > $1.start })
-        state.byId = [:]
-        state.sorted = []
+        state.timeEntries.byId = [:]
+        state.timeEntries.sorted = []
         for te in sorted {
-            state.sorted.append(te.id)
-            state.byId[te.id] = te
+            state.timeEntries.sorted.append(te.id)
+            state.timeEntries.byId[te.id] = te
         }
         return .empty
         
     case .clear:
-        state.byId = [:]
-        state.sorted = []
+        state.timeEntries.byId = [:]
+        state.timeEntries.sorted = []
         return .empty
         
     case let .setError(error):

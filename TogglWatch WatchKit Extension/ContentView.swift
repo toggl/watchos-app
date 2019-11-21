@@ -13,7 +13,7 @@ import TogglTrack
 var combinedReducer: Reducer<AppState, AppAction, AppEnvironment> = combine(
     appReducer,
     pullback(timelineReducer,
-             state: \.timeline.timeEntries,
+             state: \.timeEntriesState,
              action: \.timelineEntries,
              environment: \.api),
     pullback(createEntityReducer(),

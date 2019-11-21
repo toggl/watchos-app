@@ -506,10 +506,10 @@
 		8CA95099237417D20076BDA4 /* Reducers */ = {
 			isa = PBXGroup;
 			children = (
+				ACEAE4B3238694FE009C7A26 /* ReducerErrors.swift */,
 				8CC5FE9E2355E70200D33237 /* TimelineReducer.swift */,
 				8CA950B523746C400076BDA4 /* HighOrderReducers.swift */,
 				AC19DCA2237EAC8B0009106D /* LoginReducer.swift */,
-				ACEAE4B3238694FE009C7A26 /* ReducerErrors.swift */,
 				8C00AF692384120C001FB22F /* AppReducer.swift */,
 				8C2449702385568700F087E9 /* EntityReducer.swift */,
 			);
