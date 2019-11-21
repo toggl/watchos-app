@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Workspace: Codable
+public struct Workspace: Codable, Identifiable
 {
     public var id: Int
     public var name: String

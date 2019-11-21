@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Project: Codable
+public struct Project: Codable, Identifiable
 {
     public var id: Int
     public var name: String

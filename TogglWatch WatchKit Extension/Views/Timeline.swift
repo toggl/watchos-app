@@ -33,9 +33,9 @@ public struct RunningButton: View
 
 public struct TimelineView: View
 {
-    @ObservedObject var store: Store<TimelineState, TimelineAction, AppEnvironment>
+    @ObservedObject var store: Store<TimelineState, TimeEntryAction, AppEnvironment>
 
-    public init(store: Store<TimelineState, TimelineAction, AppEnvironment>)
+    public init(store: Store<TimelineState, TimeEntryAction, AppEnvironment>)
     {
         self.store = store
     }

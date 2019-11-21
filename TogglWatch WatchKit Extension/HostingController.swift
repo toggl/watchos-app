@@ -21,7 +21,7 @@ class HostingController: WKHostingController<ContentView> {
         
         return ContentView(store: Store(
             initialState: AppState(),
-            reducer: logging(appReducer),
+            reducer: logging(combinedReducer),
             environment: environment
             )
         )

@@ -8,12 +8,12 @@
 
 import Foundation
 
-public struct Client: Codable
+public struct Client: Codable, Identifiable
 {
-    var id: Int
-    var name: String
+    public var id: Int
+    public var name: String
     
-    var workspaceId: Int
+    public var workspaceId: Int
     
     enum CodingKeys: String, CodingKey
     {

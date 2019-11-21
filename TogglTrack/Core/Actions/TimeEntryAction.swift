@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum TimelineAction
+public enum TimeEntryAction
 {
     case startEntry(String, Workspace)
     case stopRunningEntry

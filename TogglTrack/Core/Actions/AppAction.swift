@@ -10,24 +10,40 @@ import Foundation
 
 public enum AppAction
 {
-    case timelineEntries(TimelineAction)
-    case projects(ProjectAction)
-    case workspaces(WorkspaceAction)
+    case workspaces(EntityAction<Workspace>)
+    case clients(EntityAction<Client>)
+    case projects(EntityAction<Project>)
+    case tasks(EntityAction<Task>)
+    case tags(EntityAction<Tag>)
+    case timeEntries(TimeEntryAction)
+
     case user(UserAction)
     case loadAll
+    case setError(Error)
     
-    public var timelineEntries: TimelineAction? {
+    public var workspaces: EntityAction<Workspace>? {
         get {
-            guard case let .timelineEntries(value) = self else { return nil }
+            guard case let .workspaces(value) = self else { return nil }
             return value
         }
         set {
-            guard case .timelineEntries = self, let newValue = newValue else { return }
-            self = .timelineEntries(newValue)
+            guard case .workspaces = self, let newValue = newValue else { return }
+            self = .workspaces(newValue)
         }
     }
     
-    public var projects: ProjectAction? {
+    public var clients: EntityAction<Client>? {
+        get {
+            guard case let .clients(value) = self else { return nil }
+            return value
+        }
+        set {
+            guard case .clients = self, let newValue = newValue else { return }
+            self = .clients(newValue)
+        }
+    }
+    
+    public var projects: EntityAction<Project>? {
         get {
             guard case let .projects(value) = self else { return nil }
             return value
@@ -38,14 +54,36 @@ public enum AppAction
         }
     }
     
-    public var workspaces: WorkspaceAction? {
+    public var tasks: EntityAction<Task>? {
         get {
-            guard case let .workspaces(value) = self else { return nil }
+            guard case let .tasks(value) = self else { return nil }
             return value
         }
         set {
-            guard case .workspaces = self, let newValue = newValue else { return }
-            self = .workspaces(newValue)
+            guard case .tasks = self, let newValue = newValue else { return }
+            self = .tasks(newValue)
+        }
+    }
+    
+    public var tags: EntityAction<Tag>? {
+        get {
+            guard case let .tags(value) = self else { return nil }
+            return value
+        }
+        set {
+            guard case .tags = self, let newValue = newValue else { return }
+            self = .tags(newValue)
+        }
+    }
+        
+    public var timelineEntries: TimeEntryAction? {
+        get {
+            guard case let .timeEntries(value) = self else { return nil }
+            return value
+        }
+        set {
+            guard case .timeEntries = self, let newValue = newValue else { return }
+            self = .timeEntries(newValue)
         }
     }
     

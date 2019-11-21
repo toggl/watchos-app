@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-public var timelineReducer: Reducer<TimeEntriesState, TimelineAction, APIProtocol> = Reducer { state, action, api in
+public var timelineReducer: Reducer<TimeEntriesState, TimeEntryAction, APIProtocol> = Reducer { state, action, api in
     switch action {
         
     case .startEntry(let description, let workspace):
@@ -45,7 +45,7 @@ public var timelineReducer: Reducer<TimeEntriesState, TimelineAction, APIProtoco
     }
 }
 
-private func loadEntriesEffect(_ api: APIProtocol) -> Effect<TimelineAction>
+private func loadEntriesEffect(_ api: APIProtocol) -> Effect<TimeEntryAction>
 {
     api.loadEntries()
         .map { entries in .setEntries(entries) }

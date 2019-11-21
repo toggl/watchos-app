@@ -1,5 +1,5 @@
 //
-//  WorkspaceAction.swift
+//  EntityAction.swift
 //  TogglWatch WatchKit Extension
 //
 //  Created by Ricardo Sánchez Sotres on 06/11/2019.
@@ -8,8 +8,7 @@
 
 import Foundation
 
-public enum WorkspaceAction
+public enum EntityAction<Entity>
 {
-    case setWorkspaces([Workspace])
-    case loadWorkspaces
+    case setEntities([Entity])
 }
