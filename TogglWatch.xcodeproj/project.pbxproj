@@ -105,6 +105,7 @@
 		AC19DCA4237EAC8B0009106D /* LoginReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DCA2237EAC8B0009106D /* LoginReducer.swift */; };
 		AC19DCA6237ED1960009106D /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DCA5237ED1960009106D /* KeychainService.swift */; };
 		AC19DCA7237ED1960009106D /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DCA5237ED1960009106D /* KeychainService.swift */; };
+		ACEAE4AF23858FF7009C7A26 /* TimelineReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEAE4AE23858FF7009C7A26 /* TimelineReducerTests.swift */; };
 		ACEAE4B4238694FE009C7A26 /* ReducerErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEAE4B3238694FE009C7A26 /* ReducerErrors.swift */; };
 		ACEAE4B5238694FE009C7A26 /* ReducerErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEAE4B3238694FE009C7A26 /* ReducerErrors.swift */; };
 /* End PBXBuildFile section */
@@ -249,6 +250,7 @@
 		AC19DC9F237EAB130009106D /* LoginAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAction.swift; sourceTree = "<group>"; };
 		AC19DCA2237EAC8B0009106D /* LoginReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginReducer.swift; sourceTree = "<group>"; };
 		AC19DCA5237ED1960009106D /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		ACEAE4AE23858FF7009C7A26 /* TimelineReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineReducerTests.swift; sourceTree = "<group>"; };
 		ACEAE4B3238694FE009C7A26 /* ReducerErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReducerErrors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -442,6 +444,7 @@
 			children = (
 				8CA6EC592382A62300F7C9B5 /* Mocks */,
 				8CA6EC572382995000F7C9B5 /* UserReducerTests.swift */,
+				ACEAE4AE23858FF7009C7A26 /* TimelineReducerTests.swift */,
 			);
 			path = Reducers;
 			sourceTree = "<group>";
@@ -922,6 +925,7 @@
 				8C039433237D693E00AB1C95 /* URLProtocolMock.swift in Sources */,
 				8CA6EC582382995000F7C9B5 /* UserReducerTests.swift in Sources */,
 				8C039435237D693E00AB1C95 /* EndpointTests.swift in Sources */,
+				ACEAE4AF23858FF7009C7A26 /* TimelineReducerTests.swift in Sources */,
 				8C3134032383019F0095E309 /* MockKeychain.swift in Sources */,
 				8CA6EC5B2382A63300F7C9B5 /* MockAPI.swift in Sources */,
 				8CA16E7A237D7F2400AD5A96 /* APITests.swift in Sources */,

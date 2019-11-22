@@ -11,5 +11,5 @@ import Foundation
 public enum TimelineError: Error
 {
     case CantFindRunningTimeEntryId
-    case CantFindIndexOfTimeentryToDelete
+    case CantFindIndexOfTimeEntryToDelete
 }

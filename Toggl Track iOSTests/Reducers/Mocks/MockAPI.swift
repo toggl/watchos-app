@@ -22,6 +22,8 @@ class MockAPI: APIProtocol
     var token: String?
     
     var returnedUser: User?
+    var returnedTimeEntries: [TimeEntry]?
+    
     var returnedError: Error = MockError.unknown
     
     func setAuth(token: String?)
@@ -58,7 +60,13 @@ class MockAPI: APIProtocol
     
     func loadEntries() -> AnyPublisher<[TimeEntry], Error>
     {
-        return Empty()
+        guard let timeEntries = returnedTimeEntries else {
+            return Fail(error: returnedError)
+                .eraseToAnyPublisher()
+        }
+        
+        return Just(timeEntries)
+            .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
     

@@ -31,8 +31,8 @@ public var timelineReducer: Reducer<TimeEntriesState, TimeEntryAction, APIProtoc
         
     case .deleteEntry(let id):
         guard let index = state.timeEntries.sorted.firstIndex(where: { $0 == id }) else {
-            return Just(.setError(TimelineError.CantFindIndexOfTimeentryToDelete))
-            .eraseToEffect()
+            return Just(.setError(TimelineError.CantFindIndexOfTimeEntryToDelete))
+                .eraseToEffect()
         }
         state.timeEntries.byId[id] = nil
         state.timeEntries.sorted.remove(at: index)
