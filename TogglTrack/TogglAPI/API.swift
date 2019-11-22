@@ -21,6 +21,8 @@ public protocol APIProtocol
     func loadProjects() -> AnyPublisher<[Project], Error>
     func loadTags() -> AnyPublisher<[Tag], Error>
     func loadTasks() -> AnyPublisher<[Task], Error>
+    
+    func deleteTimeEntry(workspaceId: Int, timeEntryId: Int) -> AnyPublisher<Void, Error>
 }
 
 public class API : APIProtocol
@@ -111,6 +113,15 @@ public class API : APIProtocol
     public func loadTasks() -> AnyPublisher<[Task], Error>
     {
         let endpoint: Endpoint<[Task]> = createEntitiesEndpoint(path: "me/tasks")
+        return urlSession.load(endpoint)
+    }
+    
+    public func deleteTimeEntry(workspaceId: Int, timeEntryId: Int) -> AnyPublisher<Void, Error>
+    {
+        let endpoint = Endpoint<Void>(
+            .delete,
+            url: URL(string: baseURL + "workspaces/\(workspaceId)/time_entries/\(timeEntryId)")!,
+            headers: headers)
         return urlSession.load(endpoint)
     }
     

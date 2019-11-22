@@ -91,4 +91,10 @@ class MockAPI: APIProtocol
         return Empty()
             .eraseToAnyPublisher()
     }
+    
+    func deleteTimeEntry(workspaceId: Int, timeEntryId: Int) -> AnyPublisher<Void, Error>
+    {
+        return Empty()
+            .eraseToAnyPublisher()
+    }
 }
