@@ -55,7 +55,7 @@ private func loadAllEffect(_ api: APIProtocol) -> Effect<AppAction>
             .map { .tags(.setEntities($0)) }
             .eraseToAnyPublisher(),
         api.loadEntries()
-            .map { .timeEntries(.setEntries($0)) }
+            .map { .timeEntries(.setEntities($0)) }
             .eraseToAnyPublisher()
     )
         .catch { Just(.setError($0)) }

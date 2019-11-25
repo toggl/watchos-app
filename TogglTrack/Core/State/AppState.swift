@@ -8,20 +8,15 @@
 
 import Foundation
 
-public struct TimeEntries
-{
-    public var byId: [Int: TimeEntry] = [:]
-    public var sorted: [Int] = []
-}
-
 public struct TimelineState
 {
-    public var timeEntries: TimeEntries = TimeEntries()
-    public var workspaces: [Int: Workspace] = [:]
-    public var clients: [Int: Client] = [:]
-    public var projects: [Int: Project] = [:]
-    public var tags: [Int: Tag] = [:]
-    public var tasks: [Int: Task] = [:]
+    public var runningTimeEntry: Int? = nil
+    public var timeEntries = [TimeEntry.ID: TimeEntry]()
+    public var workspaces = [Workspace.ID: Workspace]()
+    public var clients = [Client.ID: Client]()
+    public var projects = [Project.ID: Project]()
+    public var tags = [Tag.ID: Tag]()
+    public var tasks = [Task.ID: Task]()
 }
 
 public struct AppState
@@ -29,7 +24,7 @@ public struct AppState
     public var timeline: TimelineState = TimelineState()
     public var user: User?
     public var error: Error?
-
+    
     public init()
     {
     }
@@ -47,9 +42,10 @@ extension AppState
     }
     
     public var timeEntriesState: TimeEntriesState {
-        get { (timeline.timeEntries, error) }
+        get { (timeline.timeEntries, timeline.runningTimeEntry, error) }
         set {
             self.timeline.timeEntries = newValue.timeEntries
+            self.timeline.runningTimeEntry = newValue.runningTimeEntry
             self.error = newValue.error
         }
     }
@@ -58,23 +54,24 @@ extension AppState
 // Selectors
 extension TimelineState
 {
-    public var timeEntryModels: [TimeEntryModel] {
-        return timeEntries.sorted.compactMap { index in
-            guard let timeEntry = timeEntries.byId[index], let workspace = workspaces[timeEntry.workspaceId] else { return nil }
-            return TimeEntryModel(
-                timeEntry: timeEntry,
-                workspace: workspace
-            )
-        }
+    public var timeEntryModels: [TimeEntryModel]
+    {
+        return timeEntries.values
+            .compactMap { timeEntry in
+                guard let workspace = workspaces[timeEntry.workspaceId] else { return nil }
+                return TimeEntryModel(
+                    timeEntry: timeEntry,
+                    workspace: workspace
+                )
+            }
+            .sorted(by: { $0.start > $1.start })
     }
     
-    public var runningEntry: TimeEntryModel? {
-        guard let index = timeEntries.sorted.first else { return nil }
-        guard let timeEntry = timeEntries.byId[index], let workspace = workspaces[timeEntry.workspaceId] else { return nil }
-        
-        if timeEntry.duration != 0 {
-            return nil
-        }
+    public var runningEntry: TimeEntryModel?
+    {
+        guard let runningId = runningTimeEntry,
+            let timeEntry = timeEntries[runningId],
+            let workspace = workspaces[timeEntry.workspaceId] else { return nil }
         
         return TimeEntryModel(
             timeEntry: timeEntry,

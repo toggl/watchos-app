@@ -77,6 +77,8 @@
 		8C3134042383D47C0095E309 /* ErrorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA6EC5D2382B9F000F7C9B5 /* ErrorExtensions.swift */; };
 		8C88AF4123840F1B00F67EC3 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3134052383D7C40095E309 /* Task.swift */; };
 		8C88AF4223840F1B00F67EC3 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3134052383D7C40095E309 /* Task.swift */; };
+		8C88DEAB238BD2CE007D7A09 /* EntityReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C88DEAA238BD2CE007D7A09 /* EntityReducerTests.swift */; };
+		8C88DEAD238BD340007D7A09 /* AppReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C88DEAC238BD340007D7A09 /* AppReducerTests.swift */; };
 		8CA16E7A237D7F2400AD5A96 /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA16E79237D7F2400AD5A96 /* APITests.swift */; };
 		8CA16E7D237D7F6300AD5A96 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA16E7C237D7F6300AD5A96 /* MockURLSession.swift */; };
 		8CA16E80237D9A9500AD5A96 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA16E7F237D9A9500AD5A96 /* LoginView.swift */; };
@@ -202,6 +204,8 @@
 		8C76C1E72368678B00AA36E5 /* projects.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = projects.txt; sourceTree = "<group>"; };
 		8C76C1E9236867A900AA36E5 /* clients.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = clients.txt; sourceTree = "<group>"; };
 		8C76C1EB236867C400AA36E5 /* tags.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = tags.txt; sourceTree = "<group>"; };
+		8C88DEAA238BD2CE007D7A09 /* EntityReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityReducerTests.swift; sourceTree = "<group>"; };
+		8C88DEAC238BD340007D7A09 /* AppReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducerTests.swift; sourceTree = "<group>"; };
 		8C9686C0236307FD00D7865E /* TimeEntryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntryModel.swift; sourceTree = "<group>"; };
 		8C9686C22366B84700D7865E /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		8C9686C42366E65700D7865E /* URLSessionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionExtension.swift; sourceTree = "<group>"; };
@@ -445,6 +449,8 @@
 				8CA6EC592382A62300F7C9B5 /* Mocks */,
 				8CA6EC572382995000F7C9B5 /* UserReducerTests.swift */,
 				ACEAE4AE23858FF7009C7A26 /* TimelineReducerTests.swift */,
+				8C88DEAA238BD2CE007D7A09 /* EntityReducerTests.swift */,
+				8C88DEAC238BD340007D7A09 /* AppReducerTests.swift */,
 			);
 			path = Reducers;
 			sourceTree = "<group>";
@@ -927,10 +933,12 @@
 				8C039435237D693E00AB1C95 /* EndpointTests.swift in Sources */,
 				ACEAE4AF23858FF7009C7A26 /* TimelineReducerTests.swift in Sources */,
 				8C3134032383019F0095E309 /* MockKeychain.swift in Sources */,
+				8C88DEAB238BD2CE007D7A09 /* EntityReducerTests.swift in Sources */,
 				8CA6EC5B2382A63300F7C9B5 /* MockAPI.swift in Sources */,
 				8CA16E7A237D7F2400AD5A96 /* APITests.swift in Sources */,
 				8CA16E7D237D7F6300AD5A96 /* MockURLSession.swift in Sources */,
 				8C039434237D693E00AB1C95 /* URLSessionTests.swift in Sources */,
+				8C88DEAD238BD340007D7A09 /* AppReducerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

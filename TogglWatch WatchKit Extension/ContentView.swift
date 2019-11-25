@@ -13,8 +13,12 @@ import TogglTrack
 var combinedReducer: Reducer<AppState, AppAction, AppEnvironment> = combine(
     appReducer,
     pullback(timelineReducer,
-             state: \.timeEntriesState,
-             action: \.timelineEntries,
+             state: \AppState.timeEntriesState,
+             action: \AppAction.timeline,
+             environment: \AppEnvironment.api),
+    pullback(createEntityReducer(),
+             state: \.timeline.timeEntries,
+             action: \.timeEntries,
              environment: \.api),
     pullback(createEntityReducer(),
              state: \.timeline.workspaces,
@@ -65,7 +69,7 @@ struct ContentView: View
                 TimelineView(store:
                     store.view(
                         state: { $0.timeline },
-                        action: { .timeEntries($0)}
+                        action: { .timeline($0)}
                     )
                 )
                 .contextMenu(menuItems: {

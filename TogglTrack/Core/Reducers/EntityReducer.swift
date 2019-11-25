@@ -13,19 +13,19 @@ public func createEntityReducer<Entity: Identifiable>() -> Reducer<[Entity.ID: E
     return Reducer { state, action, api in
         
         switch action {
-        
+            
         case let .setEntities(entities):
-            state = [:]
-            for entity in entities
-            {
-                state[entity.id] = entity
-            }
+            state = entities.reduce([:], { acc, e in
+                var acc = acc
+                acc[e.id] = e
+                return acc
+            })
+            
             return .empty
-        
+            
         case .clear:
             state = [:]
             return .empty
         }
-        
     }
 }

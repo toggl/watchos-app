@@ -33,9 +33,9 @@ public struct RunningButton: View
 
 public struct TimelineView: View
 {
-    @ObservedObject var store: Store<TimelineState, TimeEntryAction, AppEnvironment>
+    @ObservedObject var store: Store<TimelineState, TimelineAction, AppEnvironment>
 
-    public init(store: Store<TimelineState, TimeEntryAction, AppEnvironment>)
+    public init(store: Store<TimelineState, TimelineAction, AppEnvironment>)
     {
         self.store = store
     }
@@ -53,25 +53,8 @@ public struct TimelineView: View
             .onDelete { indexSet in
                 guard let index = indexSet.first else { return }
                 let te = self.store.state.timeEntryModels[index]
-                self.store.send(.deleteEntry(id: te.id))
+                self.store.send(.deleteEntry(te.id))
             }
         }
     }
 }
-
-/*
-struct Timeline_Previews: PreviewProvider
-{
-    static var previews: some View
-    {
-        TimelineView(
-            store: Store(
-                initialValue: TimeEntry.dummyEntries,
-                reducer: timelineReducer,
-                environment: API()
-            ),
-            getCell: { Text("Entry \($0.id)") }
-        )
-    }
-}
-*/

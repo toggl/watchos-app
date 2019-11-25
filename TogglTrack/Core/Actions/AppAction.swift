@@ -15,8 +15,9 @@ public enum AppAction
     case projects(EntityAction<Project>)
     case tasks(EntityAction<Task>)
     case tags(EntityAction<Tag>)
-    case timeEntries(TimeEntryAction)
+    case timeEntries(EntityAction<TimeEntry>)
 
+    case timeline(TimelineAction)
     case user(LoginAction)
     case loadAll
     case setError(Error)
@@ -76,7 +77,7 @@ public enum AppAction
         }
     }
         
-    public var timelineEntries: TimeEntryAction? {
+    public var timeEntries: EntityAction<TimeEntry>? {
         get {
             guard case let .timeEntries(value) = self else { return nil }
             return value
@@ -84,6 +85,17 @@ public enum AppAction
         set {
             guard case .timeEntries = self, let newValue = newValue else { return }
             self = .timeEntries(newValue)
+        }
+    }
+    
+    public var timeline: TimelineAction? {
+        get {
+            guard case let .timeline(value) = self else { return nil }
+            return value
+        }
+        set {
+            guard case .timeline = self, let newValue = newValue else { return }
+            self = .timeline(newValue)
         }
     }
     

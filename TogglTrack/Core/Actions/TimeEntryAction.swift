@@ -8,35 +8,28 @@
 
 import Foundation
 
-public enum TimeEntryAction
+public enum TimelineAction
 {
     case startEntry(String, Workspace)
     case stopRunningEntry
-    case deleteEntry(id: Int)
-    case setEntries([TimeEntry])
-    case loadEntries
-    case clear
+    case deleteEntry(Int)
+    case entryDeleted(Int)
     case setError(Error?)
-
 }
 
-extension TimeEntryAction: CustomStringConvertible
+extension TimelineAction: CustomStringConvertible
 {
     public var description: String
     {
         switch self {
-        case .setEntries(_):
-            return "Set"
         case .startEntry(_, _):
             return "start"
         case .stopRunningEntry:
             return "stop"
         case .deleteEntry(_):
             return "delete"
-        case .loadEntries:
-            return "load"
-        case .clear:
-            return "clear"
+        case .entryDeleted(_):
+            return "deleted"
         case let .setError(error):
             return "setError: \(error?.description ?? "nil")"
         }

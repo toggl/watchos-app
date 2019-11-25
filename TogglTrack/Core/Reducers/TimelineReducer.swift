@@ -9,51 +9,43 @@
 import Foundation
 import Combine
 
-public typealias TimeEntriesState = (timeEntries: TimeEntries, error: Error?)
+public typealias TimeEntriesState = (timeEntries: [TimeEntry.ID: TimeEntry], runningTimeEntry: Int?, error: Error?)
 
-public var timelineReducer: Reducer<TimeEntriesState, TimeEntryAction, APIProtocol> = Reducer { state, action, api in
+public var timelineReducer: Reducer<TimeEntriesState, TimelineAction, APIProtocol> = Reducer { state, action, api in
     switch action {
         
     case .startEntry(let description, let workspace):
         let te  = TimeEntry.createNew(withDescription: description, workspaceId: workspace.id)
-        state.timeEntries.byId[te.id] = te
-        state.timeEntries.sorted.insert(te.id, at: 0)
+        state.timeEntries[te.id] = te
+        state.runningTimeEntry = te.id
         return .empty
         
     case .stopRunningEntry:
-        guard let id = state.timeEntries.sorted.first else {
+        guard let runningId = state.runningTimeEntry,
+            let runningTimeEntry = state.timeEntries[runningId] else {
             return Just(.setError(TimelineError.CantFindRunningTimeEntryId))
                 .eraseToEffect()
         }
-        let stopped = state.timeEntries.byId[id]?.stopped()
-        state.timeEntries.byId[id] = stopped
+        let stopped = state.timeEntries[runningId]?.stopped()
+        state.timeEntries[runningId] = stopped
+        state.runningTimeEntry = nil
         return .empty
         
     case .deleteEntry(let id):
-        guard let index = state.timeEntries.sorted.firstIndex(where: { $0 == id }) else {
+        guard let timeEntry = state.timeEntries[id] else {
             return Just(.setError(TimelineError.CantFindIndexOfTimeEntryToDelete))
                 .eraseToEffect()
         }
-        state.timeEntries.byId[id] = nil
-        state.timeEntries.sorted.remove(at: index)
-        return .empty
+        return deleteEffect(api, workspace: timeEntry.workspaceId, id: timeEntry.id)
         
-    case .loadEntries:
-        return loadEntriesEffect(api)
-        
-    case let .setEntries(entries):
-        let sorted = entries.sorted(by: { $0.start > $1.start })
-        state.timeEntries.byId = [:]
-        state.timeEntries.sorted = []
-        for te in sorted {
-            state.timeEntries.sorted.append(te.id)
-            state.timeEntries.byId[te.id] = te
+    case .entryDeleted(let id):
+        guard let _ = state.timeEntries[id] else {
+            return Just(.setError(TimelineError.CantFindIndexOfTimeEntryToDelete))
+                .eraseToEffect()
         }
-        return .empty
         
-    case .clear:
-        state.timeEntries.byId = [:]
-        state.timeEntries.sorted = []
+        state.timeEntries[id] = nil
+        
         return .empty
         
     case let .setError(error):
@@ -62,10 +54,11 @@ public var timelineReducer: Reducer<TimeEntriesState, TimeEntryAction, APIProtoc
     }
 }
 
-private func loadEntriesEffect(_ api: APIProtocol) -> Effect<TimeEntryAction>
+
+private func deleteEffect(_ api: APIProtocol, workspace: Int, id: Int) -> Effect<TimelineAction>
 {
-    api.loadEntries()
-        .map { entries in .setEntries(entries) }
+    api.deleteTimeEntry(workspaceId: workspace, timeEntryId: id)
+        .map { TimelineAction.entryDeleted(id) }
         .catch { error in Just(.setError(error)) }
         .eraseToEffect()
 }

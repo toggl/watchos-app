@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TimeEntry: Codable, Equatable
+public struct TimeEntry: Codable, Equatable, Identifiable
 {
     public var id: Int
     public var description: String

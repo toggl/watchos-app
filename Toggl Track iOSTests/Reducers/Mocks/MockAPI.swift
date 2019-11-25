@@ -23,8 +23,15 @@ class MockAPI: APIProtocol
     
     var returnedUser: User?
     var returnedTimeEntries: [TimeEntry]?
+    var returnedWorkspaces: [Workspace]?
+    var returnedClients: [Client]?
+    var returnedProjects: [Project]?
+    var returnedTasks: [Task]?
+    var returnedTags: [Tag]?
     
     var returnedError: Error = MockError.unknown
+    
+    var deleteCalled = false
     
     func setAuth(token: String?)
     {
@@ -72,36 +79,67 @@ class MockAPI: APIProtocol
     
     func loadWorkspaces() -> AnyPublisher<[Workspace], Error>
     {
-        return Empty()
+        guard let workspaces = returnedWorkspaces else {
+            return Fail(error: returnedError)
+                .eraseToAnyPublisher()
+        }
+        
+        return Just(workspaces)
+            .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
     
     func loadClients() -> AnyPublisher<[Client], Error>
     {
-        return Empty()
+        guard let clients = returnedClients else {
+            return Fail(error: returnedError)
+                .eraseToAnyPublisher()
+        }
+        
+        return Just(clients)
+            .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
     
     func loadProjects() -> AnyPublisher<[Project], Error>
     {
-        return Empty()
+        guard let projects = returnedProjects else {
+            return Fail(error: returnedError)
+                .eraseToAnyPublisher()
+        }
+        
+        return Just(projects)
+            .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
     
     func loadTags() -> AnyPublisher<[Tag], Error>
     {
-        return Empty()
+        guard let tags = returnedTags else {
+            return Fail(error: returnedError)
+                .eraseToAnyPublisher()
+        }
+        
+        return Just(tags)
+            .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
     
     func loadTasks() -> AnyPublisher<[Task], Error>
     {
-        return Empty()
+        guard let tasks = returnedTasks else {
+            return Fail(error: returnedError)
+                .eraseToAnyPublisher()
+        }
+        
+        return Just(tasks)
+            .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
     
     func deleteTimeEntry(workspaceId: Int, timeEntryId: Int) -> AnyPublisher<Void, Error>
     {
+        deleteCalled = true
         return Empty()
             .eraseToAnyPublisher()
     }
