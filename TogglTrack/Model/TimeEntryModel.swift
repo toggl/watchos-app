@@ -39,3 +39,17 @@ public struct TimeEntryModel
         self.tags = tags
     }
 }
+
+public struct TimeEntryGroup
+{
+    public var day: Date
+    public var dayString: String
+    public var timeEntries: [TimeEntryModel]
+    
+    public init(timeEntries: [TimeEntryModel])
+    {
+        day = timeEntries.first!.start.ignoreTimeComponents()
+        dayString = day.toDayString()
+        self.timeEntries = timeEntries
+    }
+}

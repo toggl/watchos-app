@@ -47,14 +47,17 @@ public struct TimelineView: View
                 start: { self.store.send(.startEntry("My time entry", self.store.state.workspaces.values.first!)) },
                 stop: { self.store.send(.stopRunningEntry) }
             )
-
-            ForEach(timeEntryModelSelector(store.state), id: \.id) { viewModel in
-                TimeEntryCellView(viewModel: viewModel)
-            }
-            .onDelete { indexSet in
-                guard let index = indexSet.first else { return }
-                let te = timeEntryModelSelector(self.store.state)[index]
-                self.store.send(.deleteEntry(te.id))
+            ForEach(store.state.groupedTimeEntries, id: \.day) { group in
+                Section(header: Text(group.dayString)) {
+                    ForEach(group.timeEntries, id: \.id) { timeEntry in
+                        TimeEntryCellView(viewModel: timeEntry)
+                    }
+                    .onDelete { indexSet in
+                        guard let index = indexSet.first else { return }
+                        let te = group.timeEntries[index]
+                        self.store.send(.deleteEntry(te.id))
+                    }
+                }
             }
         }
     }

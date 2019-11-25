@@ -73,6 +73,10 @@
 		8C039437237D775A00AB1C95 /* TogglTrack.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0393D3237D661700AB1C95 /* TogglTrack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8C24496F2385497100F087E9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5FE612355B3AB00D33237 /* ContentView.swift */; };
 		8C2449722385568700F087E9 /* EntityReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2449702385568700F087E9 /* EntityReducer.swift */; };
+		8C2753E823880F0E00CFF255 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2753E623880E6B00CFF255 /* ArrayExtensions.swift */; };
+		8C2753E923880F0E00CFF255 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2753E623880E6B00CFF255 /* ArrayExtensions.swift */; };
+		8C2753EC2388106300CFF255 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2753EA2388104800CFF255 /* DateExtensions.swift */; };
+		8C2753ED2388106300CFF255 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2753EA2388104800CFF255 /* DateExtensions.swift */; };
 		8C3134032383019F0095E309 /* MockKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3134022383019F0095E309 /* MockKeychain.swift */; };
 		8C3134042383D47C0095E309 /* ErrorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA6EC5D2382B9F000F7C9B5 /* ErrorExtensions.swift */; };
 		8C88AF4123840F1B00F67EC3 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3134052383D7C40095E309 /* Task.swift */; };
@@ -192,6 +196,8 @@
 		8C0393E8237D664400AB1C95 /* Toggl Track iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Toggl Track iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C0393EF237D664400AB1C95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C2449702385568700F087E9 /* EntityReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityReducer.swift; sourceTree = "<group>"; };
+		8C2753E623880E6B00CFF255 /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
+		8C2753EA2388104800CFF255 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		8C3134022383019F0095E309 /* MockKeychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockKeychain.swift; sourceTree = "<group>"; };
 		8C3134052383D7C40095E309 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		8C3B2C9B23619321008295D8 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -534,6 +540,8 @@
 			children = (
 				8CC5FE9B2355E2E700D33237 /* TimeIntervalExtensions.swift */,
 				AC19DCA5237ED1960009106D /* KeychainService.swift */,
+				8C2753E623880E6B00CFF255 /* ArrayExtensions.swift */,
+				8C2753EA2388104800CFF255 /* DateExtensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -857,6 +865,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC19DC9C237D79420009106D /* User.swift in Sources */,
+				8C2753EC2388106300CFF255 /* DateExtensions.swift in Sources */,
 				AC19DCA3237EAC8B0009106D /* LoginReducer.swift in Sources */,
 				8C039414237D667900AB1C95 /* Tag.swift in Sources */,
 				8C039416237D667900AB1C95 /* TimeEntryModel.swift in Sources */,
@@ -872,6 +881,7 @@
 				8C039415237D667900AB1C95 /* Client.swift in Sources */,
 				8C039400237D667100AB1C95 /* FakeURLSession.swift in Sources */,
 				8C3134042383D47C0095E309 /* ErrorExtensions.swift in Sources */,
+				8C2753E823880F0E00CFF255 /* ArrayExtensions.swift in Sources */,
 				8C03942B237D668B00AB1C95 /* EntityAction.swift in Sources */,
 				8C039411237D667900AB1C95 /* TimeEntry.swift in Sources */,
 				8C039427237D668500AB1C95 /* AppState.swift in Sources */,
@@ -896,6 +906,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC19DC9B237D79420009106D /* User.swift in Sources */,
+				8C2753ED2388106300CFF255 /* DateExtensions.swift in Sources */,
 				AC19DCA4237EAC8B0009106D /* LoginReducer.swift in Sources */,
 				8C03941A237D667900AB1C95 /* Tag.swift in Sources */,
 				8C03941C237D667900AB1C95 /* TimeEntryModel.swift in Sources */,
@@ -911,6 +922,7 @@
 				8C03941B237D667900AB1C95 /* Client.swift in Sources */,
 				8C2449722385568700F087E9 /* EntityReducer.swift in Sources */,
 				8C039409237D667100AB1C95 /* FakeURLSession.swift in Sources */,
+				8C2753E923880F0E00CFF255 /* ArrayExtensions.swift in Sources */,
 				8C039430237D668B00AB1C95 /* EntityAction.swift in Sources */,
 				8C039417237D667900AB1C95 /* TimeEntry.swift in Sources */,
 				8C039428237D668600AB1C95 /* AppState.swift in Sources */,

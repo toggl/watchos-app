@@ -66,6 +66,27 @@ public let timeEntryModelSelector = memoize{ (state: TimelineState) -> [TimeEntr
 
 extension TimelineState
 {
+    public var timeEntryModels: [TimeEntryModel]
+    {
+        return timeEntries.values
+            .compactMap { timeEntry in
+                guard let workspace = workspaces[timeEntry.workspaceId] else { return nil }
+                return TimeEntryModel(
+                    timeEntry: timeEntry,
+                    workspace: workspace
+                )
+            }
+            .sorted(by: { $0.start > $1.start })
+    }
+    
+    public var groupedTimeEntries: [TimeEntryGroup]
+    {
+        return timeEntryModels
+            .grouped(by: { $0.start.ignoreTimeComponents() })
+            .map(TimeEntryGroup.init)
+            .sorted(by: { $0.day > $1.day })
+    }
+    
     public var runningEntry: TimeEntryModel?
     {
         guard let runningId = runningTimeEntry,
