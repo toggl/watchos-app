@@ -15,12 +15,12 @@ public struct TimeEntry: Codable, Equatable, Identifiable
     public var start: Date
     public var duration: Double?
     public var billable: Bool
-        
+
     public var workspaceId: Int
     public var projectId: Int?
     public var taskId: Int?
     public var tagIds: [Int]?
-    
+
     enum CodingKeys: String, CodingKey
     {
         case id
@@ -28,13 +28,13 @@ public struct TimeEntry: Codable, Equatable, Identifiable
         case start
         case duration
         case billable
-   
+
         case workspaceId = "workspace_id"
         case projectId = "project_id"
         case taskId = "task_id"
         case tagIds = "tag_ids"
     }
-    
+
     public static func createNew(withDescription description: String, workspaceId: Int, billable: Bool = false, projectId: Int? = nil, taskId: Int? = nil, tagIds: [Int] = []) -> TimeEntry
     {
         return TimeEntry(
@@ -49,7 +49,7 @@ public struct TimeEntry: Codable, Equatable, Identifiable
             tagIds: tagIds
         )
     }
-    
+
     public func stopped() -> TimeEntry
     {
         return TimeEntry(

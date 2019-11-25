@@ -107,6 +107,8 @@
 		AC19DCA4237EAC8B0009106D /* LoginReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DCA2237EAC8B0009106D /* LoginReducer.swift */; };
 		AC19DCA6237ED1960009106D /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DCA5237ED1960009106D /* KeychainService.swift */; };
 		AC19DCA7237ED1960009106D /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DCA5237ED1960009106D /* KeychainService.swift */; };
+		ACEAE4BC2386D5F6009C7A26 /* Memoize.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEAE4B82386C231009C7A26 /* Memoize.swift */; };
+		ACEAE4BD2386D5F7009C7A26 /* Memoize.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEAE4B82386C231009C7A26 /* Memoize.swift */; };
 		ACEAE4AF23858FF7009C7A26 /* TimelineReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEAE4AE23858FF7009C7A26 /* TimelineReducerTests.swift */; };
 		ACEAE4B4238694FE009C7A26 /* ReducerErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEAE4B3238694FE009C7A26 /* ReducerErrors.swift */; };
 		ACEAE4B5238694FE009C7A26 /* ReducerErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEAE4B3238694FE009C7A26 /* ReducerErrors.swift */; };
@@ -254,6 +256,7 @@
 		AC19DC9F237EAB130009106D /* LoginAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAction.swift; sourceTree = "<group>"; };
 		AC19DCA2237EAC8B0009106D /* LoginReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginReducer.swift; sourceTree = "<group>"; };
 		AC19DCA5237ED1960009106D /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		ACEAE4B82386C231009C7A26 /* Memoize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memoize.swift; sourceTree = "<group>"; };
 		ACEAE4AE23858FF7009C7A26 /* TimelineReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineReducerTests.swift; sourceTree = "<group>"; };
 		ACEAE4B3238694FE009C7A26 /* ReducerErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReducerErrors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -364,6 +367,7 @@
 				8CC5FE822355B3EF00D33237 /* Store.swift */,
 				8CA9502C2369E59A0076BDA4 /* Effect.swift */,
 				8CA9502E2369E5B10076BDA4 /* Reducer.swift */,
+				ACEAE4B82386C231009C7A26 /* Memoize.swift */,
 			);
 			path = Architecture;
 			sourceTree = "<group>";
@@ -881,6 +885,7 @@
 				8CBC9CFA2385598D00A133CF /* EntityReducer.swift in Sources */,
 				8C03942D237D668B00AB1C95 /* AppEnvironment.swift in Sources */,
 				8C039413237D667900AB1C95 /* Workspace.swift in Sources */,
+				ACEAE4BC2386D5F6009C7A26 /* Memoize.swift in Sources */,
 				AC19DCA0237EAB130009106D /* LoginAction.swift in Sources */,
 				8C0393FF237D667100AB1C95 /* URLSessionExtension.swift in Sources */,
 			);
@@ -919,6 +924,7 @@
 				8CA6EC602382BF3900F7C9B5 /* ErrorExtensions.swift in Sources */,
 				8C039432237D668B00AB1C95 /* AppEnvironment.swift in Sources */,
 				8C039419237D667900AB1C95 /* Workspace.swift in Sources */,
+				ACEAE4BD2386D5F7009C7A26 /* Memoize.swift in Sources */,
 				AC19DCA1237EAB130009106D /* LoginAction.swift in Sources */,
 				8C039408237D667100AB1C95 /* URLSessionExtension.swift in Sources */,
 			);

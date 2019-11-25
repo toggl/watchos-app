@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Tag: Codable, Identifiable
+public struct Tag: Codable, Identifiable, Equatable
 {
     public var id: Int
     public var name: String

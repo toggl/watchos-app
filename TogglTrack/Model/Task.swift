@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Task: Codable, Identifiable
+public struct Task: Codable, Identifiable, Equatable
 {
     public var id: Int
     public var name: String

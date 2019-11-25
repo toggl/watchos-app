@@ -39,7 +39,7 @@ public struct TimelineView: View
     {
         self.store = store
     }
-    
+
     public var body: some View {
         List {
             RunningButton(
@@ -47,12 +47,13 @@ public struct TimelineView: View
                 start: { self.store.send(.startEntry("My time entry", self.store.state.workspaces.values.first!)) },
                 stop: { self.store.send(.stopRunningEntry) }
             )
-            ForEach(store.state.timeEntryModels, id: \.id) { viewModel in
+
+            ForEach(timeEntryModelSelector(store.state), id: \.id) { viewModel in
                 TimeEntryCellView(viewModel: viewModel)
             }
             .onDelete { indexSet in
                 guard let index = indexSet.first else { return }
-                let te = self.store.state.timeEntryModels[index]
+                let te = timeEntryModelSelector(self.store.state)[index]
                 self.store.send(.deleteEntry(te.id))
             }
         }

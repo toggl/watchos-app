@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TimelineState
+public struct TimelineState: Equatable
 {
     public var runningTimeEntry: Int? = nil
     public var timeEntries = [TimeEntry.ID: TimeEntry]()
@@ -24,7 +24,7 @@ public struct AppState
     public var timeline: TimelineState = TimelineState()
     public var user: User?
     public var error: Error?
-    
+
     public init()
     {
     }
@@ -40,7 +40,7 @@ extension AppState
             self.error = newValue.error
         }
     }
-    
+
     public var timeEntriesState: TimeEntriesState {
         get { (timeline.timeEntries, timeline.runningTimeEntry, error) }
         set {
@@ -52,27 +52,26 @@ extension AppState
 }
 
 // Selectors
+public let timeEntryModelSelector = memoize{ (state: TimelineState) -> [TimeEntryModel] in
+    return state.timeEntries.values
+        .compactMap { timeEntry in
+            guard let workspace = state.workspaces[timeEntry.workspaceId] else { return nil }
+            return TimeEntryModel(
+                timeEntry: timeEntry,
+                workspace: workspace
+            )
+        }
+        .sorted(by: { $0.start > $1.start })
+}
+
 extension TimelineState
 {
-    public var timeEntryModels: [TimeEntryModel]
-    {
-        return timeEntries.values
-            .compactMap { timeEntry in
-                guard let workspace = workspaces[timeEntry.workspaceId] else { return nil }
-                return TimeEntryModel(
-                    timeEntry: timeEntry,
-                    workspace: workspace
-                )
-            }
-            .sorted(by: { $0.start > $1.start })
-    }
-    
     public var runningEntry: TimeEntryModel?
     {
         guard let runningId = runningTimeEntry,
             let timeEntry = timeEntries[runningId],
             let workspace = workspaces[timeEntry.workspaceId] else { return nil }
-        
+
         return TimeEntryModel(
             timeEntry: timeEntry,
             workspace: workspace
