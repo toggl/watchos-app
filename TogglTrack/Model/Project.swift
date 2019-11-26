@@ -37,11 +37,11 @@ public struct Project: Codable, Identifiable, Equatable
 #if DEBUG
 public extension Project
 {
-    var dummyProjects: [Project]
+    static var dummyProjects: [Project]
     {
         return [
             Project(id: 0, name: "Project 1", isPrivate: false, isActive: true, color: "FABADA", billable: false, workspaceId: 0, clientId: 0),
-            Project(id: 1, name: "Project 2", isPrivate: false, isActive: true, color: "FFFF00", billable: true, workspaceId: 0, clientId: 0)
+            Project(id: 1, name: "Project 2 askjdb fdsfjhkg dshjfbg sdfjh bgdfs g bjksdf bjkgdsfb kj gkdfls glkudsfl kcklsd fkjbsdfkj", isPrivate: false, isActive: true, color: "FFFF00", billable: true, workspaceId: 0, clientId: 0)
         ]
     }
 }

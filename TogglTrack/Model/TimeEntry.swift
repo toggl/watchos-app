@@ -72,8 +72,9 @@ public extension TimeEntry
     static var dummyEntries: [TimeEntry]
     {
         return [
-            TimeEntry(id: 0, description: "One time entry", start: Date(), duration: 1000, billable: false, workspaceId: 0, projectId: nil, taskId: nil, tagIds: []),
-            TimeEntry(id: 1, description: "Another time entry", start: Date(), duration: 1000, billable: false, workspaceId: 0, projectId: nil, taskId: nil, tagIds: [])
+            TimeEntry(id: 0, description: "One time entry", start: Date(), duration: 1000, billable: false, workspaceId: 0, projectId: 0, taskId: 0, tagIds: []),
+            TimeEntry(id: 1, description: "Another time entry", start: Date(), duration: 1000, billable: false, workspaceId: 0, projectId: nil, taskId: nil, tagIds: []),
+            TimeEntry(id: 2, description: "", start: Date(), duration: 1000, billable: false, workspaceId: 0, projectId: nil, taskId: nil, tagIds: [])
         ]
     }
 }

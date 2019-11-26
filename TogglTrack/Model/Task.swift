@@ -33,3 +33,15 @@ public struct Task: Codable, Identifiable, Equatable
         case userId = "user_id"
     }
 }
+
+#if DEBUG
+public extension Task
+{
+    static var dummyTask: [Task]
+    {
+        return [
+            Task(id: 0, name: "Task 1 s kfkjsg fjs gsdjhg fjsjkg", active: true, estimatedSeconds: 0, trackedSeconds: 40, projectId: 0, workspaceId: 0, userId: 1)
+        ]
+    }
+}
+#endif

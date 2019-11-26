@@ -56,9 +56,18 @@ public let timeEntryModelSelector = memoize{ (state: TimelineState) -> [TimeEntr
     return state.timeEntries.values
         .compactMap { timeEntry in
             guard let workspace = state.workspaces[timeEntry.workspaceId] else { return nil }
+            let project: Project? = timeEntry.projectId != nil ? state.projects[timeEntry.projectId!] : nil
+            let client: Client? = project?.clientId != nil ? state.clients[project!.clientId!] : nil
+            let task: Task? = timeEntry.taskId != nil ? state.tasks[timeEntry.taskId!] : nil
+            let tags: [Tag]? = timeEntry.tagIds != nil ? timeEntry.tagIds?.compactMap { state.tags[$0] } : nil
+            
             return TimeEntryModel(
                 timeEntry: timeEntry,
-                workspace: workspace
+                workspace: workspace,
+                project: project,
+                client: client,
+                task: task,
+                tags: tags
             )
         }
         .sorted(by: { $0.start > $1.start })

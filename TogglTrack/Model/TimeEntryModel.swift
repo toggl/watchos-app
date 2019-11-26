@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 public struct TimeEntryModel
 {
@@ -18,6 +19,8 @@ public struct TimeEntryModel
 
     public let workspace: Workspace
     public let project: Project?
+    public let client: Client?
+    public let task: Task?
     public let tags: [Tag]?
     
     public var durationString: String
@@ -26,7 +29,40 @@ public struct TimeEntryModel
         return duration.toIntervalString()
     }
     
-    public init(timeEntry: TimeEntry, workspace: Workspace, project: Project? = nil, tags: [Tag]? = nil)
+    public var descriptionString: String
+    {
+        if description != "" { return description }
+        return "No description"
+    }
+    
+    public var projectTaskClientString: String
+    {
+        var value = ""
+        if let project = project { value.append(project.name) }
+        if let task = task { value.append(": " + task.name) }
+        if let client = client { value.append(" · " + client.name) }
+        return value
+    }
+    
+    public var descriptionColor: Color
+    {
+        if description != "" { return .white }
+        return Color(red: 174.0 / 255.0, green: 180.0 / 255.0, blue: 191.0 / 255.0, opacity: 1.0)
+    }
+    
+    public var projectColor: Color
+    {
+        guard let project = project else { return .white }
+        return Color(hex: project.color)
+    }
+    
+    public init(
+        timeEntry: TimeEntry,
+        workspace: Workspace,
+        project: Project? = nil,
+        client: Client? = nil,
+        task: Task? = nil,
+        tags: [Tag]? = nil)
     {
         self.id = timeEntry.id
         self.description = timeEntry.description
@@ -36,6 +72,8 @@ public struct TimeEntryModel
         
         self.workspace = workspace
         self.project = project
+        self.client = client
+        self.task = task
         self.tags = tags
     }
 }

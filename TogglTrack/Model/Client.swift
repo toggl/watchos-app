@@ -27,10 +27,11 @@ public struct Client: Codable, Identifiable, Equatable
 #if DEBUG
 public extension Client
 {
-    var dummyClients: [Client]
+    static var dummyClients: [Client]
     {
         return [
-            Client(id: 0, name: "Client 1", workspaceId: 0)
+            Client(id: 0, name: "Client 1", workspaceId: 0),
+            Client(id: 1, name: "Client 2 dsb fjkgds fjgjhdfsb gdsfbhjg bdfsb gdfhjksg dsfhjkg bdfsgj bdfjks gjkdsfjkl gjkdfs", workspaceId: 0)
         ]
     }
 }

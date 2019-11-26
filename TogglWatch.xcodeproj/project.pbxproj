@@ -116,6 +116,8 @@
 		ACEAE4AF23858FF7009C7A26 /* TimelineReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEAE4AE23858FF7009C7A26 /* TimelineReducerTests.swift */; };
 		ACEAE4B4238694FE009C7A26 /* ReducerErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEAE4B3238694FE009C7A26 /* ReducerErrors.swift */; };
 		ACEAE4B5238694FE009C7A26 /* ReducerErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEAE4B3238694FE009C7A26 /* ReducerErrors.swift */; };
+		ACEAE4C023884010009C7A26 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEAE4BE2388400A009C7A26 /* ColorExtension.swift */; };
+		ACEAE4C123884011009C7A26 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEAE4BE2388400A009C7A26 /* ColorExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -265,6 +267,7 @@
 		ACEAE4B82386C231009C7A26 /* Memoize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memoize.swift; sourceTree = "<group>"; };
 		ACEAE4AE23858FF7009C7A26 /* TimelineReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineReducerTests.swift; sourceTree = "<group>"; };
 		ACEAE4B3238694FE009C7A26 /* ReducerErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReducerErrors.swift; sourceTree = "<group>"; };
+		ACEAE4BE2388400A009C7A26 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -478,6 +481,7 @@
 			isa = PBXGroup;
 			children = (
 				8CA6EC5D2382B9F000F7C9B5 /* ErrorExtensions.swift */,
+				ACEAE4BE2388400A009C7A26 /* ColorExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -876,6 +880,7 @@
 				8C03940D237D667500AB1C95 /* Reducer.swift in Sources */,
 				AC19DCA6237ED1960009106D /* KeychainService.swift in Sources */,
 				8C039412237D667900AB1C95 /* Project.swift in Sources */,
+				ACEAE4C123884011009C7A26 /* ColorExtension.swift in Sources */,
 				8C039429237D668B00AB1C95 /* AppAction.swift in Sources */,
 				8C039401237D667100AB1C95 /* Errors.swift in Sources */,
 				8C039415237D667900AB1C95 /* Client.swift in Sources */,
@@ -917,6 +922,7 @@
 				8C039410237D667500AB1C95 /* Reducer.swift in Sources */,
 				AC19DCA7237ED1960009106D /* KeychainService.swift in Sources */,
 				8C039418237D667900AB1C95 /* Project.swift in Sources */,
+				ACEAE4C023884010009C7A26 /* ColorExtension.swift in Sources */,
 				8C03942E237D668B00AB1C95 /* AppAction.swift in Sources */,
 				8C03940A237D667100AB1C95 /* Errors.swift in Sources */,
 				8C03941B237D667900AB1C95 /* Client.swift in Sources */,
