@@ -27,15 +27,17 @@ struct LoginView: View {
         VStack {
             TextField("Email", text: $email)
                 .textContentType(.emailAddress)
-            TextField("Password", text: $password)
+                .multilineTextAlignment(.center)
+            SecureField("Password", text: $password)
                 .textContentType(.password)
+                .multilineTextAlignment(.center)
             Button(action: { self.store.send(.login(self.email, self.password)) }) {
                 Text("Login")
             }
-            .background(/*@START_MENU_TOKEN@*/Color.red/*@END_MENU_TOKEN@*/)
+            .background(Color(red: 6/255, green: 170/255, blue: 245/255))
             .cornerRadius(CGFloat(20))
         }
-        .navigationBarTitle("Toggl Login")
+        .navigationBarTitle("Toggl")
         .alert(isPresented: hasError) {
             Alert(title: Text(store.state.error!.description))
         }
