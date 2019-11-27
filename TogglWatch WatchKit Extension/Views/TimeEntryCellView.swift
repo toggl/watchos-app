@@ -52,7 +52,7 @@ public struct TimeEntryCellView: View
     }
 }
 
-
+#if DEBUG
 struct TimeEntryView_Previews: PreviewProvider {
     static var previews: some View {
         List {
@@ -80,3 +80,4 @@ struct TimeEntryView_Previews: PreviewProvider {
         }
     }
 }
+#endif
