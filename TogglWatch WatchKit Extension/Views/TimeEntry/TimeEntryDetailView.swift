@@ -80,9 +80,9 @@ struct DurationView: View
 
 struct TimeEntryDetailView: View
 {
+    @ObservedObject var store: Store<TimelineState, TimelineAction, AppEnvironment>
     var timeEntry: TimeEntryModel
     
-    @ObservedObject var store: Store<TimelineState, TimelineAction, AppEnvironment>
     @State var timer: ObservableTimer = ObservableTimer()
     @State var now: Date = Date()
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
