@@ -15,15 +15,15 @@ public var timelineReducer: Reducer<TimeEntriesState, TimelineAction, APIProtoco
     switch action {
         
     case .startEntry(let description, let workspace):
-        let te  = TimeEntry.createNew(withDescription: description, workspaceId: workspace.id)
-        state.timeEntries[te.id] = te
-        state.runningTimeEntry = te.id
-        return .empty
+        var te  = TimeEntry.createNew(withDescription: description, workspaceId: workspace.id)
+        te.start = Date()
+        te.duration = -1
+        return startTimeEntryEffect(api, timeEntry: te)
         
     case .stopRunningEntry:
         guard let runningId = state.runningTimeEntry,
             let runningTimeEntry = state.timeEntries[runningId] else {
-            return Just(.setError(TimelineError.CantFindRunningTimeEntryId))
+            return Just(.setError(TimelineError.CantFindTimeEntry))
                 .eraseToEffect()
         }
         let stopped = state.timeEntries[runningId]?.stopped()
@@ -33,23 +33,36 @@ public var timelineReducer: Reducer<TimeEntriesState, TimelineAction, APIProtoco
         
     case .deleteEntry(let id):
         guard let timeEntry = state.timeEntries[id] else {
-            return Just(.setError(TimelineError.CantFindIndexOfTimeEntryToDelete))
+            return Just(.setError(TimelineError.CantFindTimeEntry))
                 .eraseToEffect()
         }
         return deleteEffect(api, workspace: timeEntry.workspaceId, id: timeEntry.id)
         
     case .entryDeleted(let id):
         guard let _ = state.timeEntries[id] else {
-            return Just(.setError(TimelineError.CantFindIndexOfTimeEntryToDelete))
+            return Just(.setError(TimelineError.CantFindTimeEntry))
                 .eraseToEffect()
         }
-        
         state.timeEntries[id] = nil
-        
         return .empty
         
     case let .setError(error):
         state.error = error
+        return .empty
+        
+    case .continueEntry(let id):
+        guard let timeEntry = state.timeEntries[id] else {
+            return Just(.setError(TimelineError.CantFindTimeEntry))
+                .eraseToEffect()
+        }
+        var copyTE = timeEntry
+        copyTE.start = Date()
+        copyTE.duration = -1
+        return startTimeEntryEffect(api, timeEntry: copyTE)
+        
+    case let .addTimeEntry(timeEntry):
+        state.timeEntries[timeEntry.id] = timeEntry
+        state.runningTimeEntry = timeEntry.id
         return .empty
     }
 }
@@ -59,6 +72,14 @@ private func deleteEffect(_ api: APIProtocol, workspace: Int, id: Int) -> Effect
 {
     api.deleteTimeEntry(workspaceId: workspace, timeEntryId: id)
         .map { TimelineAction.entryDeleted(id) }
+        .catch { error in Just(.setError(error)) }
+        .eraseToEffect()
+}
+
+private func startTimeEntryEffect(_ api: APIProtocol, timeEntry: TimeEntry) -> Effect<TimelineAction>
+{
+    api.startTimeEntry(timeEntry: timeEntry)
+        .map { TimelineAction.addTimeEntry($0) }
         .catch { error in Just(.setError(error)) }
         .eraseToEffect()
 }

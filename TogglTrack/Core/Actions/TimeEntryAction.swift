@@ -15,6 +15,8 @@ public enum TimelineAction
     case deleteEntry(Int)
     case entryDeleted(Int)
     case setError(Error?)
+    case continueEntry(Int)
+    case addTimeEntry(TimeEntry)
 }
 
 extension TimelineAction: CustomStringConvertible
@@ -32,6 +34,10 @@ extension TimelineAction: CustomStringConvertible
             return "deleted"
         case let .setError(error):
             return "setError: \(error?.description ?? "nil")"
+        case .continueEntry(_):
+            return "continue"
+        case .addTimeEntry(_):
+            return "addTimeEntry"
         }
     }
 }

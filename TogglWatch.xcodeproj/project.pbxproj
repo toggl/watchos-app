@@ -121,6 +121,8 @@
 		AC19DCA4237EAC8B0009106D /* LoginReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DCA2237EAC8B0009106D /* LoginReducer.swift */; };
 		AC19DCA6237ED1960009106D /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DCA5237ED1960009106D /* KeychainService.swift */; };
 		AC19DCA7237ED1960009106D /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DCA5237ED1960009106D /* KeychainService.swift */; };
+		AC7694B6238EB526008E7C52 /* DateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7694B5238EB526008E7C52 /* DateFormatterExtension.swift */; };
+		AC7694B7238EB526008E7C52 /* DateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7694B5238EB526008E7C52 /* DateFormatterExtension.swift */; };
 		ACEAE4AF23858FF7009C7A26 /* TimelineReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEAE4AE23858FF7009C7A26 /* TimelineReducerTests.swift */; };
 		ACEAE4B4238694FE009C7A26 /* ReducerErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEAE4B3238694FE009C7A26 /* ReducerErrors.swift */; };
 		ACEAE4B5238694FE009C7A26 /* ReducerErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEAE4B3238694FE009C7A26 /* ReducerErrors.swift */; };
@@ -128,6 +130,8 @@
 		ACEAE4BD2386D5F7009C7A26 /* Memoize.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEAE4B82386C231009C7A26 /* Memoize.swift */; };
 		ACEAE4C023884010009C7A26 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEAE4BE2388400A009C7A26 /* ColorExtension.swift */; };
 		ACEAE4C123884011009C7A26 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEAE4BE2388400A009C7A26 /* ColorExtension.swift */; };
+		ACEB46702391672200131EB6 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEB466F2391672200131EB6 /* DateExtension.swift */; };
+		ACEB46712391672200131EB6 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEB466F2391672200131EB6 /* DateExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -281,10 +285,12 @@
 		AC19DC9F237EAB130009106D /* LoginAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAction.swift; sourceTree = "<group>"; };
 		AC19DCA2237EAC8B0009106D /* LoginReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginReducer.swift; sourceTree = "<group>"; };
 		AC19DCA5237ED1960009106D /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		AC7694B5238EB526008E7C52 /* DateFormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterExtension.swift; sourceTree = "<group>"; };
 		ACEAE4AE23858FF7009C7A26 /* TimelineReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineReducerTests.swift; sourceTree = "<group>"; };
 		ACEAE4B3238694FE009C7A26 /* ReducerErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReducerErrors.swift; sourceTree = "<group>"; };
 		ACEAE4B82386C231009C7A26 /* Memoize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memoize.swift; sourceTree = "<group>"; };
 		ACEAE4BE2388400A009C7A26 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		ACEB466F2391672200131EB6 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -521,6 +527,11 @@
 			children = (
 				8CA6EC5D2382B9F000F7C9B5 /* ErrorExtensions.swift */,
 				ACEAE4BE2388400A009C7A26 /* ColorExtension.swift */,
+				AC7694B5238EB526008E7C52 /* DateFormatterExtension.swift */,
+				8CC5FE9B2355E2E700D33237 /* TimeIntervalExtensions.swift */,
+				8C2753E623880E6B00CFF255 /* ArrayExtensions.swift */,
+				8C2753EA2388104800CFF255 /* DateExtensions.swift */,
+				ACEB466F2391672200131EB6 /* DateExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -581,7 +592,6 @@
 		8CA950A5237425030076BDA4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				8CC5FE9B2355E2E700D33237 /* TimeIntervalExtensions.swift */,
 				AC19DCA5237ED1960009106D /* KeychainService.swift */,
 				8C2753E623880E6B00CFF255 /* ArrayExtensions.swift */,
 				8C2753EA2388104800CFF255 /* DateExtensions.swift */,
@@ -910,6 +920,7 @@
 			files = (
 				AC19DC9C237D79420009106D /* User.swift in Sources */,
 				8C2753EC2388106300CFF255 /* DateExtensions.swift in Sources */,
+				AC7694B6238EB526008E7C52 /* DateFormatterExtension.swift in Sources */,
 				AC19DCA3237EAC8B0009106D /* LoginReducer.swift in Sources */,
 				8C039414237D667900AB1C95 /* Tag.swift in Sources */,
 				8C039416237D667900AB1C95 /* TimeEntryModel.swift in Sources */,
@@ -945,6 +956,7 @@
 				8C039413237D667900AB1C95 /* Workspace.swift in Sources */,
 				ACEAE4BC2386D5F6009C7A26 /* Memoize.swift in Sources */,
 				AC19DCA0237EAB130009106D /* LoginAction.swift in Sources */,
+				ACEB46702391672200131EB6 /* DateExtension.swift in Sources */,
 				8C0393FF237D667100AB1C95 /* URLSessionExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -955,6 +967,7 @@
 			files = (
 				AC19DC9B237D79420009106D /* User.swift in Sources */,
 				8C2753ED2388106300CFF255 /* DateExtensions.swift in Sources */,
+				AC7694B7238EB526008E7C52 /* DateFormatterExtension.swift in Sources */,
 				AC19DCA4237EAC8B0009106D /* LoginReducer.swift in Sources */,
 				8C03941A237D667900AB1C95 /* Tag.swift in Sources */,
 				8C03941C237D667900AB1C95 /* TimeEntryModel.swift in Sources */,
@@ -990,6 +1003,7 @@
 				8C039419237D667900AB1C95 /* Workspace.swift in Sources */,
 				ACEAE4BD2386D5F7009C7A26 /* Memoize.swift in Sources */,
 				AC19DCA1237EAB130009106D /* LoginAction.swift in Sources */,
+				ACEB46712391672200131EB6 /* DateExtension.swift in Sources */,
 				8C039408237D667100AB1C95 /* URLSessionExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

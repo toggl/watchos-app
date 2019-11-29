@@ -30,6 +30,7 @@ class MockAPI: APIProtocol
     var returnedTags: [Tag]?
     
     var returnedError: Error = MockError.unknown
+    var returnStartedTimeEntry: TimeEntry?
     
     var deleteCalled = false
     
@@ -141,6 +142,18 @@ class MockAPI: APIProtocol
     {
         deleteCalled = true
         return Empty()
+            .eraseToAnyPublisher()
+    }
+    
+    func startTimeEntry(timeEntry: TimeEntry) -> AnyPublisher<TimeEntry, Error>
+    {
+        guard let returnStartedTimeEntry = returnStartedTimeEntry else {
+            return Fail(error: returnedError)
+                .eraseToAnyPublisher()
+        }
+        
+        return Just(returnStartedTimeEntry)
+            .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 }
