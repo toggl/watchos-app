@@ -8,6 +8,18 @@
 
 import Foundation
 
+private var shortTimeFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.timeStyle = .short
+    return formatter
+}()
+
+private var simpleDateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "E, d MMM"
+    return formatter
+}()
+
 extension Date
 {
     public func ignoreTimeComponents() -> Date
@@ -27,8 +39,11 @@ extension Date
             return "Yesterday"
         }
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "E, d MMM"
-        return dateFormatter.string(from: self)
+        return simpleDateFormatter.string(from: self)
+    }
+    
+    public func toTimeString() -> String
+    {
+        return shortTimeFormatter.string(from: self)
     }
 }

@@ -13,7 +13,7 @@ public struct TimeEntry: Codable, Equatable, Identifiable
     public var id: Int
     public var description: String
     public var start: Date
-    public var duration: Double?
+    public var duration: Double
     public var billable: Bool
 
     public var workspaceId: Int

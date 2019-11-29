@@ -34,12 +34,12 @@ public struct RunningButton: View
 public struct TimelineView: View
 {
     @ObservedObject var store: Store<TimelineState, TimelineAction, AppEnvironment>
-
+    
     public init(store: Store<TimelineState, TimelineAction, AppEnvironment>)
     {
         self.store = store
     }
-
+    
     public var body: some View {
         List {
             RunningButton(
@@ -50,7 +50,9 @@ public struct TimelineView: View
             ForEach(store.state.groupedTimeEntries, id: \.day) { group in
                 Section(header: Text(group.dayString)) {
                     ForEach(group.timeEntries, id: \.id) { timeEntry in
-                        TimeEntryCellView(viewModel: timeEntry)
+                        NavigationLink(destination: TimeEntryDetailView(timeEntry: timeEntry)) {
+                            TimeEntryCellView(timeEntry)
+                        }
                     }
                     .onDelete { indexSet in
                         guard let index = indexSet.first else { return }

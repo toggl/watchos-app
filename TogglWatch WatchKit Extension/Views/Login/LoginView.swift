@@ -34,7 +34,7 @@ struct LoginView: View {
             Button(action: { self.store.send(.login(self.email, self.password)) }) {
                 Text("Login")
             }
-            .background(Color(red: 6/255, green: 170/255, blue: 245/255))
+            .background(Color.togglBlue)
             .cornerRadius(CGFloat(20))
         }
         .navigationBarTitle("Toggl")

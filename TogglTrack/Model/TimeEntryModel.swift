@@ -23,9 +23,9 @@ public struct TimeEntryModel
     public let task: Task?
     public let tags: [Tag]?
     
-    public var durationString: String
+    public var durationString: String?
     {
-        guard let duration = duration else { return "" }
+        guard let duration = duration else { return nil }
         return duration.toIntervalString()
     }
     
@@ -47,13 +47,24 @@ public struct TimeEntryModel
     public var descriptionColor: Color
     {
         if description != "" { return .white }
-        return Color(red: 174.0 / 255.0, green: 180.0 / 255.0, blue: 191.0 / 255.0, opacity: 1.0)
+        return Color.togglGray
     }
     
     public var projectColor: Color
     {
         guard let project = project else { return .white }
         return Color(hex: project.color)
+    }
+    
+    public var end: Date?
+    {
+        guard let duration = duration else  { return nil }
+        return start.addingTimeInterval(duration)
+    }
+    
+    public var isRunning: Bool
+    {
+        return duration == nil
     }
     
     public init(
@@ -67,7 +78,7 @@ public struct TimeEntryModel
         self.id = timeEntry.id
         self.description = timeEntry.description
         self.start = timeEntry.start
-        self.duration = timeEntry.duration
+        self.duration = timeEntry.duration >= 0 ? timeEntry.duration : nil
         self.billable = timeEntry.billable
         
         self.workspace = workspace

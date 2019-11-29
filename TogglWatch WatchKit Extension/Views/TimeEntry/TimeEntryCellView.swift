@@ -11,37 +11,29 @@ import TogglTrack
 
 public struct TimeEntryCellView: View
 {
-    let viewModel: TimeEntryModel
+    let timeEntry: TimeEntryModel
     
-    public init(viewModel: TimeEntryModel)
+    public init(_ timeEntry: TimeEntryModel)
     {
-        self.viewModel = viewModel
+        self.timeEntry = timeEntry
     }
     
     public var body: some View
     {
         VStack(alignment: .leading) {
-            Text(viewModel.descriptionString)
+            Text(timeEntry.descriptionString)
                 .font(.system(size: 16))
                 .multilineTextAlignment(.leading)
                 .lineLimit(3)
-                .foregroundColor(viewModel.descriptionColor)
+                .foregroundColor(timeEntry.descriptionColor)
             
-            if viewModel.projectTaskClientString != "" {
-                (
-                    Text("• ")
-                        .foregroundColor(viewModel.projectColor)
-                        .font(.system(size: 20))
-                    + Text(viewModel.projectTaskClientString)
-                        .font(.system(size: 14))
-                )
-                    .multilineTextAlignment(.leading)
-                    .lineLimit(3)
-            }
+            ProjectTaskClientTextView(timeEntry)
+                .multilineTextAlignment(.leading)
+                .lineLimit(3)
             
             HStack {
                 Spacer()
-                Text(viewModel.durationString)
+                Text(timeEntry.durationString ?? "")
                     .font(.system(size: 14))
                     .foregroundColor(Color.init(red: 174/255, green: 180/255, blue: 191/255))
                     .multilineTextAlignment(.trailing)
@@ -56,7 +48,7 @@ public struct TimeEntryCellView: View
 struct TimeEntryView_Previews: PreviewProvider {
     static var previews: some View {
         List {
-            TimeEntryCellView(viewModel:
+            TimeEntryCellView(
                 TimeEntryModel(
                     timeEntry: TimeEntry.dummyEntries[0],
                     workspace: Workspace.dummyWorkspace,
@@ -65,13 +57,13 @@ struct TimeEntryView_Previews: PreviewProvider {
                     task: Task.dummyTask[0]
                 )
             )
-            TimeEntryCellView(viewModel:
+            TimeEntryCellView(
                 TimeEntryModel(
                     timeEntry: TimeEntry.dummyEntries[1],
                     workspace: Workspace.dummyWorkspace
                 )
             )
-            TimeEntryCellView(viewModel:
+            TimeEntryCellView(
                 TimeEntryModel(
                     timeEntry: TimeEntry.dummyEntries[2],
                     workspace: Workspace.dummyWorkspace
