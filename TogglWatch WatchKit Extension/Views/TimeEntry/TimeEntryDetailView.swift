@@ -81,9 +81,12 @@ struct DurationView: View
 struct TimeEntryDetailView: View
 {
     var timeEntry: TimeEntryModel
+    
+    @ObservedObject var store: Store<TimelineState, TimelineAction, AppEnvironment>
     @State var timer: ObservableTimer = ObservableTimer()
     @State var now: Date = Date()
-    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     var body: some View
     {
         ScrollView {
@@ -105,7 +108,10 @@ struct TimeEntryDetailView: View
                         .cornerRadius(20)
                     }
                     
-                    Button(action: {}) {
+                    Button(action: {
+                        self.store.send(.deleteEntry(self.timeEntry.id))
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
                         Image(systemName: "trash")
                     }
                     .background(Color.togglDarkRed)
@@ -177,17 +183,5 @@ struct TimeEntryDetailView: View
             .padding(.horizontal, 4)
         }
     .navigationBarTitle("Back")
-    }
-}
-
-struct TimeEntryDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        TimeEntryDetailView(timeEntry:TimeEntryModel(
-            timeEntry: TimeEntry.dummyEntries[0],
-            workspace: Workspace.dummyWorkspace,
-            project: Project.dummyProjects[0],
-            client: Client.dummyClients[0],
-            task: Task.dummyTask[0])
-        )
     }
 }

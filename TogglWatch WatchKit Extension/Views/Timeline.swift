@@ -50,7 +50,7 @@ public struct TimelineView: View
             ForEach(store.state.groupedTimeEntries, id: \.day) { group in
                 Section(header: Text(group.dayString)) {
                     ForEach(group.timeEntries, id: \.id) { timeEntry in
-                        NavigationLink(destination: TimeEntryDetailView(timeEntry: timeEntry)) {
+                        NavigationLink(destination: TimeEntryDetailView(store: self.store, timeEntry: timeEntry)) {
                             TimeEntryCellView(timeEntry)
                         }
                     }
