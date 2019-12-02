@@ -146,7 +146,7 @@ struct TimeEntryDetailView: View
                     }
                 }
                 
-                if timeEntry.tags != nil {
+                if timeEntry.tags != nil && timeEntry.tags?.count != 0 {
                     DetailSection(title: EmptyView()) {
                         TagsView(self.timeEntry.tags!)
                     }
