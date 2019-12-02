@@ -143,6 +143,69 @@ class TimelineReducerTests: XCTestCase
         
         XCTAssertTrue(timeEntryState.error != nil, "There should be an error in the state")
     }
+    
+    func testContinueEntrySendsStartTimeEntryEffect()
+    {
+        let didSendAction = expectation(description: #function)
+        
+        let workspace = Workspace(id: 1, name: "name", admin: false)
+        let teDescription = "continueTE"
+        let now = Date()
+        let localTEStart = now.addingTimeInterval(-2000)
+        let serverTEStart = now
+        let localTE = TimeEntry.createNew(withDescription: teDescription, start: localTEStart, workspaceId: workspace.id)
+        var timeEntryState: TimeEntriesState = ([localTE.id: localTE], nil, nil)
+        let action = TimelineAction.continueEntry(localTE.id)
+        let serverTE = TimeEntry.createNew(withDescription: teDescription, start: serverTEStart, workspaceId: workspace.id)
+        api.returnStartedTimeEntry = serverTE
+        
+        let effect = reducer.run(&timeEntryState, action, api)
+        _ = effect
+            .sink { action in
+                guard case let TimelineAction.addTimeEntry(te) = action else { return }
+                XCTAssertEqual(te.description, serverTE.description, "There should be new TE from the server")
+                didSendAction.fulfill()
+            }
+        
+        wait(for: [didSendAction], timeout: 1)
+    }
+    
+    func testContinueEntrySendsErrorWhenItCantFindTheTimeEntryId()
+    {
+        let didSendAction = expectation(description: #function)
+        
+        let timelineState = TimelineState()
+        var timeEntryState: TimeEntriesState = (timelineState.timeEntries, nil, nil)
+        
+        let action = TimelineAction.continueEntry(1)
+        
+        let effect = reducer.run(&timeEntryState, action, api)
+        _ = effect
+            .sink { action in
+                guard case let TimelineAction.setError(error as TimelineError) = action, error == .CantFindTimeEntry else { return }
+                XCTAssertNotNil(error, "When it can't find timeEntry id to continue")
+                didSendAction.fulfill()
+            }
+        
+        wait(for: [didSendAction], timeout: 1)
+    }
+    
+    func testAddTimeEntryAddsTimeEntryToState()
+    {
+        let teDescription = "To be stopped"
+        let te = TimeEntry.createNew(withDescription: teDescription, workspaceId: 1, billable: false, projectId: nil, taskId: nil, tagIds: [])
+        let timelineState = TimelineState()
+        var timeEntryState: TimeEntriesState = (timelineState.timeEntries, nil, nil)
+                
+        XCTAssertNil(timeEntryState.runningTimeEntry, "There should not be a TE running")
+        XCTAssertEqual(timeEntryState.timeEntries.values.count, 0, "There should not be any TE")
+        
+        let action = TimelineAction.addTimeEntry(te)
+        _ = reducer.run(&timeEntryState, action, api)
+        
+        XCTAssertNotNil(timeEntryState.runningTimeEntry, "There should be a TE running")
+        XCTAssertEqual(timeEntryState.timeEntries.values.count, 1, "There should not be one TE")
+    }
 }
 
 extension TimeEntry

@@ -21,12 +21,12 @@ public struct TimeEntry: Equatable, Identifiable
     public var taskId: Int?
     public var tagIds: [Int]?
 
-    public static func createNew(withDescription description: String, workspaceId: Int, billable: Bool = false, projectId: Int? = nil, taskId: Int? = nil, tagIds: [Int] = []) -> TimeEntry
+    public static func createNew(withDescription description: String, start: Date = Date(), workspaceId: Int, billable: Bool = false, projectId: Int? = nil, taskId: Int? = nil, tagIds: [Int] = []) -> TimeEntry
     {
         return TimeEntry(
             id: Int.random(in: 0..<100000),
             description: description,
-            start: Date(),
+            start: start,
             duration: -1,
             billable: billable,
             workspaceId: workspaceId,
@@ -58,7 +58,7 @@ extension TimeEntry: Codable
     
     private var encodedDuration: Int64
     {
-        guard duration < 0 else { return Int64(-start.timeIntervalSince1970) }
+        guard duration >= 0 else { return Int64(-start.timeIntervalSince1970) }
         return Int64(duration)
     }
 
