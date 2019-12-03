@@ -38,4 +38,5 @@ extension Color
     public static var togglDarkRed = Color(red: 77/255, green: 6/255, blue: 6/255)
     public static var togglBlue = Color(red: 6/255, green: 170/255, blue: 245/255)
     public static var togglGray = Color(red: 174/255, green: 180/255, blue: 191/255)
+    public static var togglDarkGray = Color(red: 34/255, green: 34/255, blue: 35/255)
 }

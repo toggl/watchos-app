@@ -50,17 +50,20 @@ public struct TimelineView: View
             ForEach(store.state.groupedTimeEntries, id: \.day) { group in
                 Section(header: Text(group.dayString)) {
                     ForEach(group.timeEntries, id: \.id) { timeEntry in
-                        NavigationLink(destination: TimeEntryDetailView(store: self.store, timeEntry: timeEntry)) {
-                            TimeEntryCellView(timeEntry)
-                        }
-                    }
-                    .onDelete { indexSet in
-                        guard let index = indexSet.first else { return }
-                        let te = group.timeEntries[index]
-                        self.store.send(.deleteEntry(te.id))
+                        NavigationLink(destination:
+                        TimeEntryDetailView(store: self.store, timeEntry: timeEntry)) {
+                            TimeEntryCellView(
+                                timeEntry,
+                                onContinueTimeEntry: { te in self.store.send(.continueEntry(te.id)) },
+                                onDeleteTimeEntry: { te in self.store.send(.deleteEntry(te.id)) }
+                            )
+                        }                            
+                        .listRowInsets(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 4))
+                        .listRowPlatterColor(Color.clear)
                     }
                 }
             }
         }
+        .animation(Animation.default)
     }
 }

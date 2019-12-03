@@ -87,6 +87,8 @@
 		8C795110238FE10500FBB5D6 /* ObservableTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C79510E238FE0F600FBB5D6 /* ObservableTimer.swift */; };
 		8C795111238FE10600FBB5D6 /* ObservableTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C79510E238FE0F600FBB5D6 /* ObservableTimer.swift */; };
 		8C795113238FEC3500FBB5D6 /* ProjectTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C795112238FEC3500FBB5D6 /* ProjectTextView.swift */; };
+		8C79511623953C6800FBB5D6 /* RangeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C79511423953C6100FBB5D6 /* RangeExtensions.swift */; };
+		8C79511723953C6900FBB5D6 /* RangeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C79511423953C6100FBB5D6 /* RangeExtensions.swift */; };
 		8C79511B23967BA700FBB5D6 /* DateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C79511923967B0800FBB5D6 /* DateService.swift */; };
 		8C79511C23967BA800FBB5D6 /* DateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C79511923967B0800FBB5D6 /* DateService.swift */; };
 		8C79511E23967D1E00FBB5D6 /* MockDateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C79511D23967D1E00FBB5D6 /* MockDateService.swift */; };
@@ -231,6 +233,7 @@
 		8C79510C238EC40300FBB5D6 /* TagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
 		8C79510E238FE0F600FBB5D6 /* ObservableTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableTimer.swift; sourceTree = "<group>"; };
 		8C795112238FEC3500FBB5D6 /* ProjectTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTextView.swift; sourceTree = "<group>"; };
+		8C79511423953C6100FBB5D6 /* RangeExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeExtensions.swift; sourceTree = "<group>"; };
 		8C79511923967B0800FBB5D6 /* DateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateService.swift; sourceTree = "<group>"; };
 		8C79511D23967D1E00FBB5D6 /* MockDateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDateService.swift; sourceTree = "<group>"; };
 		8C88DEAA238BD2CE007D7A09 /* EntityReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityReducerTests.swift; sourceTree = "<group>"; };
@@ -601,6 +604,7 @@
 			isa = PBXGroup;
 			children = (
 				8C79510E238FE0F600FBB5D6 /* ObservableTimer.swift */,
+				8C79511423953C6100FBB5D6 /* RangeExtensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -939,6 +943,7 @@
 				ACEAE4C123884011009C7A26 /* ColorExtension.swift in Sources */,
 				8C79510A238EC0A800FBB5D6 /* WrappedListCell.swift in Sources */,
 				8C795110238FE10500FBB5D6 /* ObservableTimer.swift in Sources */,
+				8C79511623953C6800FBB5D6 /* RangeExtensions.swift in Sources */,
 				8C039429237D668B00AB1C95 /* AppAction.swift in Sources */,
 				8C039401237D667100AB1C95 /* Errors.swift in Sources */,
 				8C039415237D667900AB1C95 /* Client.swift in Sources */,
@@ -985,6 +990,7 @@
 				ACEAE4C023884010009C7A26 /* ColorExtension.swift in Sources */,
 				8C79510B238EC0A800FBB5D6 /* WrappedListCell.swift in Sources */,
 				8C795111238FE10600FBB5D6 /* ObservableTimer.swift in Sources */,
+				8C79511723953C6900FBB5D6 /* RangeExtensions.swift in Sources */,
 				8C03942E237D668B00AB1C95 /* AppAction.swift in Sources */,
 				8C03940A237D667100AB1C95 /* Errors.swift in Sources */,
 				8C03941B237D667900AB1C95 /* Client.swift in Sources */,
