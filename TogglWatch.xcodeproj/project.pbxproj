@@ -118,6 +118,7 @@
 		8CC5FE6C2355B3AB00D33237 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5FE6B2355B3AB00D33237 /* ComplicationController.swift */; };
 		8CC5FE6E2355B3AC00D33237 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CC5FE6D2355B3AC00D33237 /* Assets.xcassets */; };
 		8CC5FE712355B3AC00D33237 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CC5FE702355B3AC00D33237 /* Preview Assets.xcassets */; };
+		AC02174023967C12006441A3 /* RunningTimeEntrySelectorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC02173F23967C12006441A3 /* RunningTimeEntrySelectorTest.swift */; };
 		AC19DC9B237D79420009106D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DC99237D772E0009106D /* User.swift */; };
 		AC19DC9C237D79420009106D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DC99237D772E0009106D /* User.swift */; };
 		AC19DCA0237EAB130009106D /* LoginAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DC9F237EAB130009106D /* LoginAction.swift */; };
@@ -285,6 +286,7 @@
 		8CC5FE9B2355E2E700D33237 /* TimeIntervalExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalExtensions.swift; sourceTree = "<group>"; };
 		8CC5FE9E2355E70200D33237 /* TimelineReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineReducer.swift; sourceTree = "<group>"; };
 		8CC5FEA32355E74400D33237 /* TimeEntryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntryCellView.swift; sourceTree = "<group>"; };
+		AC02173F23967C12006441A3 /* RunningTimeEntrySelectorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningTimeEntrySelectorTest.swift; sourceTree = "<group>"; };
 		AC19DC99237D772E0009106D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AC19DC9F237EAB130009106D /* LoginAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAction.swift; sourceTree = "<group>"; };
 		AC19DCA2237EAC8B0009106D /* LoginReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginReducer.swift; sourceTree = "<group>"; };
@@ -365,6 +367,7 @@
 		8C0393EC237D664400AB1C95 /* Toggl Track iOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				AC02173E23967BF6006441A3 /* Selector */,
 				8CA6EC562382992400F7C9B5 /* Reducers */,
 				8CA16E78237D7F1400AD5A96 /* API */,
 				8C5645BE2379B017002E83B3 /* Networking */,
@@ -679,6 +682,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AC02173E23967BF6006441A3 /* Selector */ = {
+			isa = PBXGroup;
+			children = (
+				AC02173F23967C12006441A3 /* RunningTimeEntrySelectorTest.swift */,
+			);
+			path = Selector;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1026,6 +1037,7 @@
 				8CA6EC582382995000F7C9B5 /* UserReducerTests.swift in Sources */,
 				8C039435237D693E00AB1C95 /* EndpointTests.swift in Sources */,
 				ACEAE4AF23858FF7009C7A26 /* TimelineReducerTests.swift in Sources */,
+				AC02174023967C12006441A3 /* RunningTimeEntrySelectorTest.swift in Sources */,
 				8C3134032383019F0095E309 /* MockKeychain.swift in Sources */,
 				8C88DEAB238BD2CE007D7A09 /* EntityReducerTests.swift in Sources */,
 				8CA6EC5B2382A63300F7C9B5 /* MockAPI.swift in Sources */,

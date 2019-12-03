@@ -10,7 +10,7 @@ import Foundation
 
 public struct TimelineState: Equatable
 {
-    public var runningTimeEntry: Int? = nil
+    public var runningTimeEntryID: Int? = nil
     public var timeEntries = [TimeEntry.ID: TimeEntry]()
     public var workspaces = [Workspace.ID: Workspace]()
     public var clients = [Client.ID: Client]()
@@ -42,10 +42,10 @@ extension AppState
     }
 
     public var timeEntriesState: TimeEntriesState {
-        get { (timeline.timeEntries, timeline.runningTimeEntry, error) }
+        get { (timeline.timeEntries, timeline.runningTimeEntryID, error) }
         set {
             self.timeline.timeEntries = newValue.timeEntries
-            self.timeline.runningTimeEntry = newValue.runningTimeEntry
+            self.timeline.runningTimeEntryID = newValue.runningTimeEntry
             self.error = newValue.error
         }
     }
@@ -73,6 +73,12 @@ public let timeEntryModelSelector = memoize{ (state: TimelineState) -> [TimeEntr
         .sorted(by: { $0.start > $1.start })
 }
 
+public let runningTimeEntrySelector = memoize({ (state: TimelineState) -> TimeEntry? in
+    guard let runningID = state.runningTimeEntryID,
+        let runningTE = state.timeEntries[runningID] else { return nil }
+    return runningTE
+})
+
 extension TimelineState
 {
     public var groupedTimeEntries: [TimeEntryGroup]
@@ -85,12 +91,11 @@ extension TimelineState
     
     public var runningEntry: TimeEntryModel?
     {
-        guard let runningId = runningTimeEntry,
-            let timeEntry = timeEntries[runningId],
-            let workspace = workspaces[timeEntry.workspaceId] else { return nil }
+        guard let runningTimeEntry = runningTimeEntrySelector(self),
+            let workspace = workspaces[runningTimeEntry.workspaceId] else { return nil }
 
         return TimeEntryModel(
-            timeEntry: timeEntry,
+            timeEntry: runningTimeEntry,
             workspace: workspace
         )
     }
