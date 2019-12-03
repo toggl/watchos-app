@@ -15,7 +15,6 @@ public enum AppAction
     case projects(EntityAction<Project>)
     case tasks(EntityAction<Task>)
     case tags(EntityAction<Tag>)
-    case timeEntries(EntityAction<TimeEntry>)
 
     case timeline(TimelineAction)
     case user(LoginAction)
@@ -75,18 +74,7 @@ public enum AppAction
             guard case .tags = self, let newValue = newValue else { return }
             self = .tags(newValue)
         }
-    }
-        
-    public var timeEntries: EntityAction<TimeEntry>? {
-        get {
-            guard case let .timeEntries(value) = self else { return nil }
-            return value
-        }
-        set {
-            guard case .timeEntries = self, let newValue = newValue else { return }
-            self = .timeEntries(newValue)
-        }
-    }
+    }        
     
     public var timeline: TimelineAction? {
         get {

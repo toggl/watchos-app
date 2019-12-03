@@ -22,7 +22,7 @@ public var appReducer: Reducer<AppState, AppAction, AppEnvironment> = Reducer { 
                 .projects(.clear),
                 .tasks(.clear),
                 .tags(.clear),
-                .timeEntries(.clear)
+                .timeline(.clear)
             )
         default:
             return .empty
@@ -55,9 +55,9 @@ private func loadAllEffect(_ api: APIProtocol) -> Effect<AppAction>
             .map { .tags(.setEntities($0)) }
             .eraseToAnyPublisher(),
         api.loadEntries()
-            .map { .timeEntries(.setEntities($0)) }
+            .map { .timeline(.setEntries($0)) }
             .eraseToAnyPublisher()
-    )
+        )
         .catch { Just(.setError($0)) }
         .eraseToEffect()
 }

@@ -64,6 +64,26 @@ public var timelineReducer: Reducer<TimeEntriesState, TimelineAction, APIProtoco
         state.timeEntries[timeEntry.id] = timeEntry
         state.runningTimeEntry = timeEntry.id
         return .empty
+        
+    case let .setEntries(entries):
+        var runningTE: TimeEntry? = nil
+        state.timeEntries = entries.reduce([:], { acc, e in
+            if e.duration < 0 {
+                runningTE = e
+            }
+            var acc = acc
+            acc[e.id] = e
+            return acc
+        })
+        
+        state.runningTimeEntry = runningTE?.id
+        
+        return .empty
+        
+    case .clear:
+        state.timeEntries = [:]
+        state.runningTimeEntry = nil
+        return .empty
     }
 }
 

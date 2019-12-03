@@ -45,10 +45,10 @@ class AppReducerTests: XCTestCase
             .sink { appAction in
                 switch appAction {
                     
-                case let .timeEntries(entityAction):
-                    switch entityAction {
-                    case let .setEntities(entities):
-                        XCTAssertEqual(mockTEs, entities, "TEs should be set after load")
+                case let .timeline(timelineAction):
+                    switch timelineAction {
+                    case let .setEntries(entries):
+                        XCTAssertEqual(mockTEs, entries, "TEs should be set after load")
                         timeEntriesExpec.fulfill()
                     default:
                         break

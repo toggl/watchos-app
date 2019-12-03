@@ -17,6 +17,8 @@ public enum TimelineAction
     case setError(Error?)
     case continueEntry(Int)
     case addTimeEntry(TimeEntry)
+    case setEntries([TimeEntry])
+    case clear
 }
 
 extension TimelineAction: CustomStringConvertible
@@ -38,6 +40,10 @@ extension TimelineAction: CustomStringConvertible
             return "continue"
         case .addTimeEntry(_):
             return "addTimeEntry"
+        case .setEntries(_):
+            return "setEntries"
+        case .clear:
+            return "clear"
         }
     }
 }
