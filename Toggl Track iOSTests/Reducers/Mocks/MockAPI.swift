@@ -31,6 +31,7 @@ class MockAPI: APIProtocol
     
     var returnedError: Error = MockError.unknown
     var returnStartedTimeEntry: TimeEntry?
+    var returnUpdatedTimeEntry: TimeEntry?
     
     var deleteCalled = false
     
@@ -153,6 +154,18 @@ class MockAPI: APIProtocol
         }
         
         return Just(returnStartedTimeEntry)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+    
+    func updateTimeEntry(timeEntry: TimeEntry) -> AnyPublisher<TimeEntry, Error>
+    {
+        guard let returnUpdatedTimeEntry = returnUpdatedTimeEntry else {
+            return Fail(error: returnedError)
+                .eraseToAnyPublisher()
+        }
+        
+        return Just(returnUpdatedTimeEntry)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }

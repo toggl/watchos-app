@@ -24,6 +24,7 @@ public protocol APIProtocol
     
     func deleteTimeEntry(workspaceId: Int, timeEntryId: Int) -> AnyPublisher<Void, Error>
     func startTimeEntry(timeEntry: TimeEntry) -> AnyPublisher<TimeEntry, Error>
+    func updateTimeEntry(timeEntry: TimeEntry) -> AnyPublisher<TimeEntry, Error>
 }
 
 public class API : APIProtocol
@@ -131,6 +132,18 @@ public class API : APIProtocol
         let endpoint =  Endpoint<TimeEntry>(
             json: .post,
             url: URL(string: baseURL + "workspaces/\(timeEntry.workspaceId)/time_entries")!,
+            body: timeEntry,
+            headers: headers,
+            decoder: jsonDecoder
+        )
+        return urlSession.load(endpoint)
+    }
+    
+    public func updateTimeEntry(timeEntry: TimeEntry) -> AnyPublisher<TimeEntry, Error>
+    {
+        let endpoint =  Endpoint<TimeEntry>(
+            json: .put,
+            url: URL(string: baseURL + "workspaces/\(timeEntry.workspaceId)/time_entries/\(timeEntry.id)")!,
             body: timeEntry,
             headers: headers,
             decoder: jsonDecoder
