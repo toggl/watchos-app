@@ -13,11 +13,13 @@ public struct AppEnvironment
 
     public let api: APIProtocol
     public let keychain: KeychainProtocol
+    public let dateService: DateServiceProtocol
         
-    public init(api: APIProtocol, keychain: KeychainProtocol)
+    public init(api: APIProtocol, keychain: KeychainProtocol, dateService: DateServiceProtocol)
     {
         self.api = api
         self.keychain = keychain
+        self.dateService = dateService
     }
 }
 
@@ -25,4 +27,5 @@ public struct AppEnvironment
 extension AppEnvironment
 {
     public var loginEnvironment: LoginEnvironment { (api, keychain) }
+    public var timeEntriesEnvironment: TimeEntriesEnvironment { (api, dateService) }    
 }

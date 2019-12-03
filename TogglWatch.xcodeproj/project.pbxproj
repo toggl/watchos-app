@@ -87,6 +87,9 @@
 		8C795110238FE10500FBB5D6 /* ObservableTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C79510E238FE0F600FBB5D6 /* ObservableTimer.swift */; };
 		8C795111238FE10600FBB5D6 /* ObservableTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C79510E238FE0F600FBB5D6 /* ObservableTimer.swift */; };
 		8C795113238FEC3500FBB5D6 /* ProjectTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C795112238FEC3500FBB5D6 /* ProjectTextView.swift */; };
+		8C79511B23967BA700FBB5D6 /* DateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C79511923967B0800FBB5D6 /* DateService.swift */; };
+		8C79511C23967BA800FBB5D6 /* DateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C79511923967B0800FBB5D6 /* DateService.swift */; };
+		8C79511E23967D1E00FBB5D6 /* MockDateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C79511D23967D1E00FBB5D6 /* MockDateService.swift */; };
 		8C88AF4123840F1B00F67EC3 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3134052383D7C40095E309 /* Task.swift */; };
 		8C88AF4223840F1B00F67EC3 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3134052383D7C40095E309 /* Task.swift */; };
 		8C88DEAB238BD2CE007D7A09 /* EntityReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C88DEAA238BD2CE007D7A09 /* EntityReducerTests.swift */; };
@@ -228,6 +231,8 @@
 		8C79510C238EC40300FBB5D6 /* TagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
 		8C79510E238FE0F600FBB5D6 /* ObservableTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableTimer.swift; sourceTree = "<group>"; };
 		8C795112238FEC3500FBB5D6 /* ProjectTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTextView.swift; sourceTree = "<group>"; };
+		8C79511923967B0800FBB5D6 /* DateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateService.swift; sourceTree = "<group>"; };
+		8C79511D23967D1E00FBB5D6 /* MockDateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDateService.swift; sourceTree = "<group>"; };
 		8C88DEAA238BD2CE007D7A09 /* EntityReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityReducerTests.swift; sourceTree = "<group>"; };
 		8C88DEAC238BD340007D7A09 /* AppReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducerTests.swift; sourceTree = "<group>"; };
 		8C88DEAE238BFA4E007D7A09 /* TimeEntryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntryDetailView.swift; sourceTree = "<group>"; };
@@ -324,13 +329,13 @@
 		8C0393CD237D65A000AB1C95 /* TogglTrack */ = {
 			isa = PBXGroup;
 			children = (
+				8C795118239670DF00FBB5D6 /* Environment */,
 				8C795101238EC04E00FBB5D6 /* Views */,
 				8CA6EC5C2382B9E100F7C9B5 /* Extensions */,
 				8CA950A5237425030076BDA4 /* Utils */,
 				8C3B2C902361930E008295D8 /* Networking */,
 				8C113BCF2355EF4B00F8CE88 /* Architecture */,
 				8C113BA62355EE7B00F8CE88 /* Model */,
-				8C601BB723683B1C00E87BFB /* TogglAPI */,
 				8CA9507423732D7A0076BDA4 /* Core */,
 			);
 			path = TogglTrack;
@@ -458,6 +463,16 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		8C795118239670DF00FBB5D6 /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				8C601BB723683B1C00E87BFB /* TogglAPI */,
+				AC19DCA5237ED1960009106D /* KeychainService.swift */,
+				8C79511923967B0800FBB5D6 /* DateService.swift */,
+			);
+			path = Environment;
+			sourceTree = "<group>";
+		};
 		8C88DEB0238D39E3007D7A09 /* TimeEntry */ = {
 			isa = PBXGroup;
 			children = (
@@ -512,6 +527,7 @@
 			children = (
 				8CA6EC5A2382A63300F7C9B5 /* MockAPI.swift */,
 				8C3134022383019F0095E309 /* MockKeychain.swift */,
+				8C79511D23967D1E00FBB5D6 /* MockDateService.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -584,7 +600,6 @@
 		8CA950A5237425030076BDA4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				AC19DCA5237ED1960009106D /* KeychainService.swift */,
 				8C79510E238FE0F600FBB5D6 /* ObservableTimer.swift */,
 			);
 			path = Utils;
@@ -908,6 +923,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C79511B23967BA700FBB5D6 /* DateService.swift in Sources */,
 				AC19DC9C237D79420009106D /* User.swift in Sources */,
 				8C2753EC2388106300CFF255 /* DateExtensions.swift in Sources */,
 				AC19DCA3237EAC8B0009106D /* LoginReducer.swift in Sources */,
@@ -953,6 +969,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C79511C23967BA800FBB5D6 /* DateService.swift in Sources */,
 				AC19DC9B237D79420009106D /* User.swift in Sources */,
 				8C2753ED2388106300CFF255 /* DateExtensions.swift in Sources */,
 				AC19DCA4237EAC8B0009106D /* LoginReducer.swift in Sources */,
@@ -999,6 +1016,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C039433237D693E00AB1C95 /* URLProtocolMock.swift in Sources */,
+				8C79511E23967D1E00FBB5D6 /* MockDateService.swift in Sources */,
 				8CA6EC582382995000F7C9B5 /* UserReducerTests.swift in Sources */,
 				8C039435237D693E00AB1C95 /* EndpointTests.swift in Sources */,
 				ACEAE4AF23858FF7009C7A26 /* TimelineReducerTests.swift in Sources */,

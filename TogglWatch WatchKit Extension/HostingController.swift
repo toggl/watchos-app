@@ -16,7 +16,8 @@ class HostingController: WKHostingController<ContentView> {
         
         let environment = AppEnvironment(
             api: API(urlSession: URLSession(configuration: URLSessionConfiguration.default)),
-            keychain: Keychain()
+            keychain: Keychain(),
+            dateService: DateService()
         )
         
         return ContentView(store: Store(

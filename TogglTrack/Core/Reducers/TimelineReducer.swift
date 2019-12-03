@@ -10,15 +10,16 @@ import Foundation
 import Combine
 
 public typealias TimeEntriesState = (timeEntries: [TimeEntry.ID: TimeEntry], runningTimeEntry: Int?, error: Error?)
+public typealias TimeEntriesEnvironment = (api: APIProtocol, dateService: DateServiceProtocol)
 
-public var timelineReducer: Reducer<TimeEntriesState, TimelineAction, APIProtocol> = Reducer { state, action, api in
+public var timelineReducer: Reducer<TimeEntriesState, TimelineAction, TimeEntriesEnvironment> = Reducer { state, action, environment in
     switch action {
         
     case .startEntry(let description, let workspace):
         var te  = TimeEntry.createNew(withDescription: description, workspaceId: workspace.id)
         te.start = Date()
         te.duration = -1
-        return startTimeEntryEffect(api, timeEntry: te)
+        return startTimeEntryEffect(environment.api, timeEntry: te)
         
     case .stopRunningEntry:
         guard let runningId = state.runningTimeEntry,
@@ -36,7 +37,7 @@ public var timelineReducer: Reducer<TimeEntriesState, TimelineAction, APIProtoco
             return Just(.setError(TimelineError.CantFindTimeEntry))
                 .eraseToEffect()
         }
-        return deleteEffect(api, workspace: timeEntry.workspaceId, id: timeEntry.id)
+        return deleteEffect(environment.api, workspace: timeEntry.workspaceId, id: timeEntry.id)
         
     case .entryDeleted(let id):
         guard let _ = state.timeEntries[id] else {
@@ -56,9 +57,9 @@ public var timelineReducer: Reducer<TimeEntriesState, TimelineAction, APIProtoco
                 .eraseToEffect()
         }
         var copyTE = timeEntry
-        copyTE.start = Date()
+        copyTE.start = environment.dateService.date
         copyTE.duration = -1
-        return startTimeEntryEffect(api, timeEntry: copyTE)
+        return startTimeEntryEffect(environment.api, timeEntry: copyTE)
         
     case let .addTimeEntry(timeEntry):
         state.timeEntries[timeEntry.id] = timeEntry

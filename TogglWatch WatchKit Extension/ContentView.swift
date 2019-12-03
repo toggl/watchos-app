@@ -15,7 +15,7 @@ var combinedReducer: Reducer<AppState, AppAction, AppEnvironment> = combine(
     pullback(timelineReducer,
              state: \AppState.timeEntriesState,
              action: \AppAction.timeline,
-             environment: \AppEnvironment.api),
+             environment: \AppEnvironment.timeEntriesEnvironment),
     pullback(createEntityReducer(),
              state: \.timeline.workspaces,
              action: \.workspaces,

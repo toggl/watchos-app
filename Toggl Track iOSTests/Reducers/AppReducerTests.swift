@@ -37,7 +37,7 @@ class AppReducerTests: XCTestCase
         api.returnedTags = [Tag(id: 0, name: "", workspaceId: 0)]
         
         var appState = AppState()
-        let appEnvironment = AppEnvironment(api: api, keychain: Keychain())
+        let appEnvironment = AppEnvironment(api: api, keychain: Keychain(), dateService: DateService())
         let action = AppAction.loadAll
         let effect = reducer.run(&appState, action, appEnvironment)
         
