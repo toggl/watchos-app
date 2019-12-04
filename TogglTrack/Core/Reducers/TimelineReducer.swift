@@ -24,14 +24,14 @@ public var timelineReducer: Reducer<TimeEntriesState, TimelineAction, TimeEntrie
     case .stopRunningEntry:
         guard let runningId = state.runningTimeEntry,
             let runningTimeEntry = state.timeEntries[runningId] else {
-            return Just(.setError(TimelineError.CantFindTimeEntry))
+                return Just(.setError(TimelineError.NoRunningEntry))
                 .eraseToEffect()
         }
-        let stopped = state.timeEntries[runningId]?.stopped()
-        state.timeEntries[runningId] = stopped
-        state.runningTimeEntry = nil
-        return .empty
         
+        var copyTE = runningTimeEntry
+        copyTE.duration = environment.dateService.date.timeIntervalSince(runningTimeEntry.start)
+        return updateTimeEntryEffect(environment.api, timeEntry: copyTE)
+            
     case .deleteEntry(let id):
         guard let timeEntry = state.timeEntries[id] else {
             return Just(.setError(TimelineError.CantFindTimeEntry))
@@ -80,6 +80,15 @@ public var timelineReducer: Reducer<TimeEntriesState, TimelineAction, TimeEntrie
         state.runningTimeEntry = runningTE?.id
         
         return .empty
+    
+    case let .entryUpdated(entry):
+        state.timeEntries[entry.id] = entry
+        if (entry.duration < 0) {
+            state.runningTimeEntry = entry.id
+        } else if (state.runningTimeEntry == entry.id) {
+            state.runningTimeEntry = nil
+        }
+        return .empty
         
     case .clear:
         state.timeEntries = [:]
@@ -101,6 +110,14 @@ private func startTimeEntryEffect(_ api: APIProtocol, timeEntry: TimeEntry) -> E
 {
     api.startTimeEntry(timeEntry: timeEntry)
         .map { TimelineAction.addTimeEntry($0) }
+        .catch { error in Just(.setError(error)) }
+        .eraseToEffect()
+}
+
+private func updateTimeEntryEffect(_ api: APIProtocol, timeEntry: TimeEntry) -> Effect<TimelineAction>
+{
+    api.updateTimeEntry(timeEntry: timeEntry)
+        .map { TimelineAction.entryUpdated($0) }
         .catch { error in Just(.setError(error)) }
         .eraseToEffect()
 }

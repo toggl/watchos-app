@@ -11,4 +11,5 @@ import Foundation
 public enum TimelineError: Error
 {
     case CantFindTimeEntry
+    case NoRunningEntry
 }

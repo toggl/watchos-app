@@ -34,6 +34,7 @@ class MockAPI: APIProtocol
     var returnUpdatedTimeEntry: TimeEntry?
     
     var deleteCalled = false
+    private(set) var updatedTimeEntry: TimeEntry? = nil
     
     func setAuth(token: String?)
     {
@@ -160,6 +161,8 @@ class MockAPI: APIProtocol
     
     func updateTimeEntry(timeEntry: TimeEntry) -> AnyPublisher<TimeEntry, Error>
     {
+        updatedTimeEntry = timeEntry
+        
         guard let returnUpdatedTimeEntry = returnUpdatedTimeEntry else {
             return Fail(error: returnedError)
                 .eraseToAnyPublisher()

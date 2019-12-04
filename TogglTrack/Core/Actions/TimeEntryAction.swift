@@ -18,6 +18,7 @@ public enum TimelineAction
     case continueEntry(Int)
     case addTimeEntry(TimeEntry)
     case setEntries([TimeEntry])
+    case entryUpdated(TimeEntry)
     case clear
 }
 
@@ -29,7 +30,7 @@ extension TimelineAction: CustomStringConvertible
         case .startEntry(_, _):
             return "start"
         case .stopRunningEntry:
-            return "stop"
+            return "stopRunningTimeEntry"
         case .deleteEntry(_):
             return "delete"
         case .entryDeleted(_):
@@ -42,6 +43,8 @@ extension TimelineAction: CustomStringConvertible
             return "addTimeEntry"
         case .setEntries(_):
             return "setEntries"
+        case .entryUpdated(_):
+            return "entryUpdated"
         case .clear:
             return "clear"
         }

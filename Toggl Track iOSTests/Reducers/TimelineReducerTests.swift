@@ -39,44 +39,6 @@ class TimelineReducerTests: XCTestCase
         wait(for: [didSendAction], timeout: 1)
     }
     
-    func testStopRunningEntryStopsTimeEntryInState()
-    {
-        let teDescription = "To be stopped"
-        let te = TimeEntry.createNew(withDescription: teDescription, workspaceId: 1, billable: false, projectId: nil, taskId: nil, tagIds: [])
-        var timeEntryState: TimeEntriesState = ([te.id: te], te.id, nil)
-                
-        XCTAssertNotNil(timeEntryState.runningTimeEntry, "There should be a TE running")
-        
-        let action = TimelineAction.stopRunningEntry
-        _ = reducer.run(&timeEntryState, action, (api, dateService))
-        
-        let stopedTEs = timeEntryState.timeEntries
-            .filter { (id, te) in te.description == teDescription && te.duration != 0 }
-        
-        XCTAssertEqual(stopedTEs.count, 1, "There should be only 1 TE with desired description and non 0 duration")
-        XCTAssertNil(timeEntryState.runningTimeEntry, "There should not be a TE running")
-    }
-    
-    func testStopRunningEntrySendsErrorWhenItCantFindTheTimeEntryId()
-    {
-        let didSendAction = expectation(description: #function)
-        
-        let timelineState = TimelineState()
-        var timeEntryState: TimeEntriesState = (timelineState.timeEntries, nil, nil)
-        
-        let action = TimelineAction.stopRunningEntry
-        
-        let effect = reducer.run(&timeEntryState, action, (api, dateService))
-        _ = effect
-            .sink { action in
-                guard case let TimelineAction.setError(error as TimelineError) = action, error == .CantFindTimeEntry else { return }
-                XCTAssertNotNil(error, "When it can't find timeEntry id to continue")
-                didSendAction.fulfill()
-            }
-        
-        wait(for: [didSendAction], timeout: 1)
-    }
-    
     func testDeleteEntrySendsRequestToAPI()
     {
         let teDescription = "To be deleted"
@@ -207,6 +169,90 @@ class TimelineReducerTests: XCTestCase
         XCTAssertNotNil(timeEntryState.runningTimeEntry, "There should be a TE running")
         XCTAssertEqual(timeEntryState.timeEntries.values.count, 1, "There should not be one TE")
     }
+    
+    func testStopTimeEntryReturnsErrorIfTheresNoEntryRunning()
+    {
+        let didSendAction = expectation(description: #function)
+
+        var timeEntryState: TimeEntriesState = ([:], nil, nil)
+        let action = TimelineAction.stopRunningEntry
+       
+        let effect = reducer.run(&timeEntryState, action, (api, dateService))
+        _ = effect
+            .sink { action in
+                guard case let TimelineAction.setError(error as TimelineError) = action, error == .NoRunningEntry else { return }
+                XCTAssertNotNil(error, "No running entry should return an error")
+                didSendAction.fulfill()
+            }
+
+        wait(for: [didSendAction], timeout: 1)
+    }
+    
+    func testStopTimeEntryReturnsErrorIfCantFindRunningEntry()
+    {
+        let didSendAction = expectation(description: #function)
+
+        let runningEntryId = 1234
+        var timeEntryState: TimeEntriesState = ([:], runningEntryId, nil)
+        let action = TimelineAction.stopRunningEntry
+        
+        let effect = reducer.run(&timeEntryState, action, (api, dateService))
+        _ = effect
+            .sink { action in
+                guard case let TimelineAction.setError(error as TimelineError) = action, error == .NoRunningEntry else { return }
+                XCTAssertNotNil(error, "No running entry should return an error")
+                didSendAction.fulfill()
+            }
+
+        wait(for: [didSendAction], timeout: 1)
+    }
+    
+    func testStopRunningEntryCallsAPIWithAppropriateEntry()
+    {
+        let duration: TimeInterval = 8000
+        let now = Date()
+        dateService.currentDate = now
+        
+        var te = TimeEntry.createNew(withDescription: "", workspaceId: 1, billable: false, projectId: nil, taskId: nil, tagIds: [])
+        te.start = now.addingTimeInterval(-duration)
+        
+        var timeEntryState: TimeEntriesState = ([te.id:te], te.id, nil)
+        let action = TimelineAction.stopRunningEntry
+        
+        _ = reducer.run(&timeEntryState, action, (api, dateService))
+
+        XCTAssertNotNil(self.api.updatedTimeEntry, "Should have called update in the API")
+        XCTAssertEqual(self.api.updatedTimeEntry?.duration, duration, "Should have called update in the API")
+    }
+    
+    func testStopRunningEntryReturnsTheCorrectEffect()
+    {
+        let didSendAction = expectation(description: #function)
+
+        let duration: TimeInterval = 8000
+        let now = Date()
+        dateService.currentDate = now
+        
+        var te = TimeEntry.createNew(withDescription: "", workspaceId: 1, billable: false, projectId: nil, taskId: nil, tagIds: [])
+        te.start = now.addingTimeInterval(-duration)
+        
+        var stoppedTE = te
+        stoppedTE.duration = duration
+        api.returnUpdatedTimeEntry = stoppedTE
+        
+        var timeEntryState: TimeEntriesState = ([te.id:te], te.id, nil)
+        let action = TimelineAction.stopRunningEntry
+        
+        let effect = reducer.run(&timeEntryState, action, (api, dateService))
+        _ = effect
+            .sink { action in
+                print(action)
+                guard case let TimelineAction.entryUpdated(timeEntry) = action else { return }
+                XCTAssertEqual(timeEntry.id, te.id, "Effect not carrying the correct TE")
+                didSendAction.fulfill()
+            }
+
+        wait(for: [didSendAction], timeout: 1)    }
 }
 
 extension TimeEntry
