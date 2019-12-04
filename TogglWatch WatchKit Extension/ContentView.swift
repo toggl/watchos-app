@@ -73,8 +73,8 @@ struct ContentView: View
                         action: { self.store.send(.user(.logout)) },
                         label: {
                             VStack {
-                                //Image(systemName: "logout")
-                                Text("Log out")
+                                Image("logout")
+                                Text("Sign out")
                             }
                     })
                 })
@@ -82,3 +82,4 @@ struct ContentView: View
         }
     }
 }
+
