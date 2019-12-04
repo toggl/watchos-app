@@ -24,8 +24,8 @@ struct ProjectTaskClientTextView: View
                 Text("• ")
                     .font(.system(size: 20))
                     .foregroundColor(timeEntry.projectColor)
-                    + Text(timeEntry.projectTaskClientString)
-                        .font(.system(size: 14))
+                + Text(timeEntry.projectTaskClientString)
+                    .font(.system(size: 14))
             } else {
                 EmptyView()
             }

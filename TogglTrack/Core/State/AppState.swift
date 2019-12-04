@@ -54,22 +54,7 @@ extension AppState
 // Selectors
 public let timeEntryModelSelector = memoize{ (state: TimelineState) -> [TimeEntryModel] in
     return state.timeEntries.values
-        .compactMap { timeEntry in
-            guard let workspace = state.workspaces[timeEntry.workspaceId] else { return nil }
-            let project: Project? = timeEntry.projectId != nil ? state.projects[timeEntry.projectId!] : nil
-            let client: Client? = project?.clientId != nil ? state.clients[project!.clientId!] : nil
-            let task: Task? = timeEntry.taskId != nil ? state.tasks[timeEntry.taskId!] : nil
-            let tags: [Tag]? = timeEntry.tagIds != nil ? timeEntry.tagIds?.compactMap { state.tags[$0] } : nil
-            
-            return TimeEntryModel(
-                timeEntry: timeEntry,
-                workspace: workspace,
-                project: project,
-                client: client,
-                task: task,
-                tags: tags
-            )
-        }
+        .compactMap { $0.toViewModel(state) }
         .sorted(by: { $0.start > $1.start })
 }
 
@@ -81,9 +66,10 @@ public let runningTimeEntrySelector = memoize({ (state: TimelineState) -> TimeEn
 
 extension TimelineState
 {
-    public var groupedTimeEntries: [TimeEntryGroup]
+    public var groupedTimelineEntries: [TimeEntryGroup]
     {
         return timeEntryModelSelector(self)
+            .filter({ !$0.isRunning })
             .grouped(by: { $0.start.ignoreTimeComponents() })
             .map(TimeEntryGroup.init)
             .sorted(by: { $0.day > $1.day })
@@ -91,12 +77,29 @@ extension TimelineState
     
     public var runningEntry: TimeEntryModel?
     {
-        guard let runningTimeEntry = runningTimeEntrySelector(self),
-            let workspace = workspaces[runningTimeEntry.workspaceId] else { return nil }
+        guard let runningTimeEntry = runningTimeEntrySelector(self) else { return nil }
 
+        return runningTimeEntry.toViewModel(self)
+    }
+}
+
+fileprivate extension TimeEntry
+{
+    func toViewModel(_ state: TimelineState) -> TimeEntryModel?
+    {
+        guard let workspace = state.workspaces[self.workspaceId] else { return nil }
+        let project: Project? = self.projectId != nil ? state.projects[self.projectId!] : nil
+        let client: Client? = project?.clientId != nil ? state.clients[project!.clientId!] : nil
+        let task: Task? = self.taskId != nil ? state.tasks[self.taskId!] : nil
+        let tags: [Tag]? = self.tagIds != nil ? self.tagIds?.compactMap { state.tags[$0] } : nil
+        
         return TimeEntryModel(
-            timeEntry: runningTimeEntry,
-            workspace: workspace
+            timeEntry: self,
+            workspace: workspace,
+            project: project,
+            client: client,
+            task: task,
+            tags: tags
         )
     }
 }

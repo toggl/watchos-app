@@ -42,12 +42,13 @@ public struct TimelineView: View
     
     public var body: some View {
         List {
-            RunningButton(
-                runningTimeEntry: store .state.runningEntry,
-                start: { self.store.send(.startEntry("My time entry", self.store.state.workspaces.values.first!)) },
-                stop: { self.store.send(.stopRunningEntry) }
-            )
-            ForEach(store.state.groupedTimeEntries, id: \.day) { group in
+            if store.state.runningEntry != nil {
+                NavigationLink(destination: TimeEntryDetailView(store: self.store, timeEntry: store.state.runningEntry!)) {
+                    RunningTimeEntryView(store.state.runningEntry!, onStopAction: { self.store.send(.stopRunningEntry) })
+                }
+                .listRowPlatterColor(Color.black)
+            }
+            ForEach(store.state.groupedTimelineEntries, id: \.day) { group in
                 Section(header: Text(group.dayString)) {
                     ForEach(group.timeEntries, id: \.id) { timeEntry in
                         NavigationLink(destination:
@@ -57,7 +58,7 @@ public struct TimelineView: View
                                 onContinueTimeEntry: { te in self.store.send(.continueEntry(te.id)) },
                                 onDeleteTimeEntry: { te in self.store.send(.deleteEntry(te.id)) }
                             )
-                        }                            
+                        }
                         .listRowInsets(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 4))
                         .listRowPlatterColor(Color.clear)
                     }
