@@ -95,13 +95,16 @@ struct TimeEntryDetailView: View
                 HStack(alignment: .center, spacing: 4) {
                     
                     if timeEntry.isRunning {
-                        Button(action: {}) {
+                        Button(action: { self.store.send(.stopRunningEntry) }) {
                             Text("Stop")
                         }
                         .background(Color.togglRed)
                         .cornerRadius(20)
                     } else {
-                        Button(action: {}) {
+                        Button(action: {
+                            self.store.send(.continueEntry(self.timeEntry.id))
+                            self.presentationMode.wrappedValue.dismiss()
+                        }) {
                             Text("Continue")
                         }
                         .background(Color.togglGreen)
