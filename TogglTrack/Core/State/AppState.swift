@@ -81,6 +81,11 @@ extension TimelineState
 
         return runningTimeEntry.toViewModel(self)
     }
+    
+    public func timeEntryFor(id: Int) -> TimeEntryModel?
+    {
+        return timeEntries[id]?.toViewModel(self)
+    }
 }
 
 fileprivate extension TimeEntry

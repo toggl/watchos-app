@@ -36,7 +36,7 @@ struct DetailSection<TitleView: View, ContentView: View>: View
 struct TimeFrameView: View
 {
     var timeEntry: TimeEntryModel
-
+    
     var body: some View
     {
         VStack {
@@ -65,7 +65,7 @@ struct DurationView: View
 {
     var timeEntry: TimeEntryModel
     var now: Date
-
+    
     var body: some View
     {
         Group {
@@ -81,12 +81,12 @@ struct DurationView: View
 struct TimeEntryDetailView: View
 {
     @ObservedObject var store: Store<TimelineState, TimelineAction, AppEnvironment>
-    var timeEntry: TimeEntryModel
+    @State var timeEntry: TimeEntryModel
     
     @State var timer: ObservableTimer = ObservableTimer()
     @State var now: Date = Date()
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
+    
     var body: some View
     {
         ScrollView {
@@ -122,7 +122,7 @@ struct TimeEntryDetailView: View
                     .frame(width:47)
                 }
                 .padding(.vertical, 9)
-
+                
                 DetailSection(title: EmptyView()) {
                     VStack(alignment: .leading) {
                         Text(self.timeEntry.descriptionString)
@@ -185,6 +185,14 @@ struct TimeEntryDetailView: View
             }
             .padding(.horizontal, 4)
         }
-    .navigationBarTitle("Back")
+        .navigationBarTitle("Back")
+        .onReceive(self.store.$state.map { $0.timeEntryFor(id: self.timeEntry.id) }) { timeEntry in
+            guard let timeEntry = timeEntry else {
+                self.presentationMode.wrappedValue.dismiss()
+                return
+            }
+            
+            self.timeEntry = timeEntry
+        }
     }
 }
