@@ -18,7 +18,7 @@ public enum AppAction
 
     case timeline(TimelineAction)
     case user(LoginAction)
-    case loadAll
+    case loadAll(force: Bool)
     case setError(Error?)
     case setLoading(Bool)
     

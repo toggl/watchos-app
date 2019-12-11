@@ -26,7 +26,7 @@ public var loginReducer: Reducer<User?, LoginAction, LoginEnvironment, AppAction
         state = user
         userEnv.keychain.setApiToken(token: user.apiToken)
         userEnv.api.setAuth(token: user.apiToken)
-        return Just(.loadAll).eraseToEffect()
+        return Just(.loadAll(force: true)).eraseToEffect()
         
     case .loadAPITokenAndUser:
         guard let token = userEnv.keychain.getApiToken() else { return .empty }

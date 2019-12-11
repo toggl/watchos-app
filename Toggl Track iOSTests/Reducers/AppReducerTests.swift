@@ -38,7 +38,7 @@ class AppReducerTests: XCTestCase
         
         var appState = AppState()
         let appEnvironment = AppEnvironment(api: api, keychain: Keychain(), dateService: DateService())
-        let action = AppAction.loadAll
+        let action = AppAction.loadAll(force: true)
         let effect = reducer.run(&appState, action, appEnvironment)
         
         _ = effect

@@ -9,16 +9,25 @@
 import Foundation
 import Combine
 
+let refreshWhenActivatingThreshold: TimeInterval = 60
+
 public var appReducer: Reducer<AppState, AppAction, AppEnvironment, AppAction> = Reducer { state, action, environment in
     switch action {
-    
-    case .loadAll:
-        return Effect.concat(
-            Just(.setLoading(true)).eraseToEffect(),
-            loadAllEffect(environment.api),
-            Just(.setLoading(false)).eraseToEffect()
-        )
-    
+
+    case let .loadAll(force):
+        let now = environment.dateService.date
+        
+        if force || (state.lastSync != nil && now.timeIntervalSince(state.lastSync!) > refreshWhenActivatingThreshold) {
+            state.lastSync = now
+            return Effect.concat(
+                Just(.setLoading(true)).eraseToEffect(),
+                loadAllEffect(environment.api),
+                Just(.setLoading(false)).eraseToEffect()
+            )
+        }
+        
+        return .empty
+
     case let .setError(error):
         state.error = error
         return Just(.setLoading(false)).eraseToEffect()

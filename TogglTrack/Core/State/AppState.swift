@@ -25,6 +25,7 @@ public struct AppState
     public var user: User?
     public var error: Error?
     public var loading: Bool = false
+    public var lastSync: Date?
 
     public init()
     {

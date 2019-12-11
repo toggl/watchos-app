@@ -61,6 +61,14 @@ struct ContentView: View
                 TimelineView()
                 .contextMenu(menuItems: {
                     Button(
+                        action: { self.store.send(.loadAll(force: true)) },
+                        label: {
+                            VStack {
+                                Image(systemName: "arrow.counterclockwise")
+                                Text("Refresh")
+                            }
+                    })
+                    Button(
                         action: { self.store.send(.user(.logout)) },
                         label: {
                             VStack {
