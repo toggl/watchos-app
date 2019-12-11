@@ -19,7 +19,7 @@ public enum AppAction
     case timeline(TimelineAction)
     case user(LoginAction)
     case loadAll
-    case setError(Error)
+    case setError(Error?)
     
     public var workspaces: EntityAction<Workspace>? {
         get {

@@ -21,7 +21,7 @@ class TimelineReducerTests: XCTestCase
         let didSendAction = expectation(description: #function)
         
         let timelineState = TimelineState()
-        var timeEntryState: TimeEntriesState = (timelineState.timeEntries, nil, nil)
+        var timeEntryState: TimeEntriesState = (timelineState.timeEntries, nil)
         let workspace = Workspace(id: 1, name: "name", admin: false)
         let teDescription = "newTE"
         let action = TimelineAction.startEntry(teDescription, workspace)
@@ -31,7 +31,7 @@ class TimelineReducerTests: XCTestCase
         let effect = reducer.run(&timeEntryState, action, (api, dateService))
         _ = effect
             .sink { action in
-                guard case let TimelineAction.addTimeEntry(te) = action else { return }
+                guard case let .timeline(.addTimeEntry(te)) = action else { return }
                 XCTAssertEqual(te.description, serverTE.description, "There should be new TE from the server")
                 didSendAction.fulfill()
             }
@@ -44,7 +44,7 @@ class TimelineReducerTests: XCTestCase
         let teDescription = "To be deleted"
         let te = TimeEntry.createNew(withDescription: teDescription, workspaceId: 1, billable: false, projectId: nil, taskId: nil, tagIds: [])
         
-        var timeEntryState: TimeEntriesState = ([te.id: te], nil, nil)
+        var timeEntryState: TimeEntriesState = ([te.id: te], nil)
         
         let action = TimelineAction.deleteEntry(te.id)
         _ = reducer.run(&timeEntryState, action, (api, dateService))
@@ -57,7 +57,7 @@ class TimelineReducerTests: XCTestCase
         let teDescription = "To be deleted"
         let te = TimeEntry.createNew(withDescription: teDescription, workspaceId: 1, billable: false, projectId: nil, taskId: nil, tagIds: [])
         
-        var timeEntryState: TimeEntriesState = ([te.id: te], nil, nil)
+        var timeEntryState: TimeEntriesState = ([te.id: te], nil)
         
         var newTEs = timeEntryState.timeEntries
             .filter { (id, te) in te.description == teDescription }
@@ -78,33 +78,19 @@ class TimelineReducerTests: XCTestCase
         let didSendAction = expectation(description: #function)
         
         let timelineState = TimelineState()
-        var timeEntryState: TimeEntriesState = (timelineState.timeEntries, nil, nil)
+        var timeEntryState: TimeEntriesState = (timelineState.timeEntries, nil)
         
         let action = TimelineAction.deleteEntry(1)
         
         let effect = reducer.run(&timeEntryState, action, (api, dateService))
         _ = effect
             .sink { action in
-                guard case let TimelineAction.setError(error as TimelineError) = action, error == .CantFindTimeEntry else { return }
+                guard case let .setError(error as TimelineError) = action, error == .CantFindTimeEntry else { return }
                 XCTAssertNotNil(error, "When it can't find timeEntry id to delete")
                 didSendAction.fulfill()
             }
         
         wait(for: [didSendAction], timeout: 1)
-    }
-    
-    func testSetErrorSendsTheErrorToTheState()
-    {
-        let timelineState = TimelineState()
-        var timeEntryState: TimeEntriesState = (timelineState.timeEntries, nil, nil)
-        let error = TimelineError.CantFindTimeEntry
-        let action = TimelineAction.setError(error)
-        
-        XCTAssertTrue(timeEntryState.error == nil, "There should not be an error in the state")
-        
-        _ = reducer.run(&timeEntryState, action, (api, dateService))
-        
-        XCTAssertTrue(timeEntryState.error != nil, "There should be an error in the state")
     }
     
     func testContinueEntrySendsStartTimeEntryEffect()
@@ -117,7 +103,7 @@ class TimelineReducerTests: XCTestCase
         let localTEStart = now.addingTimeInterval(-2000)
         let serverTEStart = now
         let localTE = TimeEntry.createNew(withDescription: teDescription, start: localTEStart, workspaceId: workspace.id)
-        var timeEntryState: TimeEntriesState = ([localTE.id: localTE], nil, nil)
+        var timeEntryState: TimeEntriesState = ([localTE.id: localTE], nil)
         let action = TimelineAction.continueEntry(localTE.id)
         let serverTE = TimeEntry.createNew(withDescription: teDescription, start: serverTEStart, workspaceId: workspace.id)
         api.returnStartedTimeEntry = serverTE
@@ -125,7 +111,7 @@ class TimelineReducerTests: XCTestCase
         let effect = reducer.run(&timeEntryState, action, (api, dateService))
         _ = effect
             .sink { action in
-                guard case let TimelineAction.addTimeEntry(te) = action else { return }
+                guard case let .timeline(.addTimeEntry(te)) = action else { return }
                 XCTAssertEqual(te.description, serverTE.description, "There should be new TE from the server")
                 didSendAction.fulfill()
             }
@@ -138,14 +124,14 @@ class TimelineReducerTests: XCTestCase
         let didSendAction = expectation(description: #function)
         
         let timelineState = TimelineState()
-        var timeEntryState: TimeEntriesState = (timelineState.timeEntries, nil, nil)
+        var timeEntryState: TimeEntriesState = (timelineState.timeEntries, nil)
         
         let action = TimelineAction.continueEntry(1)
         
         let effect = reducer.run(&timeEntryState, action, (api, dateService))
         _ = effect
             .sink { action in
-                guard case let TimelineAction.setError(error as TimelineError) = action, error == .CantFindTimeEntry else { return }
+                guard case let .setError(error as TimelineError) = action, error == .CantFindTimeEntry else { return }
                 XCTAssertNotNil(error, "When it can't find timeEntry id to continue")
                 didSendAction.fulfill()
             }
@@ -158,7 +144,7 @@ class TimelineReducerTests: XCTestCase
         let teDescription = "To be stopped"
         let te = TimeEntry.createNew(withDescription: teDescription, workspaceId: 1, billable: false, projectId: nil, taskId: nil, tagIds: [])
         let timelineState = TimelineState()
-        var timeEntryState: TimeEntriesState = (timelineState.timeEntries, nil, nil)
+        var timeEntryState: TimeEntriesState = (timelineState.timeEntries, nil)
                 
         XCTAssertNil(timeEntryState.runningTimeEntry, "There should not be a TE running")
         XCTAssertEqual(timeEntryState.timeEntries.values.count, 0, "There should not be any TE")
@@ -174,13 +160,13 @@ class TimelineReducerTests: XCTestCase
     {
         let didSendAction = expectation(description: #function)
 
-        var timeEntryState: TimeEntriesState = ([:], nil, nil)
+        var timeEntryState: TimeEntriesState = ([:], nil)
         let action = TimelineAction.stopRunningEntry
        
         let effect = reducer.run(&timeEntryState, action, (api, dateService))
         _ = effect
             .sink { action in
-                guard case let TimelineAction.setError(error as TimelineError) = action, error == .NoRunningEntry else { return }
+                guard case let .setError(error as TimelineError) = action, error == .NoRunningEntry else { return }
                 XCTAssertNotNil(error, "No running entry should return an error")
                 didSendAction.fulfill()
             }
@@ -193,13 +179,13 @@ class TimelineReducerTests: XCTestCase
         let didSendAction = expectation(description: #function)
 
         let runningEntryId = 1234
-        var timeEntryState: TimeEntriesState = ([:], runningEntryId, nil)
+        var timeEntryState: TimeEntriesState = ([:], runningEntryId)
         let action = TimelineAction.stopRunningEntry
         
         let effect = reducer.run(&timeEntryState, action, (api, dateService))
         _ = effect
             .sink { action in
-                guard case let TimelineAction.setError(error as TimelineError) = action, error == .NoRunningEntry else { return }
+                guard case let .setError(error as TimelineError) = action, error == .NoRunningEntry else { return }
                 XCTAssertNotNil(error, "No running entry should return an error")
                 didSendAction.fulfill()
             }
@@ -216,7 +202,7 @@ class TimelineReducerTests: XCTestCase
         var te = TimeEntry.createNew(withDescription: "", workspaceId: 1, billable: false, projectId: nil, taskId: nil, tagIds: [])
         te.start = now.addingTimeInterval(-duration)
         
-        var timeEntryState: TimeEntriesState = ([te.id:te], te.id, nil)
+        var timeEntryState: TimeEntriesState = ([te.id:te], te.id)
         let action = TimelineAction.stopRunningEntry
         
         _ = reducer.run(&timeEntryState, action, (api, dateService))
@@ -240,14 +226,14 @@ class TimelineReducerTests: XCTestCase
         stoppedTE.duration = duration
         api.returnUpdatedTimeEntry = stoppedTE
         
-        var timeEntryState: TimeEntriesState = ([te.id:te], te.id, nil)
+        var timeEntryState: TimeEntriesState = ([te.id:te], te.id)
         let action = TimelineAction.stopRunningEntry
         
         let effect = reducer.run(&timeEntryState, action, (api, dateService))
         _ = effect
             .sink { action in
                 print(action)
-                guard case let TimelineAction.entryUpdated(timeEntry) = action else { return }
+                guard case let .timeline(.entryUpdated(timeEntry)) = action else { return }
                 XCTAssertEqual(timeEntry.id, te.id, "Effect not carrying the correct TE")
                 didSendAction.fulfill()
             }

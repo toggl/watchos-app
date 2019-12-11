@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 import TogglTrack
 
-var combinedReducer: Reducer<AppState, AppAction, AppEnvironment> = combine(
+var combinedReducer: Reducer<AppState, AppAction, AppEnvironment, AppAction> = combine(
     appReducer,
     pullback(timelineReducer,
              state: \AppState.timeEntriesState,
@@ -37,7 +37,7 @@ var combinedReducer: Reducer<AppState, AppAction, AppEnvironment> = combine(
              action: \.tags,
              environment: \.api),
     pullback(loginReducer,
-             state: \.loginState,
+             state: \.user,
              action: \.user,
              environment: \.loginEnvironment
     )
@@ -56,18 +56,9 @@ struct ContentView: View
     var body: some View {
         Group {
             if(self.store.state.user == nil) {
-                LoginView(store:
-                    self.store.view(
-                        state: { $0.loginState },
-                        action: { .user($0) }
-                ))
+                LoginView()
             } else {
-                TimelineView(store:
-                    store.view(
-                        state: { $0.timeline },
-                        action: { .timeline($0)}
-                    )
-                )
+                TimelineView()
                 .contextMenu(menuItems: {
                     Button(
                         action: { self.store.send(.user(.logout)) },
@@ -80,6 +71,7 @@ struct ContentView: View
                 })
             }
         }
+        .environmentObject(store)
     }
 }
 

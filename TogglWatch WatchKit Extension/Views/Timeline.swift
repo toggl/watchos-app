@@ -33,31 +33,26 @@ public struct RunningButton: View
 
 public struct TimelineView: View
 {
-    @ObservedObject var store: Store<TimelineState, TimelineAction, AppEnvironment>
+    @EnvironmentObject var store: Store<AppState, AppAction, AppEnvironment>
     @State var visibleActionId: Int = -1
-    
-    public init(store: Store<TimelineState, TimelineAction, AppEnvironment>)
-    {
-        self.store = store
-    }
     
     public var body: some View {
         List {
-            if store.state.runningEntry != nil {
-                NavigationLink(destination: TimeEntryDetailView(store: self.store, timeEntry: store.state.runningEntry!)) {
-                    RunningTimeEntryView(store.state.runningEntry!, onStopAction: { self.store.send(.stopRunningEntry) })
+            if store.state.timeline.runningEntry != nil {
+                NavigationLink(destination: TimeEntryDetailView(timeEntry: store.state.timeline.runningEntry!)) {
+                    RunningTimeEntryView(store.state.timeline.runningEntry!, onStopAction: { self.store.send(.timeline(.stopRunningEntry)) })
                 }
                 .listRowPlatterColor(Color.black)
             }
-            ForEach(store.state.groupedTimelineEntries, id: \.day) { group in
+            ForEach(store.state.timeline.groupedTimelineEntries, id: \.day) { group in
                 Section(header: Text(group.dayString)) {
                     ForEach(group.timeEntries, id: \.id) { timeEntry in
                         NavigationLink(destination:
-                        TimeEntryDetailView(store: self.store, timeEntry: timeEntry)) {
+                        TimeEntryDetailView(timeEntry: timeEntry)) {
                             TimeEntryCellView(
                                 timeEntry,
-                                onContinueTimeEntry: { te in self.store.send(.continueEntry(te.id)) },
-                                onDeleteTimeEntry: { te in self.store.send(.deleteEntry(te.id)) },
+                                onContinueTimeEntry: { te in self.store.send(.timeline(.continueEntry(te.id))) },
+                                onDeleteTimeEntry: { te in self.store.send(.timeline(.deleteEntry(te.id))) },
                                 visibleActionId: self.$visibleActionId
                             )
                         }

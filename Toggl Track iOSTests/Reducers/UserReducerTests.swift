@@ -27,7 +27,7 @@ class UserReducerTests: XCTestCase
         let email = "test@test.com"
         let password = "password"
         
-        var userState = LoginState(user: nil, error: nil)
+        var userState: User? = nil
         let action = LoginAction.login(email, password)
         
         _ = reducer.run(&userState, action, userEnvironment)
@@ -44,14 +44,14 @@ class UserReducerTests: XCTestCase
         let password = "password"
         let mockUser = User(id: 0, apiToken: "token")
         
-        var userState = LoginState(user: nil, error: nil)
+        var userState: User? = nil
         let action = LoginAction.login(email, password)
         api.returnedUser = mockUser
         
         let effect = reducer.run(&userState, action, userEnvironment)
         _ = effect
             .sink { userAction in
-                guard case let LoginAction.setUser(user) = userAction else { return }
+                guard case let .user(.setUser(user)) = userAction else { return }
                 XCTAssertEqual(mockUser, user, "User should be set after login")
                 didSendAction.fulfill()
             }
@@ -66,14 +66,14 @@ class UserReducerTests: XCTestCase
         let email = "test@test.com"
         let password = "password"
         
-        var userState = LoginState(user: nil, error: nil)
+        var userState: User? = nil
         let action = LoginAction.login(email, password)
         api.returnedUser = nil
         
         let effect = reducer.run(&userState, action, userEnvironment)
         _ = effect
             .sink { userAction in
-                guard case let LoginAction.setError(error) = userAction else { return }
+                guard case let .setError(error) = userAction else { return }
                 XCTAssertNotNil(error, "When login fails an error should be set")
                 didSendAction.fulfill()
             }
@@ -84,7 +84,7 @@ class UserReducerTests: XCTestCase
     func testSetUserSendsCredentialsToAPI()
     {
         let user = User(id: 0, apiToken: "token")
-        var userState = LoginState(user: nil, error: nil)
+        var userState: User? = nil
         let action = LoginAction.setUser(user)
         
         _ = reducer.run(&userState, action, userEnvironment)
@@ -95,7 +95,7 @@ class UserReducerTests: XCTestCase
     func testSetUserSavesAPITokenInKeychain()
     {
         let user = User(id: 0, apiToken: "token")
-        var userState = LoginState(user: nil, error: nil)
+        var userState: User? = nil
         let action = LoginAction.setUser(user)
         
         _ = reducer.run(&userState, action, userEnvironment)
@@ -106,20 +106,19 @@ class UserReducerTests: XCTestCase
     
     func testLoadUserDoesNothingIfTheresNoTokenInKeychain()
     {
-        var userState = LoginState(user: nil, error: nil)
+        var userState: User? = nil
         let action = LoginAction.loadAPITokenAndUser
         keychain.apiToken = nil
         
         _ = reducer.run(&userState, action, userEnvironment)
         
-        XCTAssertNil(userState.user, "Load user should do nothing if there's no stored token")
-        XCTAssertNil(userState.error, "Load user should do nothing if there's no stored token")
+        XCTAssertNil(userState, "Load user should do nothing if there's no stored token")
     }
     
     func testLoadUserSetsAPIToken()
     {
         let token = "token"
-        var userState = LoginState(user: nil, error: nil)
+        var userState: User? = nil
         let action = LoginAction.loadAPITokenAndUser
         keychain.apiToken = token
         
@@ -135,7 +134,7 @@ class UserReducerTests: XCTestCase
         let token = "token"
         let mockUser = User(id: 0, apiToken: token)
         
-        var userState = LoginState(user: nil, error: nil)
+        var userState: User? = nil
         let action = LoginAction.loadAPITokenAndUser
         keychain.apiToken = token
         api.returnedUser = mockUser
@@ -143,7 +142,7 @@ class UserReducerTests: XCTestCase
         let effect = reducer.run(&userState, action, userEnvironment)
         _ = effect
             .sink { userAction in
-                guard case let LoginAction.setUser(user) = userAction else { return }
+                guard case let .user(.setUser(user)) = userAction else { return }
                 XCTAssertEqual(mockUser, user, "User should be set after load user")
                 didSendAction.fulfill()
             }
@@ -157,7 +156,7 @@ class UserReducerTests: XCTestCase
         
         let token = "token"
         
-        var userState = LoginState(user: nil, error: nil)
+        var userState: User? = nil
         let action = LoginAction.loadAPITokenAndUser
         keychain.apiToken = token
         api.returnedUser = nil
@@ -165,7 +164,7 @@ class UserReducerTests: XCTestCase
         let effect = reducer.run(&userState, action, userEnvironment)
         _ = effect
             .sink { userAction in
-                guard case let LoginAction.setError(error) = userAction else { return }
+                guard case let .setError(error) = userAction else { return }
                 XCTAssertNotNil(error, "When load user fails an error should be set")
                 didSendAction.fulfill()
             }
@@ -175,21 +174,19 @@ class UserReducerTests: XCTestCase
     
     func testLogoutSetsTheUserToNil()
     {
-        let user = User(id: 0, apiToken: "token")
-        var userState = LoginState(user: user, error: nil)
+        var userState: User? = User(id: 0, apiToken: "token")
         
         let action = LoginAction.logout
         
         _ = reducer.run(&userState, action, userEnvironment)
         
-        XCTAssertNil(userState.user, "User should be nil after logout")
+        XCTAssertNil(userState, "User should be nil after logout")
     }
     
     func testLogoutDeletesTheToken()
     {
         let token = "token"
-        let user = User(id: 0, apiToken: token)
-        var userState = LoginState(user: user, error: nil)
+        var userState: User? = User(id: 0, apiToken: token)
         
         api.token = token
         keychain.apiToken = token

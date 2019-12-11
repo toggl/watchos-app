@@ -14,7 +14,7 @@ struct LoginView: View {
     @State var email: String = ""
     @State var password: String = ""
     
-    @ObservedObject var store: Store<LoginState, LoginAction, AppEnvironment>
+    @EnvironmentObject var store: Store<AppState, AppAction, AppEnvironment>
     
     var hasError: Binding<Bool> {
         Binding(
@@ -31,7 +31,7 @@ struct LoginView: View {
             SecureField("Password", text: $password)
                 .textContentType(.password)
                 .multilineTextAlignment(.center)
-            Button(action: { self.store.send(.login(self.email, self.password)) }) {
+            Button(action: { self.store.send(.user(.login(self.email, self.password))) }) {
                 Text("Login")
             }
             .background(Color.togglBlue)

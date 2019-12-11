@@ -9,10 +9,10 @@
 import Foundation
 import Combine
 
-public typealias TimeEntriesState = (timeEntries: [TimeEntry.ID: TimeEntry], runningTimeEntry: Int?, error: Error?)
+public typealias TimeEntriesState = (timeEntries: [TimeEntry.ID: TimeEntry], runningTimeEntry: Int?)
 public typealias TimeEntriesEnvironment = (api: APIProtocol, dateService: DateServiceProtocol)
 
-public var timelineReducer: Reducer<TimeEntriesState, TimelineAction, TimeEntriesEnvironment> = Reducer { state, action, environment in
+public var timelineReducer: Reducer<TimeEntriesState, TimelineAction, TimeEntriesEnvironment, AppAction> = Reducer { state, action, environment in
     switch action {
         
     case .startEntry(let description, let workspace):
@@ -45,10 +45,6 @@ public var timelineReducer: Reducer<TimeEntriesState, TimelineAction, TimeEntrie
                 .eraseToEffect()
         }
         state.timeEntries[id] = nil
-        return .empty
-        
-    case let .setError(error):
-        state.error = error
         return .empty
         
     case .continueEntry(let id):
@@ -98,26 +94,26 @@ public var timelineReducer: Reducer<TimeEntriesState, TimelineAction, TimeEntrie
 }
 
 
-private func deleteEffect(_ api: APIProtocol, workspace: Int, id: Int) -> Effect<TimelineAction>
+private func deleteEffect(_ api: APIProtocol, workspace: Int, id: Int) -> Effect<AppAction>
 {
     api.deleteTimeEntry(workspaceId: workspace, timeEntryId: id)
-        .map { TimelineAction.entryDeleted(id) }
+        .map { .timeline(.entryDeleted(id)) }
         .catch { error in Just(.setError(error)) }
         .eraseToEffect()
 }
 
-private func startTimeEntryEffect(_ api: APIProtocol, timeEntry: TimeEntry) -> Effect<TimelineAction>
+private func startTimeEntryEffect(_ api: APIProtocol, timeEntry: TimeEntry) -> Effect<AppAction>
 {
     api.startTimeEntry(timeEntry: timeEntry)
-        .map { TimelineAction.addTimeEntry($0) }
+        .map { .timeline(.addTimeEntry($0)) }
         .catch { error in Just(.setError(error)) }
         .eraseToEffect()
 }
 
-private func updateTimeEntryEffect(_ api: APIProtocol, timeEntry: TimeEntry) -> Effect<TimelineAction>
+private func updateTimeEntryEffect(_ api: APIProtocol, timeEntry: TimeEntry) -> Effect<AppAction>
 {
     api.updateTimeEntry(timeEntry: timeEntry)
-        .map { TimelineAction.entryUpdated($0) }
+        .map { .timeline(.entryUpdated($0)) }
         .catch { error in Just(.setError(error)) }
         .eraseToEffect()
 }

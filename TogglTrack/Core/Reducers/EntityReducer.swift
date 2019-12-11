@@ -8,7 +8,7 @@
 
 import Foundation
 
-public func createEntityReducer<Entity: Identifiable>() -> Reducer<[Entity.ID: Entity], EntityAction<Entity>, APIProtocol>
+public func createEntityReducer<Entity: Identifiable>() -> Reducer<[Entity.ID: Entity], EntityAction<Entity>, APIProtocol, AppAction>
 {
     return Reducer { state, action, api in
         

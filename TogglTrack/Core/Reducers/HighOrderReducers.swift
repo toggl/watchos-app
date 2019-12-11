@@ -10,8 +10,8 @@ import Foundation
 import Combine
 
 public func logging<State, Action, Environment>(
-    _ reducer: Reducer<State, Action, Environment>
-) -> Reducer<State, Action, Environment> {
+    _ reducer: Reducer<State, Action, Environment, Action>
+) -> Reducer<State, Action, Environment, Action> {
     return Reducer { state, action, environment in
         print("Action: \(action)")
         return reducer.run(&state, action, environment)

@@ -80,7 +80,7 @@ struct DurationView: View
 
 struct TimeEntryDetailView: View
 {
-    @ObservedObject var store: Store<TimelineState, TimelineAction, AppEnvironment>
+    @EnvironmentObject var store: Store<AppState, AppAction, AppEnvironment>
     @State var timeEntry: TimeEntryModel
     
     @State var timer: ObservableTimer = ObservableTimer()
@@ -95,14 +95,14 @@ struct TimeEntryDetailView: View
                 HStack(alignment: .center, spacing: 4) {
                     
                     if timeEntry.isRunning {
-                        Button(action: { self.store.send(.stopRunningEntry) }) {
+                        Button(action: { self.store.send(.timeline(.stopRunningEntry)) }) {
                             Text("Stop")
                         }
                         .background(Color.togglRed)
                         .cornerRadius(20)
                     } else {
                         Button(action: {
-                            self.store.send(.continueEntry(self.timeEntry.id))
+                            self.store.send(.timeline(.continueEntry(self.timeEntry.id)))
                             self.presentationMode.wrappedValue.dismiss()
                         }) {
                             Text("Continue")
@@ -112,7 +112,7 @@ struct TimeEntryDetailView: View
                     }
                     
                     Button(action: {
-                        self.store.send(.deleteEntry(self.timeEntry.id))
+                        self.store.send(.timeline(.deleteEntry(self.timeEntry.id)))
                         self.presentationMode.wrappedValue.dismiss()
                     }) {
                         Image(systemName: "trash")
@@ -186,7 +186,7 @@ struct TimeEntryDetailView: View
             .padding(.horizontal, 4)
         }
         .navigationBarTitle("Back")
-        .onReceive(self.store.$state.map { $0.timeEntryFor(id: self.timeEntry.id) }) { timeEntry in
+        .onReceive(self.store.$state.map { $0.timeline.timeEntryFor(id: self.timeEntry.id) }) { timeEntry in
             guard let timeEntry = timeEntry else {
                 self.presentationMode.wrappedValue.dismiss()
                 return

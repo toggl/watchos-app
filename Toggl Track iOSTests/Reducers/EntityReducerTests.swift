@@ -22,7 +22,7 @@ class EntityReducerTests: XCTestCase
     
     func testSetEntriesSendsTimeEntriesToStateUnsorted()
     {
-        let reducer: Reducer<[MockEntity.ID: MockEntity], EntityAction<MockEntity>, APIProtocol> = createEntityReducer()
+        let reducer: Reducer<[MockEntity.ID: MockEntity], EntityAction<MockEntity>, APIProtocol, AppAction> = createEntityReducer()
 
         var entityState = [MockEntity.ID: MockEntity]()
         
@@ -41,7 +41,7 @@ class EntityReducerTests: XCTestCase
     
     func testClearRemovesAllTimeEntries()
     {
-        let reducer: Reducer<[MockEntity.ID: MockEntity], EntityAction<MockEntity>, APIProtocol> = createEntityReducer()
+        let reducer: Reducer<[MockEntity.ID: MockEntity], EntityAction<MockEntity>, APIProtocol, AppAction> = createEntityReducer()
 
         var entityState = [MockEntity.ID: MockEntity]()
 

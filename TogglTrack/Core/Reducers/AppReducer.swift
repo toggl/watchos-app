@@ -9,29 +9,15 @@
 import Foundation
 import Combine
 
-public var appReducer: Reducer<AppState, AppAction, AppEnvironment> = Reducer { state, action, environment in
+public var appReducer: Reducer<AppState, AppAction, AppEnvironment, AppAction> = Reducer { state, action, environment in
     switch action {
-    case let .user(loginAction):
-        switch loginAction {
-        case .setUser(_):
-            return Just(AppAction.loadAll).eraseToEffect()
-        case .logout:
-            return Effect.fromActions(
-                .workspaces(.clear),
-                .clients(.clear),
-                .projects(.clear),
-                .tasks(.clear),
-                .tags(.clear),
-                .timeline(.clear)
-            )
-        default:
-            return .empty
-        }
     case .loadAll:
         return loadAllEffect(environment.api)
-    case .setError(_):
+    case let .setError(error):
+        state.error = error
         return .empty
-    default:
+    
+    case .clients(_), .workspaces(_), .projects(_), .tags(_), .tasks(_), .timeline(_), .user(_):
         return .empty
     }
 }

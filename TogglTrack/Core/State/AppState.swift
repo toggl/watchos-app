@@ -33,20 +33,11 @@ public struct AppState
 // Substates
 extension AppState
 {
-    public var loginState: LoginState {
-        get { (user, error) }
-        set {
-            self.user = newValue.user
-            self.error = newValue.error
-        }
-    }
-
     public var timeEntriesState: TimeEntriesState {
-        get { (timeline.timeEntries, timeline.runningTimeEntryID, error) }
+        get { (timeline.timeEntries, timeline.runningTimeEntryID) }
         set {
             self.timeline.timeEntries = newValue.timeEntries
             self.timeline.runningTimeEntryID = newValue.runningTimeEntry
-            self.error = newValue.error
         }
     }
 }
