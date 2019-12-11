@@ -37,31 +37,39 @@ public struct TimelineView: View
     @State var visibleActionId: Int = -1
     
     public var body: some View {
-        List {
-            if store.state.timeline.runningEntry != nil {
-                NavigationLink(destination: TimeEntryDetailView(timeEntry: store.state.timeline.runningEntry!)) {
-                    RunningTimeEntryView(store.state.timeline.runningEntry!, onStopAction: { self.store.send(.timeline(.stopRunningEntry)) })
+        Group {
+            if store.state.timeline.groupedTimelineEntries.isEmpty && !store.state.loading {
+                EmptyTimelineView {
+                    self.store.send(.loadAll(force: true))
                 }
-                .listRowPlatterColor(Color.black)
-            }
-            ForEach(store.state.timeline.groupedTimelineEntries, id: \.day) { group in
-                Section(header: Text(group.dayString)) {
-                    ForEach(group.timeEntries, id: \.id) { timeEntry in
-                        NavigationLink(destination:
-                        TimeEntryDetailView(timeEntry: timeEntry)) {
-                            TimeEntryCellView(
-                                timeEntry,
-                                onContinueTimeEntry: { te in self.store.send(.timeline(.continueEntry(te.id))) },
-                                onDeleteTimeEntry: { te in self.store.send(.timeline(.deleteEntry(te.id))) },
-                                visibleActionId: self.$visibleActionId
-                            )
+            } else {
+                List {
+                    if store.state.timeline.runningEntry != nil {
+                        NavigationLink(destination: TimeEntryDetailView(timeEntry: store.state.timeline.runningEntry!)) {
+                            RunningTimeEntryView(store.state.timeline.runningEntry!, onStopAction: { self.store.send(.timeline(.stopRunningEntry)) })
                         }
-                        .listRowInsets(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 4))
-                        .listRowPlatterColor(Color.clear)
+                        .listRowPlatterColor(Color.black)
+                    }
+                    ForEach(store.state.timeline.groupedTimelineEntries, id: \.day) { group in
+                        Section(header: Text(group.dayString)) {
+                            ForEach(group.timeEntries, id: \.id) { timeEntry in
+                                NavigationLink(destination:
+                                TimeEntryDetailView(timeEntry: timeEntry)) {
+                                    TimeEntryCellView(
+                                        timeEntry,
+                                        onContinueTimeEntry: { te in self.store.send(.timeline(.continueEntry(te.id))) },
+                                        onDeleteTimeEntry: { te in self.store.send(.timeline(.deleteEntry(te.id))) },
+                                        visibleActionId: self.$visibleActionId
+                                    )
+                                }
+                                .listRowInsets(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 4))
+                                .listRowPlatterColor(Color.clear)
+                            }
+                        }
                     }
                 }
+                .animation(Animation.default)
             }
         }
-        .animation(Animation.default)
     }
 }

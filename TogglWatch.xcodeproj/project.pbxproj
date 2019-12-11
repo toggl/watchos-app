@@ -79,6 +79,7 @@
 		8C2753ED2388106300CFF255 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2753EA2388104800CFF255 /* DateExtensions.swift */; };
 		8C3134032383019F0095E309 /* MockKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3134022383019F0095E309 /* MockKeychain.swift */; };
 		8C3134042383D47C0095E309 /* ErrorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA6EC5D2382B9F000F7C9B5 /* ErrorExtensions.swift */; };
+		8C76062C239FA11200728017 /* EmptyTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C76062B239FA11200728017 /* EmptyTimelineView.swift */; };
 		8C795102238EC05900FBB5D6 /* WrappedListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA39FC1238E617D00000846 /* WrappedListView.swift */; };
 		8C795103238EC05A00FBB5D6 /* WrappedListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA39FC1238E617D00000846 /* WrappedListView.swift */; };
 		8C79510A238EC0A800FBB5D6 /* WrappedListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C795108238EC09300FBB5D6 /* WrappedListCell.swift */; };
@@ -226,6 +227,7 @@
 		8C5645CB2379B8D4002E83B3 /* FakeURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeURLSession.swift; sourceTree = "<group>"; };
 		8C564618237ADE7A002E83B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C601BC323683BEC00E87BFB /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		8C76062B239FA11200728017 /* EmptyTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTimelineView.swift; sourceTree = "<group>"; };
 		8C76C1E223685A1A00AA36E5 /* timeentries.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = timeentries.txt; sourceTree = "<group>"; };
 		8C76C1E5236865DC00AA36E5 /* workspaces.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = workspaces.txt; sourceTree = "<group>"; };
 		8C76C1E72368678B00AA36E5 /* projects.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = projects.txt; sourceTree = "<group>"; };
@@ -559,6 +561,7 @@
 				8C88DEB0238D39E3007D7A09 /* TimeEntry */,
 				8CA16E7E237D9A8800AD5A96 /* Login */,
 				8CC5FE962355D77C00D33237 /* Timeline.swift */,
+				8C76062B239FA11200728017 /* EmptyTimelineView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1061,6 +1064,7 @@
 				8C88DEB2238D39FD007D7A09 /* ProjectTaskClientTextView.swift in Sources */,
 				8CC5FE642355B3AB00D33237 /* HostingController.swift in Sources */,
 				8CA16E80237D9A9500AD5A96 /* LoginView.swift in Sources */,
+				8C76062C239FA11200728017 /* EmptyTimelineView.swift in Sources */,
 				8CC5FE682355B3AB00D33237 /* NotificationController.swift in Sources */,
 				8CC5FE662355B3AB00D33237 /* ExtensionDelegate.swift in Sources */,
 				8C24496F2385497100F087E9 /* ContentView.swift in Sources */,
