@@ -34,6 +34,7 @@ public struct RunningButton: View
 public struct TimelineView: View
 {
     @ObservedObject var store: Store<TimelineState, TimelineAction, AppEnvironment>
+    @State var visibleActionId: Int = -1
     
     public init(store: Store<TimelineState, TimelineAction, AppEnvironment>)
     {
@@ -56,7 +57,8 @@ public struct TimelineView: View
                             TimeEntryCellView(
                                 timeEntry,
                                 onContinueTimeEntry: { te in self.store.send(.continueEntry(te.id)) },
-                                onDeleteTimeEntry: { te in self.store.send(.deleteEntry(te.id)) }
+                                onDeleteTimeEntry: { te in self.store.send(.deleteEntry(te.id)) },
+                                visibleActionId: self.$visibleActionId
                             )
                         }
                         .listRowInsets(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 4))
