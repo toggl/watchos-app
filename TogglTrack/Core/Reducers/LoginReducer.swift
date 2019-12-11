@@ -16,7 +16,11 @@ public var loginReducer: Reducer<User?, LoginAction, LoginEnvironment, AppAction
     switch action {
         
     case let .login(email, password):
-        return loginEffect(userEnv.api, email, password)
+        return Effect.concat(
+            Just(.setLoading(true)).eraseToEffect(),
+            loginEffect(userEnv.api, email, password),
+            Just(.setLoading(false)).eraseToEffect()
+        )
         
     case let .setUser(user):
         state = user
@@ -27,7 +31,11 @@ public var loginReducer: Reducer<User?, LoginAction, LoginEnvironment, AppAction
     case .loadAPITokenAndUser:
         guard let token = userEnv.keychain.getApiToken() else { return .empty }
         userEnv.api.setAuth(token: token)
-        return loadUserEffect(userEnv.api)
+        return Effect.concat(
+            Just(.setLoading(true)).eraseToEffect(),
+            loadUserEffect(userEnv.api),
+            Just(.setLoading(false)).eraseToEffect()
+        )
         
     case .logout:
         state = nil

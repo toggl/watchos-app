@@ -32,6 +32,14 @@ public struct Effect<Action>: Publisher
         return Publishers.Sequence(sequence: actions)
             .eraseToEffect()
     }
+    
+    public static func concat(_ effects: Effect...) -> Effect<Action>
+    {
+        return effects.reduce(Empty().eraseToAnyPublisher()) { acc, effect in
+            acc.append(effect).eraseToAnyPublisher()
+        }
+        .eraseToEffect()
+    }
 }
 
 extension Publisher where Failure == Never

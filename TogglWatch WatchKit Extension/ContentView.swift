@@ -54,7 +54,7 @@ struct ContentView: View
     }
     
     var body: some View {
-        Group {
+        ZStack {
             if(self.store.state.user == nil) {
                 LoginView()
             } else {
@@ -69,6 +69,13 @@ struct ContentView: View
                             }
                     })
                 })
+            }
+            
+            if self.store.state.loading {
+                ZStack {
+                    Rectangle().foregroundColor(Color.black.opacity(0.8))
+                    Text("Loading...")
+                }
             }
         }
         .environmentObject(store)

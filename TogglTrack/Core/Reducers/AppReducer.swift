@@ -11,12 +11,22 @@ import Combine
 
 public var appReducer: Reducer<AppState, AppAction, AppEnvironment, AppAction> = Reducer { state, action, environment in
     switch action {
+    
     case .loadAll:
-        return loadAllEffect(environment.api)
+        return Effect.concat(
+            Just(.setLoading(true)).eraseToEffect(),
+            loadAllEffect(environment.api),
+            Just(.setLoading(false)).eraseToEffect()
+        )
+    
     case let .setError(error):
         state.error = error
-        return .empty
+        return Just(.setLoading(false)).eraseToEffect()
     
+    case let .setLoading(loading):
+        state.loading = loading
+        return .empty
+        
     case .clients(_), .workspaces(_), .projects(_), .tags(_), .tasks(_), .timeline(_), .user(_):
         return .empty
     }

@@ -20,6 +20,7 @@ public enum AppAction
     case user(LoginAction)
     case loadAll
     case setError(Error?)
+    case setLoading(Bool)
     
     public var workspaces: EntityAction<Workspace>? {
         get {
