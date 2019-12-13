@@ -10,7 +10,6 @@ import Foundation
 
 public enum TimelineAction
 {
-    case startEntry(String, Workspace)
     case stopRunningEntry
     case deleteEntry(Int)
     case entryDeleted(Int)
@@ -26,8 +25,6 @@ extension TimelineAction: CustomStringConvertible
     public var description: String
     {
         switch self {
-        case .startEntry(_, _):
-            return "start"
         case .stopRunningEntry:
             return "stopRunningTimeEntry"
         case .deleteEntry(_):

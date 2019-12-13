@@ -78,11 +78,15 @@ struct ContentView: View
                     })
                 })
             }
-            
             if self.store.state.loading {
-                ZStack {
-                    Rectangle().foregroundColor(Color.black.opacity(0.8))
-                    Text("Loading...")
+                VStack {
+                    ZStack {
+                        Rectangle().foregroundColor(Color.togglBlue)
+                        Text("Loading...")
+                            .font(.footnote)
+                    }
+                    .frame(height: 15)
+                    Spacer()
                 }
             }
         }

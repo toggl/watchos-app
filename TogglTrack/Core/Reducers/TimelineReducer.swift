@@ -15,12 +15,6 @@ public typealias TimeEntriesEnvironment = (api: APIProtocol, dateService: DateSe
 public var timelineReducer: Reducer<TimeEntriesState, TimelineAction, TimeEntriesEnvironment, AppAction> = Reducer { state, action, environment in
     switch action {
         
-    case .startEntry(let description, let workspace):
-        var te  = TimeEntry.createNew(withDescription: description, workspaceId: workspace.id)
-        te.start = Date()
-        te.duration = -1
-        return startTimeEntryEffect(environment.api, timeEntry: te)
-        
     case .stopRunningEntry:
         guard let runningId = state.runningTimeEntry,
             let runningTimeEntry = state.timeEntries[runningId] else {
@@ -30,14 +24,24 @@ public var timelineReducer: Reducer<TimeEntriesState, TimelineAction, TimeEntrie
         
         var copyTE = runningTimeEntry
         copyTE.duration = environment.dateService.date.timeIntervalSince(runningTimeEntry.start)
-        return updateTimeEntryEffect(environment.api, timeEntry: copyTE)
+        
+        return Effect.concat(
+            Just(.setLoading(true)).eraseToEffect(),
+            updateTimeEntryEffect(environment.api, timeEntry: copyTE),
+            Just(.setLoading(false)).eraseToEffect()
+        )
             
     case .deleteEntry(let id):
         guard let timeEntry = state.timeEntries[id] else {
             return Just(.setError(TimelineError.CantFindTimeEntry))
                 .eraseToEffect()
         }
-        return deleteEffect(environment.api, workspace: timeEntry.workspaceId, id: timeEntry.id)
+
+        return Effect.concat(
+            Just(.setLoading(true)).eraseToEffect(),
+            deleteEffect(environment.api, workspace: timeEntry.workspaceId, id: timeEntry.id),
+            Just(.setLoading(false)).eraseToEffect()
+        )
         
     case .entryDeleted(let id):
         guard let _ = state.timeEntries[id] else {
@@ -55,7 +59,12 @@ public var timelineReducer: Reducer<TimeEntriesState, TimelineAction, TimeEntrie
         var copyTE = timeEntry
         copyTE.start = environment.dateService.date
         copyTE.duration = -1
-        return startTimeEntryEffect(environment.api, timeEntry: copyTE)
+        
+        return Effect.concat(
+            Just(.setLoading(true)).eraseToEffect(),
+            startTimeEntryEffect(environment.api, timeEntry: copyTE),
+            Just(.setLoading(false)).eraseToEffect()
+        )
         
     case let .addTimeEntry(timeEntry):
         state.timeEntries[timeEntry.id] = timeEntry

@@ -16,29 +16,6 @@ class TimelineReducerTests: XCTestCase
     var api = MockAPI()
     var dateService = MockDateService()
     
-    func testStartEntryReturnsStartTimeEntryEffect()
-    {
-        let didSendAction = expectation(description: #function)
-        
-        let timelineState = TimelineState()
-        var timeEntryState: TimeEntriesState = (timelineState.timeEntries, nil)
-        let workspace = Workspace(id: 1, name: "name", admin: false)
-        let teDescription = "newTE"
-        let action = TimelineAction.startEntry(teDescription, workspace)
-        let serverTE = TimeEntry.createNew(withDescription: teDescription, workspaceId: workspace.id)
-        api.returnStartedTimeEntry = serverTE
-        
-        let effect = reducer.run(&timeEntryState, action, (api, dateService))
-        _ = effect
-            .sink { action in
-                guard case let .timeline(.addTimeEntry(te)) = action else { return }
-                XCTAssertEqual(te.description, serverTE.description, "There should be new TE from the server")
-                didSendAction.fulfill()
-            }
-        
-        wait(for: [didSendAction], timeout: 1)
-    }
-    
     func testDeleteEntrySendsRequestToAPI()
     {
         let teDescription = "To be deleted"
