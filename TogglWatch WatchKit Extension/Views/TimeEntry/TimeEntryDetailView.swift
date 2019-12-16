@@ -86,6 +86,7 @@ struct TimeEntryDetailView: View
     @State var timer: ObservableTimer = ObservableTimer()
     @State var now: Date = Date()
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State var showDeleteAlert: Bool = false
     
     var body: some View
     {
@@ -112,8 +113,7 @@ struct TimeEntryDetailView: View
                     }
                     
                     Button(action: {
-                        self.store.send(.timeline(.deleteEntry(self.timeEntry.id)))
-                        self.presentationMode.wrappedValue.dismiss()
+                        self.showDeleteAlert = true
                     }) {
                         Image(systemName: "trash")
                     }
@@ -194,5 +194,21 @@ struct TimeEntryDetailView: View
             
             self.timeEntry = timeEntry
         }
+        .sheet(isPresented: $showDeleteAlert, content: {
+            VStack {
+                Spacer()
+                Text("Are you sure you want to delete this Time Entry?")
+                Spacer()
+                Button(
+                    action: {
+                        self.showDeleteAlert = false
+                        self.store.send(.timeline(.deleteEntry(self.timeEntry.id)))
+                        self.presentationMode.wrappedValue.dismiss()
+                },
+                    label: {
+                        Text("Delete").foregroundColor(Color.togglRed)
+                })
+            }
+        })
     }
 }
