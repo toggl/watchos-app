@@ -79,14 +79,24 @@ struct ContentView: View
                 })
             }
             if self.store.state.loading {
-                VStack {
-                    ZStack {
-                        Rectangle().foregroundColor(Color.togglBlue)
-                        Text("Loading...")
-                            .font(.footnote)
+                if self.store.state.user == nil {
+                    VStack {
+                        ZStack {
+                            Rectangle().foregroundColor(Color.black)
+                            Text("Logging in...")
+                                .font(.footnote)
+                        }
                     }
-                    .frame(height: 15)
-                    Spacer()
+                } else {
+                    VStack {
+                        ZStack {
+                            Rectangle().foregroundColor(Color.togglBlue)
+                            Text("Syncing...")
+                                .font(.footnote)
+                        }
+                        .frame(height: 15)
+                        Spacer()
+                    }
                 }
             }
         }
