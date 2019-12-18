@@ -26,9 +26,11 @@ struct ProjectTaskClientTextView: View
                     .foregroundColor(timeEntry.projectColor)
                 + Text(timeEntry.projectTaskClientString)
                     .font(.system(size: 14))
+                    .foregroundColor(Color.togglGray)
             } else {
                 EmptyView()
             }
         }
+        .padding(.top, -6)
     }
 }

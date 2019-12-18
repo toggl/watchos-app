@@ -69,6 +69,7 @@ public struct TimelineView: View
                     }
                 }
                 .animation(Animation.default)
+                .navigationBarTitle("Toggl")
             }
         }
     }

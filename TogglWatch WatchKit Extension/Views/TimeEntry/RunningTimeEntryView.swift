@@ -23,7 +23,7 @@ struct RunningTimeEntryView: View
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 1) {
+        VStack(alignment: .leading, spacing: 4) {
             Text(timeEntry.descriptionString)
                 .font(.system(size: 16))
                 .multilineTextAlignment(.leading)
@@ -55,5 +55,7 @@ struct RunningTimeEntryView: View
                     .onTapGesture { self.stopAction() }
             }
         }
+        .padding(.top, 4)
+        .padding(.bottom, -14)
     }
 }

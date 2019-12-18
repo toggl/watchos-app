@@ -25,11 +25,12 @@ public struct SwipeButton: View
     {
         ZStack {
             if self.type == .continueTimeEntry {
-                Color.green.cornerRadius(9)
+                Color.togglGreen.cornerRadius(9)
             } else {
-                Color.red.cornerRadius(9)
+                Color.togglDarkRed.cornerRadius(9)
             }
             Image(systemName: self.type == .continueTimeEntry ? "play.fill" : "trash.fill")
+                .font(.title)
         }
         .opacity(Double(self.p * 0.5 + 0.5))
         .scaleEffect(min(self.p * 0.3 + 0.7, 1.0))
@@ -84,7 +85,7 @@ public struct TimeEntryCellView: View
             }
             .opacity((abs(self.percentDragged) > 0) ? 1.0 : 0.0)
             
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 4) {
                 Text(timeEntry.descriptionString)
                     .font(.system(size: 16))
                     .multilineTextAlignment(.leading)

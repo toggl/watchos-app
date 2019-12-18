@@ -47,7 +47,7 @@ public struct TimeEntryModel
     public var descriptionColor: Color
     {
         if description != "" { return .white }
-        return Color.togglGray
+        return Color.togglGray.opacity(0.5)
     }
     
     public var projectColor: Color

@@ -28,9 +28,12 @@ struct LoginView: View {
             TextField("Email", text: $email)
                 .textContentType(.emailAddress)
                 .multilineTextAlignment(.center)
+                .padding(.horizontal, 4)
             SecureField("Password", text: $password)
                 .textContentType(.password)
                 .multilineTextAlignment(.center)
+                .padding(.horizontal, 4)
+            Spacer()
             Button(action: { self.store.send(.user(.login(self.email, self.password))) }) {
                 Text("Login")
             }
