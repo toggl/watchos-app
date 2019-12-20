@@ -106,23 +106,26 @@ public var timelineReducer: Reducer<TimeEntriesState, TimelineAction, TimeEntrie
 private func deleteEffect(_ api: APIProtocol, workspace: Int, id: Int) -> Effect<AppAction>
 {
     api.deleteTimeEntry(workspaceId: workspace, timeEntryId: id)
-        .map { .timeline(.entryDeleted(id)) }
-        .catch { error in Just(.setError(error)) }
-        .eraseToEffect()
+        .toEffect(
+            map: { .timeline(.entryDeleted(id)) },
+            catch: { error in .setError(error) }
+        )
 }
 
 private func startTimeEntryEffect(_ api: APIProtocol, timeEntry: TimeEntry) -> Effect<AppAction>
 {
     api.startTimeEntry(timeEntry: timeEntry)
-        .map { .timeline(.addTimeEntry($0)) }
-        .catch { error in Just(.setError(error)) }
-        .eraseToEffect()
+        .toEffect(
+            map: { .timeline(.addTimeEntry($0)) },
+            catch: { error in .setError(error) }
+        )
 }
 
 private func updateTimeEntryEffect(_ api: APIProtocol, timeEntry: TimeEntry) -> Effect<AppAction>
 {
     api.updateTimeEntry(timeEntry: timeEntry)
-        .map { .timeline(.entryUpdated($0)) }
-        .catch { error in Just(.setError(error)) }
-        .eraseToEffect()
+        .toEffect(
+            map: { .timeline(.entryUpdated($0)) },
+            catch: { error in .setError(error) }
+        )
 }

@@ -54,16 +54,18 @@ public var loginReducer: Reducer<User?, LoginAction, LoginEnvironment, AppAction
 
 private func loginEffect(_ api: APIProtocol, _ email: String, _ password: String) -> Effect<AppAction>
 {
-    api.loginUser(email: email, password: password)
-        .map { user in .user(.setUser(user)) }
-        .catch { error in Just(.setError(error)) }
-        .eraseToEffect()
+    return api.loginUser(email: email, password: password)
+        .toEffect(
+            map: { user in .user(.setUser(user)) },
+            catch: { error in .setError(error) }
+        )
 }
 
 private func loadUserEffect(_ api: APIProtocol) -> Effect<AppAction>
 {
     api.loadUser()
-        .map { user in .user(.setUser(user)) }
-        .catch { error in Just(.setError(error)) }
-        .eraseToEffect()
+        .toEffect(
+            map: { user in .user(.setUser(user)) },
+            catch: { error in .setError(error) }
+        )
 }

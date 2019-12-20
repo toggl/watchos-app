@@ -49,3 +49,14 @@ extension Publisher where Failure == Never
         return Effect(publisher: self.eraseToAnyPublisher())
     }
 }
+
+extension Publisher
+{
+    public func toEffect<Action>(map mapOutput: @escaping (Output) -> Action, catch catchErrors: @escaping (Failure) -> Action) -> Effect<Action>
+    {
+        return self
+            .map(mapOutput)
+            .catch({ error in Just(catchErrors(error)) })
+            .eraseToEffect()
+    }
+}
