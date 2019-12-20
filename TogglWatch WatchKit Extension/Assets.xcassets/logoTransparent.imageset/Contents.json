@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "stopWhite.png",
+      "filename" : "logoEmpty.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "stopWhite@2x.png",
+      "filename" : "logoEmpty@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "stopWhite@3x.png",
+      "filename" : "logoEmpty@3x.png",
       "scale" : "3x"
     }
   ],
