@@ -24,6 +24,8 @@ public var timelineReducer: Reducer<TimeEntriesState, TimelineAction, TimeEntrie
         
         var copyTE = runningTimeEntry
         copyTE.duration = environment.dateService.date.timeIntervalSince(runningTimeEntry.start)
+        UserDefaultsConfig.runngingTEStartTime = nil
+        UserDefaultsConfig.runningTEDescription = nil
         
         return Effect.concat(
             Just(.setLoading(true)).eraseToEffect(),
@@ -69,6 +71,8 @@ public var timelineReducer: Reducer<TimeEntriesState, TimelineAction, TimeEntrie
     case let .addTimeEntry(timeEntry):
         state.timeEntries[timeEntry.id] = timeEntry
         state.runningTimeEntry = timeEntry.id
+        UserDefaultsConfig.runngingTEStartTime = timeEntry.start
+        UserDefaultsConfig.runningTEDescription = timeEntry.description
         return .empty
         
     case let .setEntries(entries):
@@ -83,7 +87,8 @@ public var timelineReducer: Reducer<TimeEntriesState, TimelineAction, TimeEntrie
         })
         
         state.runningTimeEntry = runningTE?.id
-        
+        UserDefaultsConfig.runngingTEStartTime = runningTE?.start
+        UserDefaultsConfig.runningTEDescription = runningTE?.description
         return .empty
     
     case let .entryUpdated(entry):
