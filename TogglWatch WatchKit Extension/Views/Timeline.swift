@@ -37,10 +37,14 @@ public struct TimelineView: View
     @State var visibleActionId: Int = -1
     
     public var body: some View {
-        Group {
-            if store.state.timeline.groupedTimelineEntries.isEmpty && !store.state.loading {
-                EmptyTimelineView {
-                    self.store.send(.loadAll(force: true))
+        Group {            
+            if store.state.timeline.groupedTimelineEntries.isEmpty {
+                if store.state.loading {
+                    EmptyView()
+                } else {
+                    EmptyTimelineView {
+                        self.store.send(.loadAll(force: true))
+                    }
                 }
             } else {
                 List {

@@ -57,26 +57,28 @@ struct ContentView: View
         ZStack {
             if(self.store.state.user == nil) {
                 LoginView()
+                    .environmentObject(store)
             } else {
                 TimelineView()
-                .contextMenu(menuItems: {
-                    Button(
-                        action: { self.store.send(.loadAll(force: true)) },
-                        label: {
-                            VStack {
-                                Image(systemName: "arrow.counterclockwise")
-                                Text("Refresh")
-                            }
+                    .environmentObject(store)
+                    .contextMenu(menuItems: {
+                        Button(
+                            action: { self.store.send(.loadAll(force: true)) },
+                            label: {
+                                VStack {
+                                    Image(systemName: "arrow.counterclockwise")
+                                    Text("Refresh")
+                                }
+                        })
+                        Button(
+                            action: { self.store.send(.user(.logout)) },
+                            label: {
+                                VStack {
+                                    Image("logout")
+                                    Text("Sign out")
+                                }
+                        })
                     })
-                    Button(
-                        action: { self.store.send(.user(.logout)) },
-                        label: {
-                            VStack {
-                                Image("logout")
-                                Text("Sign out")
-                            }
-                    })
-                })
             }
             if self.store.state.loading {
                 if self.store.state.user == nil {
@@ -100,7 +102,6 @@ struct ContentView: View
                 }
             }
         }
-        .environmentObject(store)
     }
 }
 
