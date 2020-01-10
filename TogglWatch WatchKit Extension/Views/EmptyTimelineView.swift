@@ -19,7 +19,6 @@ struct EmptyTimelineView: View
     init(refreshAction: @escaping () -> ())
     {
         self.refreshAction = refreshAction
-        self.p = 0
     }
     
     var body: some View
