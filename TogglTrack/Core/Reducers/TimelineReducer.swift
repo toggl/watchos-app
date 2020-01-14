@@ -59,14 +59,22 @@ public var timelineReducer: Reducer<TimeEntriesState, TimelineAction, TimeEntrie
         var copyTE = timeEntry
         copyTE.start = environment.dateService.date
         copyTE.duration = -1
-        
+                
         return Effect.concat(
             Just(.setLoading(true)).eraseToEffect(),
             startTimeEntryEffect(environment.api, timeEntry: copyTE),
             Just(.setLoading(false)).eraseToEffect()
         )
         
-    case let .addTimeEntry(timeEntry):
+    case let .startTimeEntry(timeEntry):
+        if let runningId = state.runningTimeEntry,
+            let runningTimeEntry = state.timeEntries[runningId]
+        {
+            var copyTE = runningTimeEntry
+            copyTE.duration = environment.dateService.date.timeIntervalSince(runningTimeEntry.start)
+            state.timeEntries[copyTE.id] = copyTE
+        }
+        
         state.timeEntries[timeEntry.id] = timeEntry
         state.runningTimeEntry = timeEntry.id
         return .empty
@@ -116,7 +124,7 @@ private func startTimeEntryEffect(_ api: APIProtocol, timeEntry: TimeEntry) -> E
 {
     api.startTimeEntry(timeEntry: timeEntry)
         .toEffect(
-            map: { .timeline(.addTimeEntry($0)) },
+            map: { .timeline(.startTimeEntry($0)) },
             catch: { error in .setError(error) }
         )
 }
