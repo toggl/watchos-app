@@ -49,7 +49,7 @@ public struct TimelineView: View
             } else {
                 List {
                     if store.state.timeline.runningEntry != nil {
-                        NavigationLink(destination: TimeEntryDetailView(timeEntryId: store.state.timeline.runningEntry!.id)) {
+                        NavigationLink(destination: TimeEntryDetailView(timeEntryId: store.state.timeline.runningEntry!.id).environmentObject(store)) {
                             RunningTimeEntryView(store.state.timeline.runningEntry!, onStopAction: { self.store.send(.timeline(.stopRunningEntry)) })
                         }
                         .listRowPlatterColor(Color.black)
@@ -59,7 +59,7 @@ public struct TimelineView: View
                             ForEach(group.timeEntries, id: \.id) { timeEntry in
                                 NavigationLink(
                                     destination:
-                                    TimeEntryDetailView(timeEntryId: timeEntry.id),
+                                TimeEntryDetailView(timeEntryId: timeEntry.id).environmentObject(self.store),
                                     label: {
                                         TimeEntryCellView(
                                             timeEntry,
