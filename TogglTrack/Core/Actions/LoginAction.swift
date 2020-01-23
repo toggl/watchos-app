@@ -14,4 +14,6 @@ public enum LoginAction
     case setUser(User)
     case loadAPITokenAndUser
     case logout
+    case subscribeToPushNotifications(String)
+    case subscribedToPushNotifications(FCMPushToken)
 }

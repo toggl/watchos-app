@@ -13,3 +13,10 @@ public enum TimelineError: Error
     case CantFindTimeEntry
     case NoRunningEntry
 }
+
+public enum UserError: Error
+{
+    case NoFCMResponse
+    case FailedToGetFCMToken(String?)
+    case NoFCMTokenAvailable
+}

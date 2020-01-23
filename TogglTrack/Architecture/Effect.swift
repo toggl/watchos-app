@@ -40,6 +40,15 @@ public struct Effect<Action>: Publisher
         }
         .eraseToEffect()
     }
+    
+    public static func fireAndForget(work: @escaping () -> Void) -> Effect
+    {
+        return Deferred { () -> Empty<Output, Never> in
+            work()
+            return Empty(completeImmediately: true)
+        }
+        .eraseToEffect()
+    }
 }
 
 extension Publisher where Failure == Never
@@ -47,6 +56,18 @@ extension Publisher where Failure == Never
     public func eraseToEffect() -> Effect<Output>
     {
         return Effect(publisher: self.eraseToAnyPublisher())
+    }
+}
+
+extension Publisher where Output == Void
+{
+    public func eraseToEmptyEffect<Action>(catch transformError: @escaping (Error) -> Action) -> Effect<Action>
+    {
+        self.flatMap { _ in
+            Empty().eraseToAnyPublisher()
+        }
+        .catch({ error in Just(transformError(error))})
+        .eraseToEffect()
     }
 }
 

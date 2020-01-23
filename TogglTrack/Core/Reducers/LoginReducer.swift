@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-public typealias LoginEnvironment = (api: APIProtocol, keychain: KeychainProtocol)
+public typealias LoginEnvironment = (api: APIProtocol, keychain: KeychainProtocol, pushTokenStorage: PushTokenStorageProtocol, firebaseAPI: FirebaseAPIProtocol)
 
 public var loginReducer: Reducer<User?, LoginAction, LoginEnvironment, AppAction> = Reducer { state, action, userEnv in
     
@@ -26,7 +26,12 @@ public var loginReducer: Reducer<User?, LoginAction, LoginEnvironment, AppAction
         state = user
         userEnv.keychain.setApiToken(token: user.apiToken)
         userEnv.api.setAuth(token: user.apiToken)
-        return Just(.loadAll(force: true)).eraseToEffect()
+        guard let token = userEnv.pushTokenStorage.loadAPNToken()
+            else { return Just(.loadAll(force: true)).eraseToEffect() }
+        return Effect.concat(
+            Just(.user(.subscribeToPushNotifications(token.apnToken))).eraseToEffect(),
+            Just(.loadAll(force: true)).eraseToEffect()
+        )
         
     case .loadAPITokenAndUser:
         guard let token = userEnv.keychain.getApiToken() else { return .empty }
@@ -39,16 +44,32 @@ public var loginReducer: Reducer<User?, LoginAction, LoginEnvironment, AppAction
         
     case .logout:
         state = nil
-        userEnv.keychain.deleteApiToken()
-        userEnv.api.setAuth(token: nil)
-        return Effect.fromActions(
-            .workspaces(.clear),
-            .clients(.clear),
-            .projects(.clear),
-            .tasks(.clear),
-            .tags(.clear),
-            .timeline(.clear)
+        
+        return Effect.concat(
+            unsubscribePushNotificationTokenFromTogglIfNeededEffect(userEnv.api, userEnv.pushTokenStorage),
+            Effect.fireAndForget {
+                userEnv.keychain.deleteApiToken()
+                userEnv.api.setAuth(token: nil)
+            },
+            Effect.fromActions(
+                .workspaces(.clear),
+                .clients(.clear),
+                .projects(.clear),
+                .tasks(.clear),
+                .tags(.clear),
+                .timeline(.clear)
+            )
         )
+        
+    case let .subscribeToPushNotifications(apnTokenString):
+        return Effect.concat(
+            unsubscribePushNotificationTokenFromTogglIfNeededEffect(userEnv.api, userEnv.pushTokenStorage, apnTokenString),
+            subscribePushNotificationTokenToFCMEffect(userEnv.api, userEnv.firebaseAPI, apnTokenString)
+        )
+
+    case let .subscribedToPushNotifications(fcmToken):
+        userEnv.pushTokenStorage.save(token: fcmToken)
+        return .empty
     }
 }
 
@@ -69,3 +90,33 @@ private func loadUserEffect(_ api: APIProtocol) -> Effect<AppAction>
             catch: { error in .setError(error) }
         )
 }
+
+private func subscribePushNotificationTokenToFCMEffect(_ api: APIProtocol, _ firebaseAPI: FirebaseAPIProtocol, _ apnToken: String) -> Effect<AppAction>
+{
+    firebaseAPI.getFCMToken(for: FCMPushToken(apnToken))
+        .tryFlatMap { (response) in
+            guard let fcmToken = response.fcmTokens?.first else { throw UserError.NoFCMResponse }
+            guard fcmToken.status == "OK" else { throw UserError.FailedToGetFCMToken(fcmToken.status) }
+            guard let togglToken = fcmToken.toTogglPushToken() else { throw UserError.NoFCMTokenAvailable }
+            return api.subscribePushNotification(token: togglToken)
+                .map { _ in .user(.subscribedToPushNotifications(fcmToken)) }
+                .eraseToAnyPublisher()
+        }
+        .catch { error in Just(.setError(error)) }
+        .eraseToEffect()
+}
+
+private func unsubscribePushNotificationTokenFromTogglIfNeededEffect(_ api: APIProtocol, _ pushTokenStorage: PushTokenStorageProtocol, _ newAPNToken: String? = nil) -> Effect<AppAction>
+{
+    guard
+        let oldToken = pushTokenStorage.loadAPNToken(),
+        oldToken.apnToken != newAPNToken,
+        let oldTogglPushToken = oldToken.toTogglPushToken()
+    else {
+        return .empty
+    }
+
+    return api.unsubscribePushNotification(token: oldTogglPushToken)
+        .eraseToEmptyEffect(catch: { error in .setError(error) })
+}
+
