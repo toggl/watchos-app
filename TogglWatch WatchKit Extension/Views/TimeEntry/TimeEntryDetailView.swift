@@ -81,7 +81,7 @@ struct DurationView: View
 struct TimeEntryDetailView: View
 {
     @EnvironmentObject var store: Store<AppState, AppAction, AppEnvironment>
-    @State var timeEntry: TimeEntryModel
+    var timeEntryId: Int
     
     @State var timer: ObservableTimer = ObservableTimer()
     @State var now: Date = Date()
@@ -89,6 +89,17 @@ struct TimeEntryDetailView: View
     @State var showDeleteAlert: Bool = false
     
     var body: some View
+    {
+        Group {
+            if store.state.timeline.timeEntryFor(id: timeEntryId) == nil {
+                EmptyView()
+            } else {
+                timeEntryView(store.state.timeline.timeEntryFor(id: timeEntryId)!)
+            }
+        }
+    }
+    
+    func timeEntryView(_ timeEntry: TimeEntryModel) -> some View
     {
         ScrollView {
             VStack(alignment: .leading) {
@@ -103,7 +114,7 @@ struct TimeEntryDetailView: View
                         .cornerRadius(20)
                     } else {
                         Button(action: {
-                            self.store.send(.timeline(.continueEntry(self.timeEntry.id)))
+                            self.store.send(.timeline(.continueEntry(timeEntry.id)))
                             self.presentationMode.wrappedValue.dismiss()
                         }) {
                             Text("Continue")
@@ -125,13 +136,13 @@ struct TimeEntryDetailView: View
                 
                 DetailSection(title: EmptyView()) {
                     VStack(alignment: .leading) {
-                        Text(self.timeEntry.descriptionString)
+                        Text(timeEntry.descriptionString)
                             .font(.system(size: 16))
-                            .foregroundColor(self.timeEntry.descriptionColor)
+                            .foregroundColor(timeEntry.descriptionColor)
                             .multilineTextAlignment(.leading)
                             .lineLimit(5)
                         
-                        ProjectTextView(self.timeEntry)
+                        ProjectTextView(timeEntry)
                             .multilineTextAlignment(.leading)
                             .lineLimit(3)
                     }
@@ -139,19 +150,19 @@ struct TimeEntryDetailView: View
                 
                 if timeEntry.client != nil {
                     DetailSection(title: Text("CLIENT")) {
-                        Text(self.timeEntry.client!.name)
+                        Text(timeEntry.client!.name)
                     }
                 }
                 
                 if (timeEntry.task != nil) {
                     DetailSection(title: Text("TASK")) {
-                        Text(self.timeEntry.task!.name)
+                        Text(timeEntry.task!.name)
                     }
                 }
                 
                 if timeEntry.tags != nil && timeEntry.tags?.count != 0 {
                     DetailSection(title: EmptyView()) {
-                        TagsView(self.timeEntry.tags!)
+                        TagsView(timeEntry.tags!)
                     }
                 }
                 
@@ -159,41 +170,33 @@ struct TimeEntryDetailView: View
                     Image(systemName: "clock")
                     Text("TIME")
                 }) {
-                    TimeFrameView(timeEntry: self.timeEntry)
+                    TimeFrameView(timeEntry: timeEntry)
                 }
                 
                 DetailSection(title: HStack {
                     Image(systemName: "stopwatch")
                     Text("DURATION")
                 }) {
-                    DurationView(timeEntry: self.timeEntry, now: self.now)
+                    DurationView(timeEntry: timeEntry, now: self.now)
                         .onAppear {
                             self.now = Date()
                             self.timer = ObservableTimer()
-                        }
-                        .onReceive(self.timer.currentTimePublisher) { newCurrentTime in
-                            self.now = newCurrentTime
-                        }
+                    }
+                    .onReceive(self.timer.currentTimePublisher) { newCurrentTime in
+                        self.now = newCurrentTime
+                    }
                 }
                 
                 DetailSection(title: HStack {
                     Image(systemName: "calendar")
                     Text("DATE")
                 }) {
-                    Text(self.timeEntry.start.toDayString())
+                    Text(timeEntry.start.toDayString())
                 }
             }
             .padding(.horizontal, 4)
         }
         .navigationBarTitle("Back")
-        .onReceive(self.store.$state.map { $0.timeline.timeEntryFor(id: self.timeEntry.id) }) { timeEntry in
-            guard let timeEntry = timeEntry else {
-                self.presentationMode.wrappedValue.dismiss()
-                return
-            }
-            
-            self.timeEntry = timeEntry
-        }
         .sheet(isPresented: $showDeleteAlert, content: {
             VStack {
                 Spacer()
@@ -202,7 +205,7 @@ struct TimeEntryDetailView: View
                 Button(
                     action: {
                         self.showDeleteAlert = false
-                        self.store.send(.timeline(.deleteEntry(self.timeEntry.id)))
+                        self.store.send(.timeline(.deleteEntry(timeEntry.id)))
                         self.presentationMode.wrappedValue.dismiss()
                 },
                     label: {
@@ -212,3 +215,4 @@ struct TimeEntryDetailView: View
         })
     }
 }
+

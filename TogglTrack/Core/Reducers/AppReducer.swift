@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-let refreshWhenActivatingThreshold: TimeInterval = 60
+let refreshWhenActivatingThreshold: TimeInterval = 60 * 60
 
 public var appReducer: Reducer<AppState, AppAction, AppEnvironment, AppAction> = Reducer { state, action, environment in
     switch action {

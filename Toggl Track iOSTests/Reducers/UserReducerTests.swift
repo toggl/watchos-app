@@ -15,7 +15,9 @@ class UserReducerTests: XCTestCase
     var reducer = loginReducer
     var api = MockAPI()
     var keychain = MockKeychain()
-    lazy var userEnvironment = { (api: api, keychain: keychain) }()
+    var firebaseAPI = MockFirebaseAPI()
+    var pushStorage = MockPushTokenStorage()
+    lazy var userEnvironment = { (api: api, keychain: keychain, pushTokenStorage: pushStorage, firebaseAPI: firebaseAPI) }()
     
     override func setUp()
     {
@@ -185,6 +187,8 @@ class UserReducerTests: XCTestCase
     
     func testLogoutDeletesTheToken()
     {
+        let didSendAction = expectation(description: #function)
+        
         let token = "token"
         var userState: User? = User(id: 0, apiToken: token)
         
@@ -192,9 +196,14 @@ class UserReducerTests: XCTestCase
         keychain.apiToken = token
         
         let action = LoginAction.logout
-        _ = reducer.run(&userState, action, userEnvironment)
+        let effect = reducer.run(&userState, action, userEnvironment)
+        _ = effect.sink { userAction in
+            guard case .workspaces(.clear) = userAction else { return }
+            XCTAssertNil(self.api.token, "API token should be nil after logout")
+            XCTAssertNil(self.keychain.apiToken, "Keychain token should be nil after logout")
+            didSendAction.fulfill()
+        }
         
-        XCTAssertNil(api.token, "API token should be nil after logout")
-        XCTAssertNil(keychain.apiToken, "Keychain token should be nil after logout")
+        wait(for: [didSendAction], timeout: 1)
     }
 }

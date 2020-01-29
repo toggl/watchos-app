@@ -37,15 +37,19 @@ public struct TimelineView: View
     @State var visibleActionId: Int = -1
     
     public var body: some View {
-        Group {
-            if store.state.timeline.groupedTimelineEntries.isEmpty && !store.state.loading {
-                EmptyTimelineView {
-                    self.store.send(.loadAll(force: true))
+        Group {            
+            if store.state.timeline.groupedTimelineEntries.isEmpty {
+                if store.state.loading {
+                    EmptyView()
+                } else {
+                    EmptyTimelineView {
+                        self.store.send(.loadAll(force: true))
+                    }
                 }
             } else {
                 List {
                     if store.state.timeline.runningEntry != nil {
-                        NavigationLink(destination: TimeEntryDetailView(timeEntry: store.state.timeline.runningEntry!)) {
+                        NavigationLink(destination: TimeEntryDetailView(timeEntryId: store.state.timeline.runningEntry!.id).environmentObject(store)) {
                             RunningTimeEntryView(store.state.timeline.runningEntry!, onStopAction: { self.store.send(.timeline(.stopRunningEntry)) })
                         }
                         .listRowPlatterColor(Color.black)
@@ -53,15 +57,17 @@ public struct TimelineView: View
                     ForEach(store.state.timeline.groupedTimelineEntries, id: \.day) { group in
                         Section(header: Text(group.dayString)) {
                             ForEach(group.timeEntries, id: \.id) { timeEntry in
-                                NavigationLink(destination:
-                                TimeEntryDetailView(timeEntry: timeEntry)) {
-                                    TimeEntryCellView(
-                                        timeEntry,
-                                        onContinueTimeEntry: { te in self.store.send(.timeline(.continueEntry(te.id))) },
-                                        onDeleteTimeEntry: { te in self.store.send(.timeline(.deleteEntry(te.id))) },
-                                        visibleActionId: self.$visibleActionId
-                                    )
-                                }
+                                NavigationLink(
+                                    destination:
+                                TimeEntryDetailView(timeEntryId: timeEntry.id).environmentObject(self.store),
+                                    label: {
+                                        TimeEntryCellView(
+                                            timeEntry,
+                                            onContinueTimeEntry: { te in self.store.send(.timeline(.continueEntry(te.id))) },
+                                            onDeleteTimeEntry: { te in self.store.send(.timeline(.deleteEntry(te.id))) },
+                                            visibleActionId: self.$visibleActionId
+                                        )
+                                })
                                 .listRowInsets(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 4))
                                 .listRowPlatterColor(Color.clear)
                             }

@@ -7,11 +7,13 @@
 //
 
 import WatchKit
+import UserNotifications
+import TogglTrack
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     func applicationDidFinishLaunching() {
-        // Perform any final initialization of your application.
+        WKExtension.shared().registerForRemoteNotifications()
     }
 
     func applicationDidBecomeActive() {
@@ -67,5 +69,19 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 task.setTaskCompletedWithSnapshot(false)
             }
         }
+    }
+
+    func didRegisterForRemoteNotifications(withDeviceToken deviceToken: Data)
+    {
+        guard let initialController = WKExtension.shared().rootInterfaceController as? HostingController else { return }
+        let deviceTokenString = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        initialController.store.send(.user(.subscribeToPushNotifications(deviceTokenString)))
+    }
+    
+    func didReceiveRemoteNotification(_ userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (WKBackgroundFetchResult) -> Void)
+    {
+        guard let initialController = WKExtension.shared().rootInterfaceController as? HostingController else { return }
+        initialController.store.send(.loadAll(force: true))
+        completionHandler(.noData)
     }
 }

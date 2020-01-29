@@ -172,4 +172,16 @@ class MockAPI: APIProtocol
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
+    
+    func subscribePushNotification(token: TogglPushToken) -> AnyPublisher<Void, Error>
+    {
+        return Empty()
+            .eraseToAnyPublisher()
+    }
+    
+    func unsubscribePushNotification(token: TogglPushToken) -> AnyPublisher<Void, Error>
+    {
+        return Empty()
+            .eraseToAnyPublisher()
+    }
 }

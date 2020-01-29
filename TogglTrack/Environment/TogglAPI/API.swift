@@ -25,6 +25,8 @@ public protocol APIProtocol
     func deleteTimeEntry(workspaceId: Int, timeEntryId: Int) -> AnyPublisher<Void, Error>
     func startTimeEntry(timeEntry: TimeEntry) -> AnyPublisher<TimeEntry, Error>
     func updateTimeEntry(timeEntry: TimeEntry) -> AnyPublisher<TimeEntry, Error>
+    func subscribePushNotification(token: TogglPushToken) -> AnyPublisher<Void, Error>
+    func unsubscribePushNotification(token: TogglPushToken) -> AnyPublisher<Void, Error>
 }
 
 public class API : APIProtocol
@@ -147,6 +149,28 @@ public class API : APIProtocol
             body: timeEntry,
             headers: headers,
             decoder: jsonDecoder
+        )
+        return urlSession.load(endpoint)
+    }
+    
+    public func subscribePushNotification(token: TogglPushToken) -> AnyPublisher<Void, Error>
+    {
+        let endpoint =  Endpoint<Void>(
+            json: .post,
+            url: URL(string: baseURL + "me/push_services")!,
+            body: token,
+            headers: headers
+        )
+        return urlSession.load(endpoint)
+    }
+    
+    public func unsubscribePushNotification(token: TogglPushToken) -> AnyPublisher<Void, Error>
+    {
+        let endpoint =  Endpoint<Void>(
+            json: .delete,
+            url: URL(string: baseURL + "me/push_services")!,
+            body: token,
+            headers: headers
         )
         return urlSession.load(endpoint)
     }

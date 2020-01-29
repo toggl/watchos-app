@@ -14,10 +14,14 @@ import TogglTrack
 class HostingController: WKHostingController<ContentView>
 {
     var store: Store<AppState, AppAction, AppEnvironment> = {
+        let urlSession = URLSession(configuration: URLSessionConfiguration.default)
+        
         let environment = AppEnvironment(
-            api: API(urlSession: URLSession(configuration: URLSessionConfiguration.default)),
+            api: API(urlSession: urlSession),
+            firebaseAPI: FirebaseAPI(urlSession: urlSession),
             keychain: Keychain(),
-            dateService: DateService()
+            dateService: DateService(),
+            pushTokenStorage: PushTokenStorage()
         )
         
         return  Store(

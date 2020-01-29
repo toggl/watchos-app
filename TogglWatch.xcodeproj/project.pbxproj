@@ -119,10 +119,16 @@
 		8CC5FE6C2355B3AB00D33237 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5FE6B2355B3AB00D33237 /* ComplicationController.swift */; };
 		8CC5FE6E2355B3AC00D33237 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CC5FE6D2355B3AC00D33237 /* Assets.xcassets */; };
 		8CC5FE712355B3AC00D33237 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CC5FE702355B3AC00D33237 /* Preview Assets.xcassets */; };
+		8CCA902423ABA95C006C9823 /* PublisherExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA902223ABA957006C9823 /* PublisherExtensions.swift */; };
+		8CCA902523ABA95C006C9823 /* PublisherExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA902223ABA957006C9823 /* PublisherExtensions.swift */; };
 		AC02174023967C12006441A3 /* RunningTimeEntrySelectorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC02173F23967C12006441A3 /* RunningTimeEntrySelectorTest.swift */; };
 		AC0217442396A256006441A3 /* RunningTimeEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0217432396A256006441A3 /* RunningTimeEntryView.swift */; };
 		AC1858DE23ABCE4D00A15186 /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1858DD23ABCE4D00A15186 /* UserDefaultsWrapper.swift */; };
 		AC1858DF23ABCE4D00A15186 /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1858DD23ABCE4D00A15186 /* UserDefaultsWrapper.swift */; };
+		AC1858D723A7FC9D00A15186 /* PushTokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1858D623A7FC9D00A15186 /* PushTokenStorage.swift */; };
+		AC1858D823A7FC9D00A15186 /* PushTokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1858D623A7FC9D00A15186 /* PushTokenStorage.swift */; };
+		AC1858DA23A809E400A15186 /* MockFirebaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1858D923A809E400A15186 /* MockFirebaseAPI.swift */; };
+		AC1858DC23A80C4000A15186 /* MockPushTokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1858DB23A80C4000A15186 /* MockPushTokenStorage.swift */; };
 		AC19DC9B237D79420009106D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DC99237D772E0009106D /* User.swift */; };
 		AC19DC9C237D79420009106D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DC99237D772E0009106D /* User.swift */; };
 		AC19DCA0237EAB130009106D /* LoginAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DC9F237EAB130009106D /* LoginAction.swift */; };
@@ -131,6 +137,11 @@
 		AC19DCA4237EAC8B0009106D /* LoginReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DCA2237EAC8B0009106D /* LoginReducer.swift */; };
 		AC19DCA6237ED1960009106D /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DCA5237ED1960009106D /* KeychainService.swift */; };
 		AC19DCA7237ED1960009106D /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DCA5237ED1960009106D /* KeychainService.swift */; };
+		AC5CC66923A7722000D36131 /* FirebaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5CC66823A7722000D36131 /* FirebaseAPI.swift */; };
+		AC5CC66A23A7722000D36131 /* FirebaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5CC66823A7722000D36131 /* FirebaseAPI.swift */; };
+		AC5CC66C23A7A0DB00D36131 /* FCMPushToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5CC66B23A7A0DB00D36131 /* FCMPushToken.swift */; };
+		AC5CC66D23A7A0DB00D36131 /* FCMPushToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5CC66B23A7A0DB00D36131 /* FCMPushToken.swift */; };
+		ACE36C1723A372FB00C99FA9 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE36C1623A372FB00C99FA9 /* UserNotifications.framework */; };
 		ACEAE4AF23858FF7009C7A26 /* TimelineReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEAE4AE23858FF7009C7A26 /* TimelineReducerTests.swift */; };
 		ACEAE4B4238694FE009C7A26 /* ReducerErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEAE4B3238694FE009C7A26 /* ReducerErrors.swift */; };
 		ACEAE4B5238694FE009C7A26 /* ReducerErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEAE4B3238694FE009C7A26 /* ReducerErrors.swift */; };
@@ -292,13 +303,20 @@
 		8CC5FE9B2355E2E700D33237 /* TimeIntervalExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalExtensions.swift; sourceTree = "<group>"; };
 		8CC5FE9E2355E70200D33237 /* TimelineReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineReducer.swift; sourceTree = "<group>"; };
 		8CC5FEA32355E74400D33237 /* TimeEntryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntryCellView.swift; sourceTree = "<group>"; };
+		8CCA902223ABA957006C9823 /* PublisherExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherExtensions.swift; sourceTree = "<group>"; };
 		AC02173F23967C12006441A3 /* RunningTimeEntrySelectorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningTimeEntrySelectorTest.swift; sourceTree = "<group>"; };
 		AC0217432396A256006441A3 /* RunningTimeEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningTimeEntryView.swift; sourceTree = "<group>"; };
 		AC1858DD23ABCE4D00A15186 /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
+		AC1858D623A7FC9D00A15186 /* PushTokenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushTokenStorage.swift; sourceTree = "<group>"; };
+		AC1858D923A809E400A15186 /* MockFirebaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFirebaseAPI.swift; sourceTree = "<group>"; };
+		AC1858DB23A80C4000A15186 /* MockPushTokenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPushTokenStorage.swift; sourceTree = "<group>"; };
 		AC19DC99237D772E0009106D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AC19DC9F237EAB130009106D /* LoginAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAction.swift; sourceTree = "<group>"; };
 		AC19DCA2237EAC8B0009106D /* LoginReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginReducer.swift; sourceTree = "<group>"; };
 		AC19DCA5237ED1960009106D /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		AC5CC66823A7722000D36131 /* FirebaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAPI.swift; sourceTree = "<group>"; };
+		AC5CC66B23A7A0DB00D36131 /* FCMPushToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCMPushToken.swift; sourceTree = "<group>"; };
+		ACE36C1623A372FB00C99FA9 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS6.1.sdk/System/Library/Frameworks/UserNotifications.framework; sourceTree = DEVELOPER_DIR; };
 		ACEAE4AE23858FF7009C7A26 /* TimelineReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineReducerTests.swift; sourceTree = "<group>"; };
 		ACEAE4B3238694FE009C7A26 /* ReducerErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReducerErrors.swift; sourceTree = "<group>"; };
 		ACEAE4B82386C231009C7A26 /* Memoize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memoize.swift; sourceTree = "<group>"; };
@@ -332,6 +350,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACE36C1723A372FB00C99FA9 /* UserNotifications.framework in Frameworks */,
 				8C039436237D775A00AB1C95 /* TogglTrack.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -403,6 +422,7 @@
 				8C9686C0236307FD00D7865E /* TimeEntryModel.swift */,
 				AC19DC99237D772E0009106D /* User.swift */,
 				8C3134052383D7C40095E309 /* Task.swift */,
+				AC5CC66B23A7A0DB00D36131 /* FCMPushToken.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -484,6 +504,8 @@
 				AC19DCA5237ED1960009106D /* KeychainService.swift */,
 				8C79511923967B0800FBB5D6 /* DateService.swift */,
 				AC1858DD23ABCE4D00A15186 /* UserDefaultsWrapper.swift */,
+				AC5CC66823A7722000D36131 /* FirebaseAPI.swift */,
+				AC1858D623A7FC9D00A15186 /* PushTokenStorage.swift */,
 			);
 			path = Environment;
 			sourceTree = "<group>";
@@ -544,6 +566,8 @@
 				8CA6EC5A2382A63300F7C9B5 /* MockAPI.swift */,
 				8C3134022383019F0095E309 /* MockKeychain.swift */,
 				8C79511D23967D1E00FBB5D6 /* MockDateService.swift */,
+				AC1858D923A809E400A15186 /* MockFirebaseAPI.swift */,
+				AC1858DB23A80C4000A15186 /* MockPushTokenStorage.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -556,6 +580,7 @@
 				8CC5FE9B2355E2E700D33237 /* TimeIntervalExtensions.swift */,
 				8C2753EA2388104800CFF255 /* DateExtensions.swift */,
 				8C2753E623880E6B00CFF255 /* ArrayExtensions.swift */,
+				8CCA902223ABA957006C9823 /* PublisherExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -692,6 +717,7 @@
 		8CC5FEC52355E8B000D33237 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ACE36C1623A372FB00C99FA9 /* UserNotifications.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -958,10 +984,12 @@
 				8C039416237D667900AB1C95 /* TimeEntryModel.swift in Sources */,
 				ACEAE4B4238694FE009C7A26 /* ReducerErrors.swift in Sources */,
 				8C0393FE237D667100AB1C95 /* Endpoint.swift in Sources */,
+				AC1858D723A7FC9D00A15186 /* PushTokenStorage.swift in Sources */,
 				8C03940C237D667500AB1C95 /* Effect.swift in Sources */,
 				8C03941D237D667C00AB1C95 /* API.swift in Sources */,
 				8C03940D237D667500AB1C95 /* Reducer.swift in Sources */,
 				AC19DCA6237ED1960009106D /* KeychainService.swift in Sources */,
+				8CCA902423ABA95C006C9823 /* PublisherExtensions.swift in Sources */,
 				8C039412237D667900AB1C95 /* Project.swift in Sources */,
 				ACEAE4C123884011009C7A26 /* ColorExtension.swift in Sources */,
 				8C79510A238EC0A800FBB5D6 /* WrappedListCell.swift in Sources */,
@@ -977,6 +1005,7 @@
 				8C03942B237D668B00AB1C95 /* EntityAction.swift in Sources */,
 				8C039411237D667900AB1C95 /* TimeEntry.swift in Sources */,
 				8C039427237D668500AB1C95 /* AppState.swift in Sources */,
+				AC5CC66C23A7A0DB00D36131 /* FCMPushToken.swift in Sources */,
 				8C03940B237D667500AB1C95 /* Store.swift in Sources */,
 				8C039421237D668000AB1C95 /* TimelineReducer.swift in Sources */,
 				8C03942A237D668B00AB1C95 /* TimeEntryAction.swift in Sources */,
@@ -986,6 +1015,7 @@
 				8C0393F7237D666C00AB1C95 /* TimeIntervalExtensions.swift in Sources */,
 				8C039422237D668000AB1C95 /* HighOrderReducers.swift in Sources */,
 				8CBC9CFA2385598D00A133CF /* EntityReducer.swift in Sources */,
+				AC5CC66923A7722000D36131 /* FirebaseAPI.swift in Sources */,
 				8C03942D237D668B00AB1C95 /* AppEnvironment.swift in Sources */,
 				8C039413237D667900AB1C95 /* Workspace.swift in Sources */,
 				ACEAE4BC2386D5F6009C7A26 /* Memoize.swift in Sources */,
@@ -1006,10 +1036,12 @@
 				8C03941C237D667900AB1C95 /* TimeEntryModel.swift in Sources */,
 				ACEAE4B5238694FE009C7A26 /* ReducerErrors.swift in Sources */,
 				8C039407237D667100AB1C95 /* Endpoint.swift in Sources */,
+				AC1858D823A7FC9D00A15186 /* PushTokenStorage.swift in Sources */,
 				8C03940F237D667500AB1C95 /* Effect.swift in Sources */,
 				8C03941E237D667C00AB1C95 /* API.swift in Sources */,
 				8C039410237D667500AB1C95 /* Reducer.swift in Sources */,
 				AC19DCA7237ED1960009106D /* KeychainService.swift in Sources */,
+				8CCA902523ABA95C006C9823 /* PublisherExtensions.swift in Sources */,
 				8C039418237D667900AB1C95 /* Project.swift in Sources */,
 				ACEAE4C023884010009C7A26 /* ColorExtension.swift in Sources */,
 				8C79510B238EC0A800FBB5D6 /* WrappedListCell.swift in Sources */,
@@ -1025,6 +1057,7 @@
 				8C039430237D668B00AB1C95 /* EntityAction.swift in Sources */,
 				8C039417237D667900AB1C95 /* TimeEntry.swift in Sources */,
 				8C039428237D668600AB1C95 /* AppState.swift in Sources */,
+				AC5CC66D23A7A0DB00D36131 /* FCMPushToken.swift in Sources */,
 				8C03940E237D667500AB1C95 /* Store.swift in Sources */,
 				8C039425237D668100AB1C95 /* TimelineReducer.swift in Sources */,
 				8C03942F237D668B00AB1C95 /* TimeEntryAction.swift in Sources */,
@@ -1034,6 +1067,7 @@
 				8C88AF4223840F1B00F67EC3 /* Task.swift in Sources */,
 				8C039426237D668100AB1C95 /* HighOrderReducers.swift in Sources */,
 				8CA6EC602382BF3900F7C9B5 /* ErrorExtensions.swift in Sources */,
+				AC5CC66A23A7722000D36131 /* FirebaseAPI.swift in Sources */,
 				8C039432237D668B00AB1C95 /* AppEnvironment.swift in Sources */,
 				8C039419237D667900AB1C95 /* Workspace.swift in Sources */,
 				ACEAE4BD2386D5F7009C7A26 /* Memoize.swift in Sources */,
@@ -1051,6 +1085,8 @@
 				8CA6EC582382995000F7C9B5 /* UserReducerTests.swift in Sources */,
 				8C039435237D693E00AB1C95 /* EndpointTests.swift in Sources */,
 				ACEAE4AF23858FF7009C7A26 /* TimelineReducerTests.swift in Sources */,
+				AC1858DC23A80C4000A15186 /* MockPushTokenStorage.swift in Sources */,
+				AC1858DA23A809E400A15186 /* MockFirebaseAPI.swift in Sources */,
 				AC02174023967C12006441A3 /* RunningTimeEntrySelectorTest.swift in Sources */,
 				8C3134032383019F0095E309 /* MockKeychain.swift in Sources */,
 				8C88DEAB238BD2CE007D7A09 /* EntityReducerTests.swift in Sources */,

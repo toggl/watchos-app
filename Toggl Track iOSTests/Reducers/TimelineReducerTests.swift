@@ -88,7 +88,7 @@ class TimelineReducerTests: XCTestCase
         let effect = reducer.run(&timeEntryState, action, (api, dateService))
         _ = effect
             .sink { action in
-                guard case let .timeline(.addTimeEntry(te)) = action else { return }
+                guard case let .timeline(.startTimeEntry(te)) = action else { return }
                 XCTAssertEqual(te.description, serverTE.description, "There should be new TE from the server")
                 didSendAction.fulfill()
             }
@@ -126,7 +126,7 @@ class TimelineReducerTests: XCTestCase
         XCTAssertNil(timeEntryState.runningTimeEntry, "There should not be a TE running")
         XCTAssertEqual(timeEntryState.timeEntries.values.count, 0, "There should not be any TE")
         
-        let action = TimelineAction.addTimeEntry(te)
+        let action = TimelineAction.startTimeEntry(te)
         _ = reducer.run(&timeEntryState, action, (api, dateService))
         
         XCTAssertNotNil(timeEntryState.runningTimeEntry, "There should be a TE running")
