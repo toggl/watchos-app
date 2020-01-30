@@ -135,6 +135,7 @@
 		AC19DCA4237EAC8B0009106D /* LoginReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DCA2237EAC8B0009106D /* LoginReducer.swift */; };
 		AC19DCA6237ED1960009106D /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DCA5237ED1960009106D /* KeychainService.swift */; };
 		AC19DCA7237ED1960009106D /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DCA5237ED1960009106D /* KeychainService.swift */; };
+		AC47A4D823E329D300C8F6B5 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC47A4D323E3060C00C8F6B5 /* Secrets.plist */; };
 		AC5CC66923A7722000D36131 /* FirebaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5CC66823A7722000D36131 /* FirebaseAPI.swift */; };
 		AC5CC66A23A7722000D36131 /* FirebaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5CC66823A7722000D36131 /* FirebaseAPI.swift */; };
 		AC5CC66C23A7A0DB00D36131 /* FCMPushToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5CC66B23A7A0DB00D36131 /* FCMPushToken.swift */; };
@@ -311,6 +312,7 @@
 		AC19DC9F237EAB130009106D /* LoginAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAction.swift; sourceTree = "<group>"; };
 		AC19DCA2237EAC8B0009106D /* LoginReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginReducer.swift; sourceTree = "<group>"; };
 		AC19DCA5237ED1960009106D /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		AC47A4D323E3060C00C8F6B5 /* Secrets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
 		AC5CC66823A7722000D36131 /* FirebaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAPI.swift; sourceTree = "<group>"; };
 		AC5CC66B23A7A0DB00D36131 /* FCMPushToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCMPushToken.swift; sourceTree = "<group>"; };
 		ACE36C1623A372FB00C99FA9 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS6.1.sdk/System/Library/Frameworks/UserNotifications.framework; sourceTree = DEVELOPER_DIR; };
@@ -696,6 +698,7 @@
 				8CC5FE6B2355B3AB00D33237 /* ComplicationController.swift */,
 				8CC5FE6D2355B3AC00D33237 /* Assets.xcassets */,
 				8CC5FE722355B3AC00D33237 /* Info.plist */,
+				AC47A4D323E3060C00C8F6B5 /* Secrets.plist */,
 				8CC5FE732355B3AC00D33237 /* PushNotificationPayload.apns */,
 				8CC5FE6F2355B3AC00D33237 /* Preview Content */,
 			);
@@ -960,6 +963,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC47A4D823E329D300C8F6B5 /* Secrets.plist in Resources */,
 				8CC5FE712355B3AC00D33237 /* Preview Assets.xcassets in Resources */,
 				8CC5FE6E2355B3AC00D33237 /* Assets.xcassets in Resources */,
 			);

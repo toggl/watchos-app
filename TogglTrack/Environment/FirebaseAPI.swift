@@ -29,9 +29,15 @@ public class FirebaseAPI : FirebaseAPIProtocol
         jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .iso8601
         
+        var firebaseServerKey: String = ""
+        
+        if let path = Bundle.main.path(forResource: "Secrets", ofType: "plist"), let secrets = NSDictionary(contentsOfFile: path) as? [String: String] {
+            firebaseServerKey = secrets["FIREBASE_SERVER_KEY"] ?? ""
+        }
+        
         headers = [
             "Content-Type": "application/json",
-            "Authorization": ProcessInfo.processInfo.environment["FIREBASE_API_KEY"] ?? ""
+            "Authorization": firebaseServerKey
         ]
     }
     
