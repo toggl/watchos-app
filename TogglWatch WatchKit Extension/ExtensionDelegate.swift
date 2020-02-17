@@ -32,7 +32,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         reloadComplications()
     }
     
-    func reloadComplications()
+    @objc func reloadComplications()
     {
         let server = CLKComplicationServer.sharedInstance()
         for comp in (server.activeComplications ?? []) {
@@ -82,6 +82,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     {
         guard let initialController = WKExtension.shared().rootInterfaceController as? HostingController else { return }
         initialController.store.send(.loadAll(force: true))
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadComplications), name: UserDefaults.didChangeNotification, object: nil)
         completionHandler(.noData)
     }
 }

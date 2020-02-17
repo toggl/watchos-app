@@ -58,10 +58,4 @@ public struct UserDefaultsConfig
     
     @UserDefault("runningTEDescription", defaultValue: nil)
     public static var runningTEDescription: String?
-    
-    @UserDefault("currentComplicationStartTime", defaultValue: nil)
-    public static var currentComplicationStartTime: Date?
-    
-    @UserDefault("currentComplicationDescription", defaultValue: nil)
-    public static var currentComplicationDescription: String?
 }

@@ -36,9 +36,6 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     // MARK: - Timeline Population
     
     func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
-        UserDefaultsConfig.currentComplicationStartTime = UserDefaultsConfig.runngingTEStartTime
-        UserDefaultsConfig.currentComplicationDescription = UserDefaultsConfig.runningTEDescription
-        
         let template: CLKComplicationTemplate?
         
         if let start = UserDefaultsConfig.runngingTEStartTime {
