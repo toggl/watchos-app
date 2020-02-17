@@ -123,12 +123,12 @@
 		8CCA902523ABA95C006C9823 /* PublisherExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA902223ABA957006C9823 /* PublisherExtensions.swift */; };
 		AC02174023967C12006441A3 /* RunningTimeEntrySelectorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC02173F23967C12006441A3 /* RunningTimeEntrySelectorTest.swift */; };
 		AC0217442396A256006441A3 /* RunningTimeEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0217432396A256006441A3 /* RunningTimeEntryView.swift */; };
-		AC1858DE23ABCE4D00A15186 /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1858DD23ABCE4D00A15186 /* UserDefaultsWrapper.swift */; };
-		AC1858DF23ABCE4D00A15186 /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1858DD23ABCE4D00A15186 /* UserDefaultsWrapper.swift */; };
 		AC1858D723A7FC9D00A15186 /* PushTokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1858D623A7FC9D00A15186 /* PushTokenStorage.swift */; };
 		AC1858D823A7FC9D00A15186 /* PushTokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1858D623A7FC9D00A15186 /* PushTokenStorage.swift */; };
 		AC1858DA23A809E400A15186 /* MockFirebaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1858D923A809E400A15186 /* MockFirebaseAPI.swift */; };
 		AC1858DC23A80C4000A15186 /* MockPushTokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1858DB23A80C4000A15186 /* MockPushTokenStorage.swift */; };
+		AC1858DE23ABCE4D00A15186 /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1858DD23ABCE4D00A15186 /* UserDefaultsWrapper.swift */; };
+		AC1858DF23ABCE4D00A15186 /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1858DD23ABCE4D00A15186 /* UserDefaultsWrapper.swift */; };
 		AC19DC9B237D79420009106D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DC99237D772E0009106D /* User.swift */; };
 		AC19DC9C237D79420009106D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DC99237D772E0009106D /* User.swift */; };
 		AC19DCA0237EAB130009106D /* LoginAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DC9F237EAB130009106D /* LoginAction.swift */; };
@@ -307,10 +307,10 @@
 		8CCA902223ABA957006C9823 /* PublisherExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherExtensions.swift; sourceTree = "<group>"; };
 		AC02173F23967C12006441A3 /* RunningTimeEntrySelectorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningTimeEntrySelectorTest.swift; sourceTree = "<group>"; };
 		AC0217432396A256006441A3 /* RunningTimeEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningTimeEntryView.swift; sourceTree = "<group>"; };
-		AC1858DD23ABCE4D00A15186 /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
 		AC1858D623A7FC9D00A15186 /* PushTokenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushTokenStorage.swift; sourceTree = "<group>"; };
 		AC1858D923A809E400A15186 /* MockFirebaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFirebaseAPI.swift; sourceTree = "<group>"; };
 		AC1858DB23A80C4000A15186 /* MockPushTokenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPushTokenStorage.swift; sourceTree = "<group>"; };
+		AC1858DD23ABCE4D00A15186 /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
 		AC19DC99237D772E0009106D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AC19DC9F237EAB130009106D /* LoginAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAction.swift; sourceTree = "<group>"; };
 		AC19DCA2237EAC8B0009106D /* LoginReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginReducer.swift; sourceTree = "<group>"; };
@@ -1452,7 +1452,7 @@
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "Toggl Watchkit Extension Development";
 				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 6.0;
@@ -1480,7 +1480,7 @@
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "Toggl Watchkit Extension";
 				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 6.0;
@@ -1502,7 +1502,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Toggl Watchkit Development";
 				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 6.0;
@@ -1524,7 +1524,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Toggl Watchkit";
 				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 6.0;

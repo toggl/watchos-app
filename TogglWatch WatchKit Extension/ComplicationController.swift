@@ -76,43 +76,53 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     {
         var template: CLKComplicationTemplate?
         
-        let defaultImageProvider = CLKImageProvider(onePieceImage: #imageLiteral(resourceName: "logoTransparent"))
-        defaultImageProvider.tintColor = Color.togglRed.toUIColor()
-        let defaultFullColorImageProvider = CLKFullColorImageProvider(fullColorImage: #imageLiteral(resourceName: "logoFullColor"))
+        let defaultTextProvider = CLKSimpleTextProvider(text: "Toggl", shortText: "Toggl")
+        defaultTextProvider.tintColor = Color.togglRed.toUIColor()
         
         let timerTextProvider = CLKRelativeDateTextProvider(date: start, style: .timer, units: [.hour, .minute, .second])
         let descriptionTextProvider = CLKSimpleTextProvider(text: description ?? "No Description")
-        
+        print(complication.family.rawValue)
         switch complication.family {
         case .modularSmall:
-            let modularSmallTemplate = CLKComplicationTemplateModularSmallSimpleText()
-            modularSmallTemplate.textProvider = timerTextProvider
+            let imageProvider = CLKImageProvider(onePieceImage: UIImage(imageLiteralResourceName: "Complication/Modular"))
+            imageProvider.tintColor = Color.togglRed.toUIColor()
+            let modularSmallTemplate = CLKComplicationTemplateModularSmallStackImage()
+            modularSmallTemplate.line1ImageProvider = imageProvider
+            modularSmallTemplate.line2TextProvider = timerTextProvider
             template = modularSmallTemplate
         case .modularLarge:
+            let imageProvider = CLKImageProvider(onePieceImage: UIImage(imageLiteralResourceName: "Complication/Modular"))
+            imageProvider.tintColor = Color.togglRed.toUIColor()
             let modularLargeTemplate = CLKComplicationTemplateModularLargeStandardBody()
-            modularLargeTemplate.headerImageProvider = defaultImageProvider
+            modularLargeTemplate.headerImageProvider = imageProvider
             modularLargeTemplate.headerTextProvider = timerTextProvider
             modularLargeTemplate.body1TextProvider = descriptionTextProvider
             template = modularLargeTemplate
         case .utilitarianSmallFlat, .utilitarianSmall:
+            let imageProvider = CLKImageProvider(onePieceImage: UIImage(imageLiteralResourceName: "Complication/Utilitarian"))
+            imageProvider.tintColor = Color.togglRed.toUIColor()
             let utilitarianSmallTemplate = CLKComplicationTemplateUtilitarianSmallFlat()
-            utilitarianSmallTemplate.textProvider = CLKTextProvider(format: "%@ %@", timerTextProvider, descriptionTextProvider)
-            utilitarianSmallTemplate.imageProvider = defaultImageProvider
+            utilitarianSmallTemplate.textProvider = timerTextProvider
+            utilitarianSmallTemplate.imageProvider = imageProvider
             template = utilitarianSmallTemplate
         case .utilitarianLarge:
+            let imageProvider = CLKImageProvider(onePieceImage: UIImage(imageLiteralResourceName: "Complication/Utilitarian"))
+            imageProvider.tintColor = Color.togglRed.toUIColor()
             let utilitarianLargeTemplate = CLKComplicationTemplateUtilitarianLargeFlat()
             utilitarianLargeTemplate.textProvider = CLKTextProvider(format: "%@ %@", timerTextProvider, descriptionTextProvider)
-            utilitarianLargeTemplate.imageProvider = defaultImageProvider
+            utilitarianLargeTemplate.imageProvider = imageProvider
             template = utilitarianLargeTemplate
         case .circularSmall:
-            let circularSmallTemplate = CLKComplicationTemplateCircularSmallSimpleText()
-            circularSmallTemplate.textProvider = timerTextProvider
+            let imageProvider = CLKImageProvider(onePieceImage: UIImage(imageLiteralResourceName: "Complication/Circular"))
+            imageProvider.tintColor = Color.togglRed.toUIColor()
+            let circularSmallTemplate = CLKComplicationTemplateCircularSmallStackImage()
+            circularSmallTemplate.line1ImageProvider = imageProvider
+            circularSmallTemplate.line2TextProvider = timerTextProvider
             template = circularSmallTemplate
         case .extraLarge:
-            let extraLargeTemplate = CLKComplicationTemplateExtraLargeStackText()
-            extraLargeTemplate.highlightLine2 = true
-            extraLargeTemplate.line1TextProvider = timerTextProvider
-            extraLargeTemplate.line2TextProvider = descriptionTextProvider
+            let extraLargeTemplate = CLKComplicationTemplateExtraLargeStackImage()
+            extraLargeTemplate.line1ImageProvider = CLKImageProvider(onePieceImage: UIImage(imageLiteralResourceName: "Complication/Extra Large"))
+            extraLargeTemplate.line2TextProvider = timerTextProvider
             template = extraLargeTemplate
         case .graphicCorner:
             let graphicCornerTemplate = CLKComplicationTemplateGraphicCornerStackText()
@@ -122,19 +132,19 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         case .graphicBezel:
             let graphicBezelTemplate = CLKComplicationTemplateGraphicBezelCircularText()
             let graphicCircularTemplate = CLKComplicationTemplateGraphicCircularStackImage()
-            graphicCircularTemplate.line1ImageProvider = defaultFullColorImageProvider
+            graphicCircularTemplate.line1ImageProvider = CLKFullColorImageProvider(fullColorImage: UIImage(imageLiteralResourceName: "Graphic Circular Small"))
             graphicCircularTemplate.line2TextProvider = timerTextProvider
             graphicBezelTemplate.circularTemplate = graphicCircularTemplate
             graphicBezelTemplate.textProvider = descriptionTextProvider
             template = graphicBezelTemplate
         case .graphicCircular:
             let graphicCircularTemplate = CLKComplicationTemplateGraphicCircularStackImage()
-            graphicCircularTemplate.line1ImageProvider = defaultFullColorImageProvider
+            graphicCircularTemplate.line1ImageProvider = CLKFullColorImageProvider(fullColorImage: UIImage(imageLiteralResourceName: "Graphic Circular Small"))
             graphicCircularTemplate.line2TextProvider = timerTextProvider
             template = graphicCircularTemplate
         case .graphicRectangular:
             let graphicRectangularTemplate = CLKComplicationTemplateGraphicRectangularStandardBody()
-            graphicRectangularTemplate.headerImageProvider = defaultFullColorImageProvider
+            graphicRectangularTemplate.headerImageProvider = CLKFullColorImageProvider(fullColorImage: UIImage(imageLiteralResourceName: "Complication/Graphic Large Rectangular"))
             graphicRectangularTemplate.headerTextProvider = timerTextProvider
             graphicRectangularTemplate.body1TextProvider = descriptionTextProvider
         @unknown default:
@@ -147,63 +157,69 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     private func templateForNonRunningTE(complication: CLKComplication) -> CLKComplicationTemplate?
     {
         var template: CLKComplicationTemplate?
-        let defaultImageProvider = CLKImageProvider(onePieceImage: #imageLiteral(resourceName: "logoTransparent"))
-        defaultImageProvider.tintColor = Color.togglRed.toUIColor()
-        
-        let defaultFullColorImageProvider = CLKFullColorImageProvider(fullColorImage: #imageLiteral(resourceName: "logoFullColor"))
         
         let defaultTextProvider = CLKSimpleTextProvider(text: "Toggl", shortText: "Toggl")
         defaultTextProvider.tintColor = Color.togglRed.toUIColor()
         
         let defaultBodyTextProvider = CLKSimpleTextProvider(text: "Tap to open", shortText: "Open")
-        
+        print(complication.family.rawValue)
         switch complication.family {
         case .modularSmall:
+            let imageProvider = CLKImageProvider(onePieceImage: UIImage(imageLiteralResourceName: "Complication/Modular"))
+            imageProvider.tintColor = Color.togglRed.toUIColor()
             let modularSmallTemplate = CLKComplicationTemplateModularSmallSimpleImage()
-            modularSmallTemplate.imageProvider = defaultImageProvider
+            modularSmallTemplate.imageProvider = imageProvider
             template = modularSmallTemplate
         case .modularLarge:
+            let imageProvider = CLKImageProvider(onePieceImage: UIImage(imageLiteralResourceName: "Complication/Modular"))
+            imageProvider.tintColor = Color.togglRed.toUIColor()
             let modularLargeTemplate = CLKComplicationTemplateModularLargeStandardBody()
-            modularLargeTemplate.headerImageProvider = defaultImageProvider
+            modularLargeTemplate.headerImageProvider = imageProvider
             modularLargeTemplate.headerTextProvider = defaultTextProvider
             modularLargeTemplate.body1TextProvider = defaultBodyTextProvider
             template = modularLargeTemplate
         case .utilitarianSmallFlat, .utilitarianSmall:
+            let imageProvider = CLKImageProvider(onePieceImage: UIImage(imageLiteralResourceName: "Complication/Utilitarian"))
+            imageProvider.tintColor = Color.togglRed.toUIColor()
             let utilitarianSmallTemplate = CLKComplicationTemplateUtilitarianSmallFlat()
             utilitarianSmallTemplate.textProvider = defaultTextProvider
-            utilitarianSmallTemplate.imageProvider = defaultImageProvider
+            utilitarianSmallTemplate.imageProvider = imageProvider
             template = utilitarianSmallTemplate
         case .utilitarianLarge:
+            let imageProvider = CLKImageProvider(onePieceImage: UIImage(imageLiteralResourceName: "Complication/Utilitarian"))
+            imageProvider.tintColor = Color.togglRed.toUIColor()
             let utilitarianLargeTemplate = CLKComplicationTemplateUtilitarianLargeFlat()
             utilitarianLargeTemplate.textProvider = defaultTextProvider
-            utilitarianLargeTemplate.imageProvider = defaultImageProvider
+            utilitarianLargeTemplate.imageProvider = imageProvider
             template = utilitarianLargeTemplate
         case .circularSmall:
+            let imageProvider = CLKImageProvider(onePieceImage: UIImage(imageLiteralResourceName: "Complication/Circular"))
+            imageProvider.tintColor = Color.togglRed.toUIColor()
             let circularSmallTemplate = CLKComplicationTemplateCircularSmallSimpleImage()
-            circularSmallTemplate.imageProvider = defaultImageProvider
+            circularSmallTemplate.imageProvider = imageProvider
             template = circularSmallTemplate
         case .extraLarge:
             let extraLargeTemplate = CLKComplicationTemplateExtraLargeSimpleImage()
-            extraLargeTemplate.imageProvider = defaultImageProvider
+            extraLargeTemplate.imageProvider = CLKImageProvider(onePieceImage: UIImage(imageLiteralResourceName: "Complication/Extra Large"))
             template = extraLargeTemplate
         case .graphicCorner:
             let graphicCornerTemplate = CLKComplicationTemplateGraphicCornerCircularImage()
-            graphicCornerTemplate.imageProvider = defaultFullColorImageProvider
+            graphicCornerTemplate.imageProvider = CLKFullColorImageProvider(fullColorImage: UIImage(imageLiteralResourceName: "Complication/Graphic Corner"))
             template = graphicCornerTemplate
         case .graphicBezel:
             let graphicBezelTemplate = CLKComplicationTemplateGraphicBezelCircularText()
             let graphicCircularTemplate = CLKComplicationTemplateGraphicCircularImage()
-            graphicCircularTemplate.imageProvider = defaultFullColorImageProvider
+            graphicCircularTemplate.imageProvider = CLKFullColorImageProvider(fullColorImage: UIImage(imageLiteralResourceName: "Complication/Graphic Bezel"))
             graphicBezelTemplate.circularTemplate = graphicCircularTemplate
             graphicBezelTemplate.textProvider = defaultTextProvider
             template = graphicBezelTemplate
         case .graphicCircular:
             let graphicCircularTemplate = CLKComplicationTemplateGraphicCircularImage()
-            graphicCircularTemplate.imageProvider = defaultFullColorImageProvider
+            graphicCircularTemplate.imageProvider = CLKFullColorImageProvider(fullColorImage: UIImage(imageLiteralResourceName: "Complication/Graphic Circular"))
             template = graphicCircularTemplate
         case .graphicRectangular:
             let graphicRectangularTemplate = CLKComplicationTemplateGraphicRectangularStandardBody()
-            graphicRectangularTemplate.headerImageProvider = defaultFullColorImageProvider
+            graphicRectangularTemplate.headerImageProvider = CLKFullColorImageProvider(fullColorImage: UIImage(imageLiteralResourceName: "Complication/Graphic Large Rectangular"))
             graphicRectangularTemplate.headerTextProvider = defaultTextProvider
             graphicRectangularTemplate.body1TextProvider = defaultBodyTextProvider
         @unknown default:
