@@ -81,7 +81,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         
         let timerTextProvider = CLKRelativeDateTextProvider(date: start, style: .timer, units: [.hour, .minute, .second])
         let descriptionTextProvider = CLKSimpleTextProvider(text: description ?? "No Description")
-        print(complication.family.rawValue)
+
         switch complication.family {
         case .modularSmall:
             let imageProvider = CLKImageProvider(onePieceImage: UIImage(imageLiteralResourceName: "Complication/Modular"))
@@ -162,7 +162,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         defaultTextProvider.tintColor = Color.togglRed.toUIColor()
         
         let defaultBodyTextProvider = CLKSimpleTextProvider(text: "Tap to open", shortText: "Open")
-        print(complication.family.rawValue)
+
         switch complication.family {
         case .modularSmall:
             let imageProvider = CLKImageProvider(onePieceImage: UIImage(imageLiteralResourceName: "Complication/Modular"))
