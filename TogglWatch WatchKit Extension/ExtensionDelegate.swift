@@ -81,8 +81,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     func didReceiveRemoteNotification(_ userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (WKBackgroundFetchResult) -> Void)
     {
         guard let initialController = WKExtension.shared().rootInterfaceController as? HostingController else { return }
-        initialController.store.send(.loadAll(force: true))
         NotificationCenter.default.addObserver(self, selector: #selector(reloadComplications), name: UserDefaults.didChangeNotification, object: nil)
+        initialController.store.send(.loadAll(force: true))
         completionHandler(.noData)
     }
 }
