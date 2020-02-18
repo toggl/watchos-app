@@ -9,11 +9,15 @@
 import WatchKit
 import UserNotifications
 import TogglTrack
+import PushKit
 
-class ExtensionDelegate: NSObject, WKExtensionDelegate {
+class ExtensionDelegate: NSObject, WKExtensionDelegate, PKPushRegistryDelegate {
+    
+    private let voipRegistry = PKPushRegistry(queue: nil)
 
     func applicationDidFinishLaunching() {
-        WKExtension.shared().registerForRemoteNotifications()
+        configurePushKit()
+//        WKExtension.shared().registerForRemoteNotifications()
     }
 
     func applicationDidBecomeActive() {
@@ -38,6 +42,11 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         for comp in (server.activeComplications ?? []) {
             server.reloadTimeline(for: comp)
         }
+    }
+    
+    func configurePushKit() {
+        voipRegistry.delegate = self
+        voipRegistry.desiredPushTypes = [.complication]
     }
 
     func handle(_ backgroundTasks: Set<WKRefreshBackgroundTask>) {
@@ -71,18 +80,34 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         }
     }
 
-    func didRegisterForRemoteNotifications(withDeviceToken deviceToken: Data)
+//    func didRegisterForRemoteNotifications(withDeviceToken deviceToken: Data)
+//    {
+//        guard let initialController = WKExtension.shared().rootInterfaceController as? HostingController else { return }
+//        let deviceTokenString = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+//        initialController.store.send(.user(.subscribeToPushNotifications(deviceTokenString)))
+//    }
+//
+//    func didReceiveRemoteNotification(_ userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (WKBackgroundFetchResult) -> Void)
+//    {
+//        guard let initialController = WKExtension.shared().rootInterfaceController as? HostingController else { return }
+//        NotificationCenter.default.addObserver(self, selector: #selector(reloadComplications), name: UserDefaults.didChangeNotification, object: nil)
+//        initialController.store.send(.loadAll(force: true))
+//        completionHandler(.noData)
+//    }
+    
+    func pushRegistry(_ registry: PKPushRegistry, didUpdate pushCredentials: PKPushCredentials, for type: PKPushType)
     {
         guard let initialController = WKExtension.shared().rootInterfaceController as? HostingController else { return }
-        let deviceTokenString = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        let deviceTokenString = pushCredentials.token.map { String(format: "%02.2hhx", $0) }.joined()
+        print(deviceTokenString)
         initialController.store.send(.user(.subscribeToPushNotifications(deviceTokenString)))
     }
     
-    func didReceiveRemoteNotification(_ userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (WKBackgroundFetchResult) -> Void)
+    func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType, completion: @escaping () -> Void)
     {
         guard let initialController = WKExtension.shared().rootInterfaceController as? HostingController else { return }
         NotificationCenter.default.addObserver(self, selector: #selector(reloadComplications), name: UserDefaults.didChangeNotification, object: nil)
         initialController.store.send(.loadAll(force: true))
-        completionHandler(.noData)
+        completion()
     }
 }
