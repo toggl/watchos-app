@@ -74,6 +74,7 @@ extension Endpoint where A: Decodable
     public init<B: Encodable>(json method: Method, url: URL, body: B? = nil, headers: [String: String] = [:], query: [String: String] = [:], decoder: JSONDecoder = JSONDecoder())
     {
         let b = body.map { try! JSONEncoder().encode($0) }
+        print(String(bytes: b!, encoding: .utf8))
         self.init(method, url: url, body: b, headers: headers, query: query) { data in
             guard let dat = data else { throw NetworkingError.unknown }
             return try decoder.decode(A.self, from: dat)

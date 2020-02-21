@@ -48,7 +48,7 @@ public struct FCMPushToken: Codable, Equatable
         var container = encoder.container(keyedBy: EncodeKeys.self)
         
         try container.encode([apnToken], forKey: .apnToken)
-        try container.encode(bundleId, forKey: .application)
+        try container.encode(bundleId.appending(".complication"), forKey: .application)
         try container.encode(sandbox, forKey: .sandbox)
     }
     

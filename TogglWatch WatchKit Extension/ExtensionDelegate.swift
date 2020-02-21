@@ -13,7 +13,7 @@ import PushKit
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate, PKPushRegistryDelegate {
     
-    private let voipRegistry = PKPushRegistry(queue: nil)
+    private let voipRegistry = PKPushRegistry(queue: DispatchQueue.main)
 
     func applicationDidFinishLaunching() {
         configurePushKit()
@@ -84,6 +84,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, PKPushRegistryDelegate {
 //    {
 //        guard let initialController = WKExtension.shared().rootInterfaceController as? HostingController else { return }
 //        let deviceTokenString = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+//        print(deviceTokenString)
 //        initialController.store.send(.user(.subscribeToPushNotifications(deviceTokenString)))
 //    }
 //
@@ -102,7 +103,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, PKPushRegistryDelegate {
         print(deviceTokenString)
         initialController.store.send(.user(.subscribeToPushNotifications(deviceTokenString)))
     }
-    
+
     func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType, completion: @escaping () -> Void)
     {
         guard let initialController = WKExtension.shared().rootInterfaceController as? HostingController else { return }
