@@ -19,6 +19,7 @@ class MockAPI: APIProtocol
 {
     var email: String?
     var password: String?
+    var appleToken: String?
     var token: String?
     
     var returnedUser: User?
@@ -51,6 +52,20 @@ class MockAPI: APIProtocol
                 .eraseToAnyPublisher()
         }
         
+        return Just(user)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+
+    func loginUser(appleToken: String) -> AnyPublisher<User, Error>
+    {
+        self.appleToken = appleToken
+
+        guard let user = returnedUser else {
+            return Fail(error: returnedError)
+                .eraseToAnyPublisher()
+        }
+
         return Just(user)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
