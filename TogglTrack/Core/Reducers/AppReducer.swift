@@ -35,7 +35,7 @@ public var appReducer: Reducer<AppState, AppAction, AppEnvironment, AppAction> =
     case let .setLoading(loading):
         state.loading = loading
         return .empty
-        
+
     case .clients(_), .workspaces(_), .projects(_), .tags(_), .tasks(_), .timeline(_), .user(_):
         return .empty
     }

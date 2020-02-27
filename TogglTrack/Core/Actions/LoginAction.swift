@@ -11,6 +11,7 @@ import Foundation
 public enum LoginAction
 {
     case login(String, String)
+    case loginWithApple(String)
     case setUser(User)
     case loadAPITokenAndUser
     case logout

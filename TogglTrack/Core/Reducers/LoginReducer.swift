@@ -14,11 +14,18 @@ public typealias LoginEnvironment = (api: APIProtocol, keychain: KeychainProtoco
 public var loginReducer: Reducer<User?, LoginAction, LoginEnvironment, AppAction> = Reducer { state, action, userEnv in
     
     switch action {
-        
+
     case let .login(email, password):
         return Effect.concat(
             Just(.setLoading(true)).eraseToEffect(),
             loginEffect(userEnv.api, email, password),
+            Just(.setLoading(false)).eraseToEffect()
+        )
+
+    case let .loginWithApple(token):
+        return Effect.concat(
+            Just(.setLoading(true)).eraseToEffect(),
+            loginEffect(userEnv.api, token),
             Just(.setLoading(false)).eraseToEffect()
         )
         
@@ -76,6 +83,15 @@ public var loginReducer: Reducer<User?, LoginAction, LoginEnvironment, AppAction
 private func loginEffect(_ api: APIProtocol, _ email: String, _ password: String) -> Effect<AppAction>
 {
     return api.loginUser(email: email, password: password)
+        .toEffect(
+            map: { user in .user(.setUser(user)) },
+            catch: { error in .setError(error) }
+        )
+}
+
+private func loginEffect(_ api: APIProtocol, _ token: String) -> Effect<AppAction>
+{
+    return api.loginUser(appleToken: token)
         .toEffect(
             map: { user in .user(.setUser(user)) },
             catch: { error in .setError(error) }
