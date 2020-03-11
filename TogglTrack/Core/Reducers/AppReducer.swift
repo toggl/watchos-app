@@ -25,8 +25,16 @@ public var appReducer: Reducer<AppState, AppAction, AppEnvironment, AppAction> =
                 Just(.setLoading(false)).eraseToEffect()
             )
         }
-        
         return .empty
+        
+    case let .loadAllForBackgroundUpdate(completion):
+        let now = environment.dateService.date
+        state.lastSync = now
+        return Effect.concat(
+            Just(.setLoading(true)).eraseToEffect(),
+            loadTimeEntriesEffect(environment.api, backgroundUpdateCompletion: completion),
+            Just(.setLoading(false)).eraseToEffect()
+        )
 
     case let .setError(error):
         state.error = error
@@ -65,4 +73,15 @@ private func loadAllEffect(_ api: APIProtocol) -> Effect<AppAction>
         )
         .catch { Just(.setError($0)) }
         .eraseToEffect()
+}
+
+private func loadTimeEntriesEffect(_ api: APIProtocol, backgroundUpdateCompletion: (()->())? = nil) -> Effect<AppAction>
+{
+    api.loadEntries()
+    .map { .timeline(.setEntries($0)) }
+    .handleEvents(receiveCompletion: { _ in
+        backgroundUpdateCompletion?()
+    })
+    .catch { Just(.setError($0)) }
+    .eraseToEffect()
 }

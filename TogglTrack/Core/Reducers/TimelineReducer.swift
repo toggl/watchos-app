@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-public typealias TimeEntriesState = (timeEntries: [TimeEntry.ID: TimeEntry], runningTimeEntry: Int?)
+public typealias TimeEntriesState = (timeEntries: [TimeEntry.ID: TimeEntry], runningTimeEntry: Int?, projects: [Project.ID: Project])
 public typealias TimeEntriesEnvironment = (api: APIProtocol, dateService: DateServiceProtocol)
 
 public var timelineReducer: Reducer<TimeEntriesState, TimelineAction, TimeEntriesEnvironment, AppAction> = Reducer { state, action, environment in
@@ -24,6 +24,9 @@ public var timelineReducer: Reducer<TimeEntriesState, TimelineAction, TimeEntrie
         
         var copyTE = runningTimeEntry
         copyTE.duration = environment.dateService.date.timeIntervalSince(runningTimeEntry.start)
+        UserDefaultsConfig.runngingTEStartTime = nil
+        UserDefaultsConfig.runningTEDescription = nil
+        UserDefaultsConfig.runningTEProjectName = nil
         
         return Effect.concat(
             Just(.setLoading(true)).eraseToEffect(),
@@ -77,6 +80,17 @@ public var timelineReducer: Reducer<TimeEntriesState, TimelineAction, TimeEntrie
         
         state.timeEntries[timeEntry.id] = timeEntry
         state.runningTimeEntry = timeEntry.id
+        UserDefaultsConfig.runngingTEStartTime = timeEntry.start
+        UserDefaultsConfig.runningTEDescription = timeEntry.description
+        if let pid = timeEntry.projectId, let project = state.projects[pid]
+        {
+            UserDefaultsConfig.runningTEProjectName = project.name
+        }
+        else
+        {
+            UserDefaultsConfig.runningTEProjectName = nil
+        }
+        
         return .empty
         
     case let .setEntries(entries):
@@ -91,7 +105,16 @@ public var timelineReducer: Reducer<TimeEntriesState, TimelineAction, TimeEntrie
         })
         
         state.runningTimeEntry = runningTE?.id
-        
+        UserDefaultsConfig.runngingTEStartTime = runningTE?.start
+        UserDefaultsConfig.runningTEDescription = runningTE?.description
+        if let pid = runningTE?.projectId, let project = state.projects[pid]
+        {
+            UserDefaultsConfig.runningTEProjectName = project.name
+        }
+        else
+        {
+            UserDefaultsConfig.runningTEProjectName = nil
+        }
         return .empty
     
     case let .entryUpdated(entry):

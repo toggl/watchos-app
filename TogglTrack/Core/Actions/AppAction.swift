@@ -19,6 +19,7 @@ public enum AppAction
     case timeline(TimelineAction)
     case user(LoginAction)
     case loadAll(force: Bool)
+    case loadAllForBackgroundUpdate(completion: ()->())
     case setError(Error?)
     case setLoading(Bool)
     

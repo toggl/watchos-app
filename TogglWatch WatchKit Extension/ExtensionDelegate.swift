@@ -22,11 +22,28 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         }
         
         initialController.didBecomeActive()
+        
+        reloadComplications()
     }
 
     func applicationWillResignActive() {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, etc.
+        reloadComplications()
+        scheduleNextBackgroundRefresh()
+    }
+    
+    @objc func reloadComplications()
+    {
+        let server = CLKComplicationServer.sharedInstance()
+        for comp in (server.activeComplications ?? []) {
+            server.reloadTimeline(for: comp)
+        }
+    }
+    
+    func scheduleNextBackgroundRefresh()
+    {
+        WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: Date().addingTimeInterval(6*60), userInfo: nil) { _ in }
     }
 
     func handle(_ backgroundTasks: Set<WKRefreshBackgroundTask>) {
@@ -35,8 +52,13 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             // Use a switch statement to check the task type
             switch task {
             case let backgroundTask as WKApplicationRefreshBackgroundTask:
-                // Be sure to complete the background task once you’re done.
-                backgroundTask.setTaskCompletedWithSnapshot(false)
+                print("backgroundTask")
+                guard let initialController = WKExtension.shared().rootInterfaceController as? HostingController else { return }
+                initialController.store.send(.loadAllForBackgroundUpdate(completion: { [weak self] in
+                    self?.reloadComplications()
+                    self?.scheduleNextBackgroundRefresh()
+                    backgroundTask.setTaskCompletedWithSnapshot(false)
+                }))
             case let snapshotTask as WKSnapshotRefreshBackgroundTask:
                 // Snapshot tasks have a unique completion call, make sure to set your expiration date
                 snapshotTask.setTaskCompleted(restoredDefaultState: true, estimatedSnapshotExpiration: Date.distantFuture, userInfo: nil)
