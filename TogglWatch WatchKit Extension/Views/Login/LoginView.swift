@@ -35,7 +35,7 @@ struct LoginView: View {
                 .padding(.horizontal, 4)
             Spacer()
             Button(action: { self.store.send(.user(.login(self.email, self.password))) }) {
-                Text("Login")
+                Text("Sign in")
             }
             .background(Color.togglBlue)
             .cornerRadius(CGFloat(20))

@@ -9,7 +9,12 @@
 import Foundation
 import Combine
 
-public typealias LoginEnvironment = (api: APIProtocol, keychain: KeychainProtocol, pushTokenStorage: PushTokenStorageProtocol, firebaseAPI: FirebaseAPIProtocol)
+public typealias LoginEnvironment = (
+    api: APIProtocol,
+    keychain: KeychainProtocol,
+    pushTokenStorage: PushTokenStorageProtocol,
+    firebaseAPI: FirebaseAPIProtocol,
+    signInWithApple: SignInWithAppleServiceProtocol)
 
 public var loginReducer: Reducer<User?, LoginAction, LoginEnvironment, AppAction> = Reducer { state, action, userEnv in
     
@@ -21,6 +26,9 @@ public var loginReducer: Reducer<User?, LoginAction, LoginEnvironment, AppAction
             loginEffect(userEnv.api, email, password),
             Just(.setLoading(false)).eraseToEffect()
         )
+
+    case .getLoginWithAppleToken:
+        return getLoginWithAppleTokenEffect(userEnv.signInWithApple)
 
     case let .loginWithApple(token):
         return Effect.concat(
@@ -98,6 +106,14 @@ private func loginEffect(_ api: APIProtocol, _ token: String) -> Effect<AppActio
         )
 }
 
+private func getLoginWithAppleTokenEffect(_ signInWithApple: SignInWithAppleServiceProtocol) -> Effect<AppAction>
+{
+    signInWithApple.getToken()
+        .toEffect(map: { token in .user(.loginWithApple(token)) },
+                  catch: { error in .setError(error) }
+        )
+}
+
 private func loadUserEffect(_ api: APIProtocol) -> Effect<AppAction>
 {
     api.loadUser()
@@ -135,4 +151,3 @@ private func unsubscribePushNotificationTokenFromTogglIfNeededEffect(_ api: APIP
     return api.unsubscribePushNotification(token: oldTogglPushToken)
         .eraseToEmptyEffect(catch: { error in .setError(error) })
 }
-

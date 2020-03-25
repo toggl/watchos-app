@@ -16,20 +16,22 @@ public struct AppEnvironment
     public let keychain: KeychainProtocol
     public let dateService: DateServiceProtocol
     public let pushTokenStorage: PushTokenStorageProtocol
+    public let signInWithAppleService: SignInWithAppleServiceProtocol
     
-    public init(api: APIProtocol, firebaseAPI: FirebaseAPIProtocol, keychain: KeychainProtocol, dateService: DateServiceProtocol, pushTokenStorage: PushTokenStorageProtocol)
+    public init(api: APIProtocol, firebaseAPI: FirebaseAPIProtocol, keychain: KeychainProtocol, dateService: DateServiceProtocol, pushTokenStorage: PushTokenStorageProtocol, signInWithApple: SignInWithAppleServiceProtocol)
     {
         self.api = api
         self.firebaseAPI = firebaseAPI
         self.keychain = keychain
         self.dateService = dateService
         self.pushTokenStorage = pushTokenStorage
+        self.signInWithAppleService = signInWithApple
     }
 }
 
 // Sub-environments
 extension AppEnvironment
 {
-    public var loginEnvironment: LoginEnvironment { (api, keychain, pushTokenStorage, firebaseAPI) }
+    public var loginEnvironment: LoginEnvironment { (api, keychain, pushTokenStorage, firebaseAPI, signInWithAppleService) }
     public var timeEntriesEnvironment: TimeEntriesEnvironment { (api, dateService) }    
 }

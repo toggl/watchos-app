@@ -17,7 +17,8 @@ class UserReducerTests: XCTestCase
     var keychain = MockKeychain()
     var firebaseAPI = MockFirebaseAPI()
     var pushStorage = MockPushTokenStorage()
-    lazy var userEnvironment = { (api: api, keychain: keychain, pushTokenStorage: pushStorage, firebaseAPI: firebaseAPI) }()
+    var signInWithApple = MockSignInWithAppleService()
+    lazy var userEnvironment = { (api: api, keychain: keychain, pushTokenStorage: pushStorage, firebaseAPI: firebaseAPI, signInWithApple: signInWithApple) }()
     
     override func setUp()
     {

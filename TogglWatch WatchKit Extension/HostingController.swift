@@ -21,7 +21,8 @@ class HostingController: WKHostingController<ContentView>
             firebaseAPI: FirebaseAPI(urlSession: urlSession),
             keychain: Keychain(),
             dateService: DateService(),
-            pushTokenStorage: PushTokenStorage()
+            pushTokenStorage: PushTokenStorage(),
+            signInWithApple: SignInWithAppleService()
         )
         
         return  Store(

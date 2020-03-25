@@ -56,7 +56,7 @@ struct ContentView: View
     var body: some View {
         ZStack {
             if(self.store.state.user == nil) {
-                LoginView()
+                OnboardingView()
                     .environmentObject(store)
             } else {
                 TimelineView()
@@ -85,7 +85,7 @@ struct ContentView: View
                     VStack {
                         ZStack {
                             Rectangle().foregroundColor(Color.black)
-                            Text("Logging in...")
+                            Text("Signing in...")
                                 .font(.footnote)
                         }
                     }

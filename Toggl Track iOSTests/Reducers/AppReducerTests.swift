@@ -16,6 +16,7 @@ class AppReducerTests: XCTestCase
     var api = MockAPI()
     var firebaseAPI = MockFirebaseAPI()
     var pushTokenStorage = MockPushTokenStorage()
+    var signInWithApple = MockSignInWithAppleService()
     
     func testLoadAllSendsSetEntitiesForAllEntities()
     {
@@ -39,7 +40,7 @@ class AppReducerTests: XCTestCase
         api.returnedTags = [Tag(id: 0, name: "", workspaceId: 0)]
         
         var appState = AppState()
-        let appEnvironment = AppEnvironment(api: api, firebaseAPI: firebaseAPI, keychain: Keychain(), dateService: DateService(), pushTokenStorage: pushTokenStorage)
+        let appEnvironment = AppEnvironment(api: api, firebaseAPI: firebaseAPI, keychain: Keychain(), dateService: DateService(), pushTokenStorage: pushTokenStorage, signInWithApple: signInWithApple)
         let action = AppAction.loadAll(force: true)
         let effect = reducer.run(&appState, action, appEnvironment)
         
