@@ -127,6 +127,8 @@
 		AC1858D823A7FC9D00A15186 /* PushTokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1858D623A7FC9D00A15186 /* PushTokenStorage.swift */; };
 		AC1858DA23A809E400A15186 /* MockFirebaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1858D923A809E400A15186 /* MockFirebaseAPI.swift */; };
 		AC1858DC23A80C4000A15186 /* MockPushTokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1858DB23A80C4000A15186 /* MockPushTokenStorage.swift */; };
+		AC1858DE23ABCE4D00A15186 /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1858DD23ABCE4D00A15186 /* UserDefaultsWrapper.swift */; };
+		AC1858DF23ABCE4D00A15186 /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1858DD23ABCE4D00A15186 /* UserDefaultsWrapper.swift */; };
 		AC19DC9B237D79420009106D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DC99237D772E0009106D /* User.swift */; };
 		AC19DC9C237D79420009106D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DC99237D772E0009106D /* User.swift */; };
 		AC19DCA0237EAB130009106D /* LoginAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC19DC9F237EAB130009106D /* LoginAction.swift */; };
@@ -312,6 +314,7 @@
 		AC1858D623A7FC9D00A15186 /* PushTokenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushTokenStorage.swift; sourceTree = "<group>"; };
 		AC1858D923A809E400A15186 /* MockFirebaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFirebaseAPI.swift; sourceTree = "<group>"; };
 		AC1858DB23A80C4000A15186 /* MockPushTokenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPushTokenStorage.swift; sourceTree = "<group>"; };
+		AC1858DD23ABCE4D00A15186 /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
 		AC19DC99237D772E0009106D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AC19DC9F237EAB130009106D /* LoginAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAction.swift; sourceTree = "<group>"; };
 		AC19DCA2237EAC8B0009106D /* LoginReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginReducer.swift; sourceTree = "<group>"; };
@@ -509,6 +512,7 @@
 				8C601BB723683B1C00E87BFB /* TogglAPI */,
 				AC19DCA5237ED1960009106D /* KeychainService.swift */,
 				8C79511923967B0800FBB5D6 /* DateService.swift */,
+				AC1858DD23ABCE4D00A15186 /* UserDefaultsWrapper.swift */,
 				AC5CC66823A7722000D36131 /* FirebaseAPI.swift */,
 				AC1858D623A7FC9D00A15186 /* PushTokenStorage.swift */,
 				B499AFF1240EA2D30066CB58 /* SignInWithAppleService.swift */,
@@ -1007,6 +1011,7 @@
 				8C79511623953C6800FBB5D6 /* RangeExtensions.swift in Sources */,
 				8C039429237D668B00AB1C95 /* AppAction.swift in Sources */,
 				8C039401237D667100AB1C95 /* Errors.swift in Sources */,
+				AC1858DE23ABCE4D00A15186 /* UserDefaultsWrapper.swift in Sources */,
 				8C039415237D667900AB1C95 /* Client.swift in Sources */,
 				8C039400237D667100AB1C95 /* FakeURLSession.swift in Sources */,
 				8C3134042383D47C0095E309 /* ErrorExtensions.swift in Sources */,
@@ -1059,6 +1064,7 @@
 				8C79511723953C6900FBB5D6 /* RangeExtensions.swift in Sources */,
 				8C03942E237D668B00AB1C95 /* AppAction.swift in Sources */,
 				8C03940A237D667100AB1C95 /* Errors.swift in Sources */,
+				AC1858DF23ABCE4D00A15186 /* UserDefaultsWrapper.swift in Sources */,
 				8C03941B237D667900AB1C95 /* Client.swift in Sources */,
 				8C2449722385568700F087E9 /* EntityReducer.swift in Sources */,
 				8C039409237D667100AB1C95 /* FakeURLSession.swift in Sources */,

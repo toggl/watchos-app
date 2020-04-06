@@ -36,10 +36,11 @@ public struct AppState
 extension AppState
 {
     public var timeEntriesState: TimeEntriesState {
-        get { (timeline.timeEntries, timeline.runningTimeEntryID) }
+        get { (timeline.timeEntries, timeline.runningTimeEntryID, timeline.projects) }
         set {
             self.timeline.timeEntries = newValue.timeEntries
             self.timeline.runningTimeEntryID = newValue.runningTimeEntry
+            self.timeline.projects = newValue.projects
         }
     }
 }

@@ -21,7 +21,7 @@ class TimelineReducerTests: XCTestCase
         let teDescription = "To be deleted"
         let te = TimeEntry.createNew(withDescription: teDescription, workspaceId: 1, billable: false, projectId: nil, taskId: nil, tagIds: [])
         
-        var timeEntryState: TimeEntriesState = ([te.id: te], nil)
+        var timeEntryState: TimeEntriesState = ([te.id: te], nil, [:])
         
         let action = TimelineAction.deleteEntry(te.id)
         _ = reducer.run(&timeEntryState, action, (api, dateService))
@@ -34,7 +34,7 @@ class TimelineReducerTests: XCTestCase
         let teDescription = "To be deleted"
         let te = TimeEntry.createNew(withDescription: teDescription, workspaceId: 1, billable: false, projectId: nil, taskId: nil, tagIds: [])
         
-        var timeEntryState: TimeEntriesState = ([te.id: te], nil)
+        var timeEntryState: TimeEntriesState = ([te.id: te], nil, [:])
         
         var newTEs = timeEntryState.timeEntries
             .filter { (id, te) in te.description == teDescription }
@@ -55,7 +55,7 @@ class TimelineReducerTests: XCTestCase
         let didSendAction = expectation(description: #function)
         
         let timelineState = TimelineState()
-        var timeEntryState: TimeEntriesState = (timelineState.timeEntries, nil)
+        var timeEntryState: TimeEntriesState = (timelineState.timeEntries, nil, [:])
         
         let action = TimelineAction.deleteEntry(1)
         
@@ -80,7 +80,7 @@ class TimelineReducerTests: XCTestCase
         let localTEStart = now.addingTimeInterval(-2000)
         let serverTEStart = now
         let localTE = TimeEntry.createNew(withDescription: teDescription, start: localTEStart, workspaceId: workspace.id)
-        var timeEntryState: TimeEntriesState = ([localTE.id: localTE], nil)
+        var timeEntryState: TimeEntriesState = ([localTE.id: localTE], nil, [:])
         let action = TimelineAction.continueEntry(localTE.id)
         let serverTE = TimeEntry.createNew(withDescription: teDescription, start: serverTEStart, workspaceId: workspace.id)
         api.returnStartedTimeEntry = serverTE
@@ -101,7 +101,7 @@ class TimelineReducerTests: XCTestCase
         let didSendAction = expectation(description: #function)
         
         let timelineState = TimelineState()
-        var timeEntryState: TimeEntriesState = (timelineState.timeEntries, nil)
+        var timeEntryState: TimeEntriesState = (timelineState.timeEntries, nil, [:])
         
         let action = TimelineAction.continueEntry(1)
         
@@ -121,7 +121,7 @@ class TimelineReducerTests: XCTestCase
         let teDescription = "To be stopped"
         let te = TimeEntry.createNew(withDescription: teDescription, workspaceId: 1, billable: false, projectId: nil, taskId: nil, tagIds: [])
         let timelineState = TimelineState()
-        var timeEntryState: TimeEntriesState = (timelineState.timeEntries, nil)
+        var timeEntryState: TimeEntriesState = (timelineState.timeEntries, nil, [:])
                 
         XCTAssertNil(timeEntryState.runningTimeEntry, "There should not be a TE running")
         XCTAssertEqual(timeEntryState.timeEntries.values.count, 0, "There should not be any TE")
@@ -137,7 +137,7 @@ class TimelineReducerTests: XCTestCase
     {
         let didSendAction = expectation(description: #function)
 
-        var timeEntryState: TimeEntriesState = ([:], nil)
+        var timeEntryState: TimeEntriesState = ([:], nil, [:])
         let action = TimelineAction.stopRunningEntry
        
         let effect = reducer.run(&timeEntryState, action, (api, dateService))
@@ -156,7 +156,7 @@ class TimelineReducerTests: XCTestCase
         let didSendAction = expectation(description: #function)
 
         let runningEntryId = 1234
-        var timeEntryState: TimeEntriesState = ([:], runningEntryId)
+        var timeEntryState: TimeEntriesState = ([:], runningEntryId, [:])
         let action = TimelineAction.stopRunningEntry
         
         let effect = reducer.run(&timeEntryState, action, (api, dateService))
@@ -179,7 +179,7 @@ class TimelineReducerTests: XCTestCase
         var te = TimeEntry.createNew(withDescription: "", workspaceId: 1, billable: false, projectId: nil, taskId: nil, tagIds: [])
         te.start = now.addingTimeInterval(-duration)
         
-        var timeEntryState: TimeEntriesState = ([te.id:te], te.id)
+        var timeEntryState: TimeEntriesState = ([te.id:te], te.id, [:])
         let action = TimelineAction.stopRunningEntry
         
         _ = reducer.run(&timeEntryState, action, (api, dateService))
@@ -203,7 +203,7 @@ class TimelineReducerTests: XCTestCase
         stoppedTE.duration = duration
         api.returnUpdatedTimeEntry = stoppedTE
         
-        var timeEntryState: TimeEntriesState = ([te.id:te], te.id)
+        var timeEntryState: TimeEntriesState = ([te.id:te], te.id, [:])
         let action = TimelineAction.stopRunningEntry
         
         let effect = reducer.run(&timeEntryState, action, (api, dateService))
