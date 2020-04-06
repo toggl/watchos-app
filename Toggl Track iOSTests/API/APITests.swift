@@ -50,6 +50,24 @@ class APITests: XCTestCase
         
         XCTAssertEqual(string, "\(email):\(password)")
     }
+
+    func testSetsCorrectAuthWhenLoggingInWithApple()
+    {
+        let appleToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+
+        let urlSession = MockURLSession()
+        urlSession.returningValue = User(id: 0, apiToken: "abcd")
+
+        let api = API(urlSession: urlSession)
+
+        _ = api.loginUser(appleToken: appleToken)
+
+        let encoded = String(urlSession.authHeader!.dropFirst(6))
+        let data = Data(base64Encoded: encoded)
+        let string = String(data: data!, encoding: .utf8)!
+
+        XCTAssertEqual(string, "\(appleToken):apple_token")
+    }
     
     func testSetsCorrectUserAgent()
     {        

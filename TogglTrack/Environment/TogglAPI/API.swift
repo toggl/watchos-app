@@ -13,6 +13,7 @@ public protocol APIProtocol
 {
     func setAuth(token: String?)
     func loginUser(email: String, password:String) -> AnyPublisher<User, Error>
+    func loginUser(appleToken: String) -> AnyPublisher<User, Error>
     func loadUser() -> AnyPublisher<User, Error>
 
     func loadEntries() -> AnyPublisher<[TimeEntry], Error>
@@ -36,7 +37,7 @@ public class API : APIProtocol
     #else
     private let baseURL: String = "https://mobile.toggl.com/api/v9/"
     #endif
-    
+
     private let userAgent: String = "AppleWatchApp"
     private var appVersion: String = ""
     private var headers: [String : String]
@@ -73,6 +74,15 @@ public class API : APIProtocol
     {
         let loginData = "\(email):\(password)".data(using: String.Encoding.utf8)!
         updateAuthHeaders(with: loginData)
+
+        let endpoint: Endpoint<User> = createEntityEndpoint(path: "me")
+        return urlSession.load(endpoint)
+    }
+
+    public func loginUser(appleToken token: String) -> AnyPublisher<User, Error>
+    {
+        let loginData = "\(token):apple_token".data(using: String.Encoding.utf8)!
+        updateAuthHeaders(forSignInWithApple: loginData)
 
         let endpoint: Endpoint<User> = createEntityEndpoint(path: "me")
         return urlSession.load(endpoint)
@@ -181,10 +191,22 @@ public class API : APIProtocol
             headers["Authorization"] = nil
             return
         }
-        
+
         let base64LoginString = loginData.base64EncodedString()
         let authHeader = "Basic \(base64LoginString)"
         headers["Authorization"] = authHeader
+    }
+
+    private func updateAuthHeaders(forSignInWithApple loginData: Data)
+    {
+        #if DEBUG
+        let clientId: String = "watch.debug"
+        #else
+        let clientId: String = "watch"
+        #endif
+
+        updateAuthHeaders(with: loginData)
+        headers["Referer"] = clientId
     }
     
     private func createEntitiesEndpoint<T>(path: String) -> Endpoint<[T]> where T: Decodable

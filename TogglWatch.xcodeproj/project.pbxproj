@@ -150,6 +150,10 @@
 		ACEAE4BD2386D5F7009C7A26 /* Memoize.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEAE4B82386C231009C7A26 /* Memoize.swift */; };
 		ACEAE4C023884010009C7A26 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEAE4BE2388400A009C7A26 /* ColorExtension.swift */; };
 		ACEAE4C123884011009C7A26 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEAE4BE2388400A009C7A26 /* ColorExtension.swift */; };
+		B42D7293240401D200289C56 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42D7292240401D200289C56 /* OnboardingView.swift */; };
+		B499AFF3240EA5ED0066CB58 /* SignInWithAppleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B499AFF1240EA2D30066CB58 /* SignInWithAppleService.swift */; };
+		B499AFF4240EA5ED0066CB58 /* SignInWithAppleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B499AFF1240EA2D30066CB58 /* SignInWithAppleService.swift */; };
+		B499AFF6240EB8C20066CB58 /* MockSignInWithAppleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B499AFF5240EB8C20066CB58 /* MockSignInWithAppleService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -323,6 +327,9 @@
 		ACEAE4B3238694FE009C7A26 /* ReducerErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReducerErrors.swift; sourceTree = "<group>"; };
 		ACEAE4B82386C231009C7A26 /* Memoize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memoize.swift; sourceTree = "<group>"; };
 		ACEAE4BE2388400A009C7A26 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		B42D7292240401D200289C56 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		B499AFF1240EA2D30066CB58 /* SignInWithAppleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleService.swift; sourceTree = "<group>"; };
+		B499AFF5240EB8C20066CB58 /* MockSignInWithAppleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSignInWithAppleService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -508,6 +515,7 @@
 				AC1858DD23ABCE4D00A15186 /* UserDefaultsWrapper.swift */,
 				AC5CC66823A7722000D36131 /* FirebaseAPI.swift */,
 				AC1858D623A7FC9D00A15186 /* PushTokenStorage.swift */,
+				B499AFF1240EA2D30066CB58 /* SignInWithAppleService.swift */,
 			);
 			path = Environment;
 			sourceTree = "<group>";
@@ -545,6 +553,7 @@
 		8CA16E7E237D9A8800AD5A96 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				B42D7292240401D200289C56 /* OnboardingView.swift */,
 				8CA16E7F237D9A9500AD5A96 /* LoginView.swift */,
 			);
 			path = Login;
@@ -570,6 +579,7 @@
 				8C79511D23967D1E00FBB5D6 /* MockDateService.swift */,
 				AC1858D923A809E400A15186 /* MockFirebaseAPI.swift */,
 				AC1858DB23A80C4000A15186 /* MockPushTokenStorage.swift */,
+				B499AFF5240EB8C20066CB58 /* MockSignInWithAppleService.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -1005,6 +1015,7 @@
 				8C039415237D667900AB1C95 /* Client.swift in Sources */,
 				8C039400237D667100AB1C95 /* FakeURLSession.swift in Sources */,
 				8C3134042383D47C0095E309 /* ErrorExtensions.swift in Sources */,
+				B499AFF3240EA5ED0066CB58 /* SignInWithAppleService.swift in Sources */,
 				8C2753E823880F0E00CFF255 /* ArrayExtensions.swift in Sources */,
 				8C03942B237D668B00AB1C95 /* EntityAction.swift in Sources */,
 				8C039411237D667900AB1C95 /* TimeEntry.swift in Sources */,
@@ -1057,6 +1068,7 @@
 				8C03941B237D667900AB1C95 /* Client.swift in Sources */,
 				8C2449722385568700F087E9 /* EntityReducer.swift in Sources */,
 				8C039409237D667100AB1C95 /* FakeURLSession.swift in Sources */,
+				B499AFF4240EA5ED0066CB58 /* SignInWithAppleService.swift in Sources */,
 				8C2753E923880F0E00CFF255 /* ArrayExtensions.swift in Sources */,
 				8C039430237D668B00AB1C95 /* EntityAction.swift in Sources */,
 				8C039417237D667900AB1C95 /* TimeEntry.swift in Sources */,
@@ -1092,6 +1104,7 @@
 				AC1858DC23A80C4000A15186 /* MockPushTokenStorage.swift in Sources */,
 				AC1858DA23A809E400A15186 /* MockFirebaseAPI.swift in Sources */,
 				AC02174023967C12006441A3 /* RunningTimeEntrySelectorTest.swift in Sources */,
+				B499AFF6240EB8C20066CB58 /* MockSignInWithAppleService.swift in Sources */,
 				8C3134032383019F0095E309 /* MockKeychain.swift in Sources */,
 				8C88DEAB238BD2CE007D7A09 /* EntityReducerTests.swift in Sources */,
 				8CA6EC5B2382A63300F7C9B5 /* MockAPI.swift in Sources */,
@@ -1119,6 +1132,7 @@
 				8CC5FE6A2355B3AB00D33237 /* NotificationView.swift in Sources */,
 				8CA9509D237417FD0076BDA4 /* TimeEntryCellView.swift in Sources */,
 				8CC5FE6C2355B3AB00D33237 /* ComplicationController.swift in Sources */,
+				B42D7293240401D200289C56 /* OnboardingView.swift in Sources */,
 				AC0217442396A256006441A3 /* RunningTimeEntryView.swift in Sources */,
 				8C79510D238EC40300FBB5D6 /* TagsView.swift in Sources */,
 			);

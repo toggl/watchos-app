@@ -17,7 +17,8 @@ class UserReducerTests: XCTestCase
     var keychain = MockKeychain()
     var firebaseAPI = MockFirebaseAPI()
     var pushStorage = MockPushTokenStorage()
-    lazy var userEnvironment = { (api: api, keychain: keychain, pushTokenStorage: pushStorage, firebaseAPI: firebaseAPI) }()
+    var signInWithApple = MockSignInWithAppleService()
+    lazy var userEnvironment = { (api: api, keychain: keychain, pushTokenStorage: pushStorage, firebaseAPI: firebaseAPI, signInWithApple: signInWithApple) }()
     
     override func setUp()
     {
@@ -82,7 +83,63 @@ class UserReducerTests: XCTestCase
         
         wait(for: [didSendAction], timeout: 1)
     }
-    
+
+    func testLoginWithAppleSendsCredentialsToAPI()
+    {
+        let token = "abcdef"
+
+        var userState: User? = nil
+        let action = LoginAction.loginWithApple(token)
+
+        _ = reducer.run(&userState, action, userEnvironment)
+
+        XCTAssertEqual(api.appleToken, token, "The reducer is not sending the token to the API")
+    }
+
+    func testLoginWithAppleSendsSetUserActionWhenSucceeds()
+    {
+        let didSendAction = expectation(description: #function)
+
+        let token = "abcdef"
+        let mockUser = User(id: 0, apiToken: "token")
+
+        var userState: User? = nil
+        let action = LoginAction.loginWithApple(token)
+        api.returnedUser = mockUser
+
+        let effect = reducer.run(&userState, action, userEnvironment)
+        _ = effect
+            .sink { userAction in
+                guard case let .user(.setUser(user)) = userAction else { return }
+                XCTAssertEqual(mockUser, user, "User should be set after login")
+                didSendAction.fulfill()
+            }
+
+        wait(for: [didSendAction], timeout: 1)
+    }
+
+    func testLoginWithAppleSendsSetErrorActionWhenItFails()
+    {
+        let didSendAction = expectation(description: #function)
+
+        let token = "abcdef"
+
+
+        var userState: User? = nil
+        let action = LoginAction.loginWithApple(token)
+        api.returnedUser = nil
+
+        let effect = reducer.run(&userState, action, userEnvironment)
+        _ = effect
+            .sink { userAction in
+                guard case let .setError(error) = userAction else { return }
+                XCTAssertNotNil(error, "When login fails an error should be set")
+                didSendAction.fulfill()
+            }
+
+        wait(for: [didSendAction], timeout: 1)
+    }
+
     func testSetUserSendsCredentialsToAPI()
     {
         let user = User(id: 0, apiToken: "token")
