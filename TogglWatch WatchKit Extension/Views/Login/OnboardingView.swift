@@ -36,6 +36,7 @@ struct OnboardingView: View {
                 .cornerRadius(20)
             }
         }
+        .padding(.top, 10)
         .alert(isPresented: hasError) {
             Alert(title: errorMessage,
                   dismissButton: ActionSheet.Button.default(Text("OK"), action: { self.store.send(.setError(nil)) }))
