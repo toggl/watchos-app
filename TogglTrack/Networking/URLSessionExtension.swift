@@ -19,6 +19,7 @@ extension URLSession: URLSessionProtocol
     public func load<A>(_ endpoint: Endpoint<A>) -> AnyPublisher<A, Error>
     {
         return dataTaskPublisher(for: endpoint.request)
+            .retry(3)
             .tryMap { data, response in
                 guard let response = response as? HTTPURLResponse else {
                     throw NetworkingError.noData
