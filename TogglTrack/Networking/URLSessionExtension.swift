@@ -18,17 +18,17 @@ extension URLSession: URLSessionProtocol
 {
     public func load<A>(_ endpoint: Endpoint<A>) -> AnyPublisher<A, Error>
     {
-        dataTaskPublisher(for: endpoint.request)
-            .retryWithDelay(retries: 5, delay: 3)
+        return dataTaskPublisher(for: endpoint.request)
+            .retry(3)
             .tryMap { data, response in
                 guard let response = response as? HTTPURLResponse else {
                     throw NetworkingError.noData
                 }
-
+                
                 guard endpoint.expectedStatusCode(response.statusCode) else {
                     throw NetworkingError.wrongStatus(response.statusCode, response)
                 }
-
+                
                 return try endpoint.parse(data)
             }
             .eraseToAnyPublisher()
