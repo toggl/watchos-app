@@ -1193,7 +1193,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.toggl.toggl-track";
 				PRODUCT_NAME = TogglTrack;
 				SDKROOT = watchos;
@@ -1224,7 +1224,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.toggl.toggl-track";
 				PRODUCT_NAME = TogglTrack;
 				SDKROOT = watchos;
@@ -1255,7 +1255,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.toggl.toggl-track";
 				PRODUCT_NAME = TogglTrack;
 				SKIP_INSTALL = YES;
@@ -1284,7 +1284,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.toggl.toggl-track";
 				PRODUCT_NAME = TogglTrack;
 				SKIP_INSTALL = YES;
@@ -1466,7 +1466,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkit.extension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "Toggl Watchkit Extension Development";
@@ -1495,7 +1495,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkit.extension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "Toggl Watchkit Extension";
@@ -1518,7 +1518,7 @@
 				DEVELOPMENT_TEAM = B227VTMZ94;
 				IBSC_MODULE = TogglWatch_WatchKit_Extension;
 				INFOPLIST_FILE = "TogglWatch WatchKit App/Info.plist";
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkit";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Toggl Watchkit Development";
@@ -1541,7 +1541,7 @@
 				DEVELOPMENT_TEAM = B227VTMZ94;
 				IBSC_MODULE = TogglWatch_WatchKit_Extension;
 				INFOPLIST_FILE = "TogglWatch WatchKit App/Info.plist";
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID).watchkit";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Toggl Watchkit";
@@ -1561,7 +1561,7 @@
 				CURRENT_PROJECT_VERSION = "From CI Script";
 				DEVELOPMENT_TEAM = B227VTMZ94;
 				INFOPLIST_FILE = Info.plist;
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Toggl Watch Wrapper Development";
@@ -1577,7 +1577,7 @@
 				CURRENT_PROJECT_VERSION = "From CI Script";
 				DEVELOPMENT_TEAM = B227VTMZ94;
 				INFOPLIST_FILE = Info.plist;
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Toggl Watch Wrapper";
