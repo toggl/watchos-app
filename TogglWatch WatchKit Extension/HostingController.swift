@@ -14,8 +14,11 @@ import TogglTrack
 class HostingController: WKHostingController<ContentView>
 {
     var store: Store<AppState, AppAction, AppEnvironment> = {
-        let urlSession = URLSession(configuration: URLSessionConfiguration.default)
-        
+        let configuration = URLSessionConfiguration.default
+        configuration.allowsCellularAccess = true
+        configuration.waitsForConnectivity = true
+        let urlSession = URLSession(configuration: configuration)
+    
         let environment = AppEnvironment(
             api: API(urlSession: urlSession),
             firebaseAPI: FirebaseAPI(urlSession: urlSession),
