@@ -16,7 +16,7 @@ struct OnboardingView: View {
 
     var hasError: Binding<Bool> {
         Binding(
-            get: { store.state.errorMessage != nil },
+            get: { self.store.state.errorMessage != nil },
             set: { _ in self.store.send(.setError(nil)) }
         )
     }
