@@ -51,7 +51,7 @@ public var appReducer: Reducer<AppState, AppAction, AppEnvironment, AppAction> =
 
 private func loadAllEffect(_ api: APIProtocol) -> Effect<AppAction>
 {
-    Publishers.MergeMany(
+    let publishers: [AnyPublisher<AppAction, Error>] = [
         api.loadWorkspaces()
             .map { .workspaces(.setEntities($0)) }
             .eraseToAnyPublisher(),
@@ -70,9 +70,13 @@ private func loadAllEffect(_ api: APIProtocol) -> Effect<AppAction>
         api.loadEntries()
             .map { .timeline(.setEntries($0)) }
             .eraseToAnyPublisher()
-        )
-        .catch { Just(.setError($0)) }
-        .eraseToEffect()
+    ]
+
+    return publishers.reduce(Empty().eraseToAnyPublisher()) { (total: AnyPublisher<AppAction, Error>, next: AnyPublisher<AppAction, Error>) in
+        return total.append(next).eraseToAnyPublisher()
+    }
+    .catch { Just(.setError($0)) }
+    .eraseToEffect()
 }
 
 private func loadTimeEntriesEffect(_ api: APIProtocol, backgroundUpdateCompletion: (()->())? = nil) -> Effect<AppAction>

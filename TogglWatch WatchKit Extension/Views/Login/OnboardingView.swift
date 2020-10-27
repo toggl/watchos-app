@@ -16,7 +16,7 @@ struct OnboardingView: View {
 
     var hasError: Binding<Bool> {
         Binding(
-            get: shouldPresentError,
+            get: { store.state.errorMessage != nil },
             set: { _ in self.store.send(.setError(nil)) }
         )
     }
@@ -38,30 +38,8 @@ struct OnboardingView: View {
         }
         .padding(.top, 10)
         .alert(isPresented: hasError) {
-            Alert(title: errorMessage,
+            Alert(title: Text(store.state.errorMessage ?? "Error"),
                   dismissButton: ActionSheet.Button.default(Text("OK"), action: { self.store.send(.setError(nil)) }))
-        }
-    }
-
-    var errorMessage: Text {
-        if case .wrongStatus(403, _) = store.state.error as? NetworkingError {
-            return Text("Sign up on iOS first")
-        }
-        else if store.state.error is ASAuthorizationError {
-            return Text("Sign in with Apple failed")
-        }
-        return Text("Sign in failed")
-    }
-
-    private func shouldPresentError() -> Bool {
-        if case .wrongStatus(403, _) = store.state.error as? NetworkingError {
-            return true
-        }
-        else if store.state.error is ASAuthorizationError {
-            return true
-        }
-        else {
-            return false
         }
     }
 }

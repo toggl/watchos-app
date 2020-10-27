@@ -9,6 +9,7 @@
 import WatchKit
 import UserNotifications
 import TogglTrack
+import ClockKit
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
 

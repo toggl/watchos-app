@@ -78,7 +78,7 @@ class APITests: XCTestCase
         
         _ = api.loadTags().last()
                         
-        XCTAssertEqual(urlSession.userAgent!, "AppleWatchApp")
+        XCTAssertEqual(urlSession.userAgent!.split(separator: "/").first, "AppleWatchApp")
     }
     
     func testSetsTheCorrectURL()
@@ -89,6 +89,6 @@ class APITests: XCTestCase
         
         _ = api.loadTags().last()
                         
-        XCTAssertEqual(urlSession.url!, URL(string: "https://mobile.toggl.space/api/v9/me/tags"))
+        XCTAssertEqual(urlSession.url!, URL(string: "https://mobile.track.toggl.space/api/v9/me/tags"))
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AuthenticationServices
 
 public struct TimelineState: Equatable
 {
@@ -29,6 +30,20 @@ public struct AppState
 
     public init()
     {
+    }
+}
+
+extension AppState {
+    public var errorMessage: String? {
+        if case .wrongStatus(403, _) = error as? NetworkingError {
+            return "Sign up on iOS first"
+        }
+        else if error is ASAuthorizationError {
+            return "Sign in with Apple failed"
+        }
+        else {
+            return nil
+        }
     }
 }
 

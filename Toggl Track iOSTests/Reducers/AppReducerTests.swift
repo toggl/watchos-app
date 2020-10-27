@@ -36,7 +36,7 @@ class AppReducerTests: XCTestCase
         api.returnedWorkspaces = [Workspace(id: 0, name: "", admin: false)]
         api.returnedClients = [Client(id: 0, name: "", workspaceId: 0)]
         api.returnedProjects = [Project(id: 0, name: "", isPrivate: false, isActive: true, color: "", billable: false, workspaceId: 0, clientId: nil)]
-        api.returnedTasks = [Task(id: 0, name: "", active: true, estimatedSeconds: 0, trackedSeconds: 0, projectId: 0, workspaceId: 0, userId: nil)]
+        api.returnedTasks = [Task(id: 0, name: "", active: true, projectId: 0, workspaceId: 0, userId: nil)]
         api.returnedTags = [Tag(id: 0, name: "", workspaceId: 0)]
         
         var appState = AppState()

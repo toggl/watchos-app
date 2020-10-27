@@ -57,6 +57,7 @@ extension Color
     // App colors
     public static var togglGreen = Color(red: 75/255, green: 200/255, blue: 0)
     public static var togglRed = Color(red: 241/255, green: 18/255, blue: 18/255)
+    public static var togglPink = Color(red: 229/255, green: 124/255, blue: 216/255)    
     public static var togglDarkRed = Color(red: 77/255, green: 6/255, blue: 6/255)
     public static var togglBlue = Color(red: 6/255, green: 170/255, blue: 245/255)
     public static var togglGray = Color(red: 174/255, green: 180/255, blue: 191/255)

@@ -18,7 +18,7 @@ struct LoginView: View {
     
     var hasError: Binding<Bool> {
         Binding(
-            get: { self.store.state.error != nil },
+            get: { self.store.state.errorMessage != nil },
             set: { _ in self.store.send(.setError(nil)) }
         )
     }
@@ -42,7 +42,7 @@ struct LoginView: View {
         }
         .navigationBarTitle("Toggl")
         .alert(isPresented: hasError) {
-            Alert(title: Text(store.state.error!.description))
+            Alert(title: Text(store.state.errorMessage ?? "Error"))
         }
     }
 }

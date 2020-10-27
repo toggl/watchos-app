@@ -33,9 +33,9 @@ public protocol APIProtocol
 public class API : APIProtocol
 {
     #if DEBUG
-    private let baseURL: String = "https://mobile.toggl.space/api/v9/"
+    private let baseURL: String = "https://mobile.track.toggl.space/api/v9/"
     #else
-    private let baseURL: String = "https://mobile.toggl.com/api/v9/"
+    private let baseURL: String = "https://mobile.track.toggl.com/api/v9/"
     #endif
 
     private let userAgent: String = "AppleWatchApp"
@@ -57,7 +57,9 @@ public class API : APIProtocol
             appVersion = version
         }
         
-        headers = ["User-Agent": userAgent + appVersion]
+        headers = [
+            "User-Agent": userAgent + "/" + appVersion
+        ]
     }
     
     public func setAuth(token: String?)

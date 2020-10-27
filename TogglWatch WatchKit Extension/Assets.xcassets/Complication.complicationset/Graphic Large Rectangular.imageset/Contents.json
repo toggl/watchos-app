@@ -1,16 +1,15 @@
 {
   "images" : [
     {
-      "idiom" : "watch",
-      "filename" : "Graphic Large Rectangular.pdf"
+      "idiom" : "watch"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   },
   "properties" : {
-    "preserves-vector-representation" : true,
-    "auto-scaling" : "auto"
+    "auto-scaling" : "auto",
+    "preserves-vector-representation" : true
   }
 }
